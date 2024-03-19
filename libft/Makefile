@@ -59,7 +59,8 @@ FUNCTIONS=	ft_isalpha.c \
 			ft_absolute.c \
 			ft_error.c \
 			ft_get_empty_str.c \
-			ft_strjoin_char.c
+			ft_strjoin_char.c \
+			aux_lst.c
 			
 OBJ= $(FUNCTIONS:%.c=%.o)
 

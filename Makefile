@@ -1,57 +1,60 @@
-NAME=minishell
-CC=cc
-CFLAGS=-Wall -Wextra -Werror
-LIBFT=./libft/libft.a
+NAME = minishell
 
-#SRC=	aux_cmds.c \
-		aux_envp.c \
-		aux_export.c \
-		aux_files.c \
-		aux_files2.c \
-		aux_init.c \
-		aux_lst.c \
-		aux_path.c \
-		do_dups.c \
-		execute.c \
-		free.c \
-		ft_cd.c \
-		ft_echo.c \
-		ft_env.c \
-		ft_exit.c \
-		ft_export.c \
-		ft_pwd.c \
-		ft_unset.c \
-		here_doc.c \
-		processes.c \
-		prompt.c \
-		set_pipes.c
+# COMPILER OPTIONS
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+
+LIBFT = libft/libft.a
+
 
 # SOURCE FILES
 SRC_DIRS := $(wildcard src/*/)
-SRC_ARLEY := $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)*.c))
-SRC := $(wildcard *.c)
+SRC := $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)*.c))
 
-OBJ=$(SRC:.c=.o)
+# OBJECT FILES
+OBJ_PATH	= obj/
+OBJ_FILES	:= $(patsubst src/%.c,%.o,$(SRC))
+OBJ 		:= $(addprefix $(OBJ_PATH), $(OBJ_FILES))
 
-$(NAME): $(OBJ)
+# COMMANDS
+RM = rm -f
+
+# COLORS
+RED		=	\033[91;1m
+GREEN	=	\033[92;1m
+YELLOW	=	\033[93;1m
+BLUE	=	\033[94;1m
+PINK	=	\033[95;1m
+CLEAR	=	\033[0m
+
+# MAKEFILE RULES
+all:	$(NAME)
+
+$(NAME): $(LIBFT) $(OBJ_PATH) $(OBJ)
+	@echo "$(PINK)Compiling $(NAME).$(CLEAR)"
+	@$(CC) $(FLAGS) -o $(NAME) $(OBJ) $(LIBFT) -L/Users/$(USER)/.brew/opt/readline/lib -lreadline
+	@echo "$(GREEN)[OK]\n$(CLEAR)$(GREEN)Success!$(CLEAR)"
+
+$(LIBFT):
 	@make all -C ./libft
-	$(CC) $(OBJ) $(LIBFT) -o $(NAME) -L/Users/$(USER)/.brew/opt/readline/lib -lreadline
 
-all: $(NAME)
+$(OBJ_PATH)%.o: src/%.c
+	@mkdir -p $(dir $@)
+	@$(CC) $(FLAGS) -c -o $@ $< $(INCLUDE) -I/Users/$(USER)/.brew/opt/readline/include
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -I/Users/$(USER)/.brew/opt/readline/include
+$(OBJ_PATH):
+	@mkdir -p $(OBJ_PATH)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -I/Users/$(USER)/.brew/opt/readline/include
-	echo $(@) --- $(^)
 clean:
+	@echo "$(PINK)Removing .o object files.$(CLEAR)"
+	@rm -rf $(OBJ_PATH)
 	@make clean -C ./libft
-	@rm -f $(OBJ)
+	@echo "$(GREEN)Object files removed correctly\n$(CLEAR)"
 
 fclean: clean
 	@make fclean -C ./libft
-	@rm -f $(NAME)
+	@$(RM) $(NAME)
+	@echo "$(GREEN)Exec. files removed correctly\nSuccess!$(CLEAR)"
 
 re: fclean all
 
