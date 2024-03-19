@@ -31,12 +31,12 @@ OBJ=$(SRC:.c=.o)
 
 $(NAME): $(OBJ)
 	@make all -C ./libft
-	$(CC) $(OBJ) $(LIBFT) -o $(NAME)
+	$(CC) $(OBJ) $(LIBFT) -o $(NAME) -L/Users/$(USER)/.brew/opt/readline/lib -lreadline
 
 all: $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $<
+	$(CC) $(CFLAGS) -c $< -I/Users/$(USER)/.brew/opt/readline/include
 
 clean:
 	@make clean -C ./libft

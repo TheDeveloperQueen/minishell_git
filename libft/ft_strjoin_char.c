@@ -6,13 +6,13 @@
 /*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 11:59:34 by rivasque          #+#    #+#             */
-/*   Updated: 2024/03/15 12:00:04 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/03/19 13:03:36 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin_char(char const *s1, char const *s2, char c)
+char	*ft_strjoin_char(char *s1, char *s2, char c)
 {
 	char	*new_str;
 	size_t	s1_len;

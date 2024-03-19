@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:09:56 by rivasque          #+#    #+#             */
-/*   Updated: 2024/03/18 19:49:54 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/03/19 13:17:56 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include	<stdlib.h>
 # include	<fcntl.h>
 # include	<unistd.h>
+# include	<readline/readline.h>
+# include	<readline/history.h>
 
 // files
 # define IN 1
@@ -80,6 +82,7 @@ typedef struct s_commands_array
 
 typedef struct s_data
 {
+	int		cmd_array_len;
 	//Environment variables
 	t_llist	*envp;
 	//Has here_doc
@@ -134,7 +137,7 @@ int		ft_export(t_command *cmd, t_data *data);
 int		ft_cd(t_command *cmd);
 int		ft_env(t_llist *envp);
 int		ft_exit(t_command *cmd, t_data *data);
-int		ft_unset(t_command *cmd, t_data *data);
+int		ft_unset(t_data *data, t_command *cmd);
 
 //General aux functions
 void	lst_add_back(t_llist **llst, t_llist *new);

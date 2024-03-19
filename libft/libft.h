@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 10:40:12 by rivasque          #+#    #+#             */
-/*   Updated: 2024/03/18 19:41:16 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/03/19 13:03:22 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	ft_del_lst(t_list **lst);
 int		ft_absolute(int nb);
 void	ft_error(void);
 char	*ft_get_empty_str(void);
-char	*ft_strjoin_char(char const *s1, char const *s2, char c);
+char	*ft_strjoin_char(char *s1, char *s2, char c);
 void	ft_delete_lst(t_list *lst);
 void	ft_delete_llst(t_llist *lst);
 int		ft_llstsize(t_llist *lst);
