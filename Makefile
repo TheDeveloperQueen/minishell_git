@@ -39,8 +39,8 @@ $(NAME): $(OBJ)
 
 all: $(NAME)
 
-otra:
-	@echo $(SRC)
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -I/Users/$(USER)/.brew/opt/readline/include
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -I/Users/$(USER)/.brew/opt/readline/include
