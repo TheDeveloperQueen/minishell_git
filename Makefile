@@ -3,8 +3,7 @@ CC=cc
 CFLAGS=-Wall -Wextra -Werror
 LIBFT=./libft/libft.a
 
-SRC=	main.c \
-		aux_cmds.c \
+#SRC=	aux_cmds.c \
 		aux_envp.c \
 		aux_export.c \
 		aux_files.c \
@@ -27,17 +26,25 @@ SRC=	main.c \
 		prompt.c \
 		set_pipes.c
 
+# SOURCE FILES
+SRC_DIRS := $(wildcard src/*/)
+SRC_ARLEY := $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)*.c))
+SRC := $(wildcard *.c)
+
 OBJ=$(SRC:.c=.o)
 
 $(NAME): $(OBJ)
 	@make all -C ./libft
-	$(CC) $(OBJ) $(LIBFT) -o $(NAME)
+	$(CC) $(OBJ) $(LIBFT) -o $(NAME) -L/Users/$(USER)/.brew/opt/readline/lib -lreadline
 
 all: $(NAME)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $<
+otra:
+	@echo $(SRC)
 
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -I/Users/$(USER)/.brew/opt/readline/include
+	echo $(@) --- $(^)
 clean:
 	@make clean -C ./libft
 	@rm -f $(OBJ)

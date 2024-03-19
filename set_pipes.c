@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   set_pipes.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 15:56:23 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/03/18 18:59:26 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/03/19 13:01:08 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    check_pipe(t_command *cmd, t_commands_array *cmds_array, int index)
+void     check_pipe(t_command *cmd, t_commands_array *cmds_array, int index)
 {
     if  (index == 0 && cmds_array->len > 1)
         cmd->pipe = PIPE_OUT;
@@ -32,7 +32,7 @@ static int do_pipe(int fd[2])
     if (return_fd == -1)
     {
         perror("pipe Error\n");
-        exit_shell();
+       exit(EXIT_FAILURE);
     }
     return (return_fd);
 }
@@ -77,6 +77,6 @@ int set_pipes(t_command *cmd)
     if (cmd->pipe == PIPE_OUT)
         return (set_pipe_out(cmd));
     if (cmd->pipe == PIPE_IN_OUT)
-        return (set_pipe_in(cmd));
+        return (set_pipe_in_out(cmd));
     return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 19:19:31 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/03/18 18:56:31 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/03/19 10:26:13 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static int	read_here_doc(int fd, char *delimiter)
 	free(line);
 	close(fd);
 	//signals();
+	return (1);
 }
 
 char	*here_doc(char *delimiter)

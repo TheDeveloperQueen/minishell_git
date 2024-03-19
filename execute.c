@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 14:30:16 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/03/18 20:01:05 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/03/19 13:06:17 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int	exec_builtin(t_command *cmd, t_data *data)
         data->exit_value = ft_env(data->envp);
     if (ft_strcmp(cmd->name, "export") == 0)
         data->exit_value = ft_export(cmd, data);
-	if (ft_strcmp(cmd->name, "unset") == 0)
-        data->exit_value = ft_unset(cmd, data);
+	//if (ft_strcmp(cmd->name, "unset") == 0)
+        //data->exit_value = ft_unset(cmd, data);
 	if (ft_strcmp(cmd->name, "exit") == 0)
         data->exit_value = ft_exit(cmd, data);
 	return (data->exit_value);

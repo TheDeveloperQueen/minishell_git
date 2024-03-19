@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   processes.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:23:38 by rivasque          #+#    #+#             */
-/*   Updated: 2024/03/18 16:23:19 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/03/19 10:27:48 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	child_process(t_data *data, t_command *cmd)
 {
 	char	*path;
-	char	*envp_str;
+	char	**envp_str;
 	char	**args;
 	
 	//signals_child();

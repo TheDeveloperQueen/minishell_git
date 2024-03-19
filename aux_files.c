@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux_files.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:08:32 by rivasque          #+#    #+#             */
-/*   Updated: 2024/03/18 19:20:11 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/03/19 10:52:31 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	open_file(char *file, int mode)
 
 int	get_fd_in(t_command *cmd, t_io_node *fd)
  {
+	char	*name;
+	
 	while (cmd->infiles)
 	{
 		cmd->fd_in = open_file(fd->io_arg, 0);
@@ -44,10 +46,13 @@ int	get_fd_in(t_command *cmd, t_io_node *fd)
 		close_file(cmd->fd_in);
         cmd->infiles = cmd->infiles->next;
     }
-	/*if (fd->io_type == IO_HEREDOC)
-		// DONDE ESTA EL DEL????
-		fd->io_arg = here_doc(char *delimiter);*/
-	cmd->fd_in = open_file(fd->io_arg, 0);
+	if (fd->io_type == IO_HEREDOC)
+	{
+		name = here_doc(fd->io_arg);
+		cmd->fd_in = open_file(name, 0);
+	}
+	else
+		cmd->fd_in = open_file(fd->io_arg, 0);
 	return (cmd->fd_in);
  }
  

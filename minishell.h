@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:09:56 by rivasque          #+#    #+#             */
-/*   Updated: 2024/03/18 19:49:54 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/03/19 14:21:07 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 # define MINISHELL_H
 
 # include	"libft/libft.h"
+#include	"token.h"
 # include	<stdio.h>
 # include	<stdlib.h>
 # include	<fcntl.h>
 # include	<unistd.h>
+# include	<readline/readline.h>
+# include	<readline/history.h>
 
 // files
 # define IN 1
@@ -29,21 +32,6 @@
 # define PIPE_IN 1
 # define PIPE_OUT 2
 # define PIPE_IN_OUT 3
-
-typedef enum	e_io_array_type
-{
-	IN_ARRAY,
-	OUT_ARRAY,
-}	t_io_array_type;
-
-typedef enum e_io_type
-{
-	IO_NONE,
-	IO_IN,
-	IO_OUT,
-	IO_HEREDOC,
-	IO_APPEND
-}	t_io_type;
 
 typedef struct s_io_node
 {
@@ -70,6 +58,8 @@ typedef struct	s_command
 	int				args_lst_size;
 	//type of pipe
 	int				pipe;
+	char		*name_and_args;
+	char		**name_and_args_splt;
 }					t_command;
 
 typedef struct s_commands_array
@@ -80,6 +70,7 @@ typedef struct s_commands_array
 
 typedef struct s_data
 {
+	int		cmd_array_len;
 	//Environment variables
 	t_llist	*envp;
 	//Has here_doc
@@ -91,15 +82,6 @@ typedef struct s_data
 	char	*input;
 }			t_data;
 
-typedef enum e_token_type
-{
-	T_WORD,
-	T_LESS_THAN,
-	T_MORE_THAN,
-	T_D_LESS_THAN,
-	T_D_GREAT_THAN,
-	T_PIPE
-}	t_token_type;
 
 // Init
 t_command	*init_cmd();
@@ -134,7 +116,7 @@ int		ft_export(t_command *cmd, t_data *data);
 int		ft_cd(t_command *cmd);
 int		ft_env(t_llist *envp);
 int		ft_exit(t_command *cmd, t_data *data);
-int		ft_unset(t_command *cmd, t_data *data);
+int		ft_unset(t_data *data, t_command *cmd);
 
 //General aux functions
 void	lst_add_back(t_llist **llst, t_llist *new);
@@ -168,5 +150,14 @@ void	free_array(char **argv);
 void	free_data(t_data *data);
 void	free_cmd(t_command *cmd);
 void	exit_shell(t_data *data, t_command *cmd);
+
+t_io_node			*ft_new_io(char *io_arg, t_io_type type);
+void				ft_clear_io_lst(t_io_node **lst);
+void				ft_add_io(t_io_node **lst, t_io_node *new);
+t_commands_array	*parse_commands_array(t_token_node *token_list);
+void				free_command(t_command *com);
+void				free_commands_array(t_commands_array *commands);
+int					split_comds_args(t_commands_array *comds);
+t_commands_array	*get_commands(char *line);
 
 #endif
