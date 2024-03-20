@@ -6,32 +6,38 @@
 /*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:46:35 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/03/20 13:26:17 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/03/20 15:04:24 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void    execute_program(t_data *data, t_command *cmd, t_commands_array *cmds_array, t_io_node *fd)
+static void    execute_program(t_data *data)
 {
-    exec_cmd_lst(data, cmd, cmds_array, fd);
+
+	t_commands_array	*cmds_array;
+
+	cmds_array = get_commands(data->input);
+	if (!cmds_array)
+		exit(EXIT_FAILURE);
+    exec_cmd_lst(data, cmds_array);
     if (open("heredoc", F_OK))
         unlink("heredoc");
-    free_cmd(cmd);
+    free_commands_array(cmds_array);
 	free(data);
 }
 
 void	read_shell(void)
 {
 	t_data *data;
-	t_command *cmd;
-	t_commands_array *cmds_array;
-	t_io_node *fd;
+
+	data = init_data();
 	
 	//signals();
 	while (1)
 	{
-        data->input = readline("ourShell>");
+        //data->input = readline("ourShell>");
+		data->input = "echo hola";
         if (!data->input)
         {
             rl_replace_line("", 0);
@@ -44,7 +50,7 @@ void	read_shell(void)
 			continue ;
 		}
 		add_history(data->input);
-		execute_program(data, cmd, cmds_array, fd);
+		execute_program(data);
 	}
 	rl_clear_history();
 }

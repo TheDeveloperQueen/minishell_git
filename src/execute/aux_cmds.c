@@ -3,29 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   aux_cmds.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:58:05 by rivasque          #+#    #+#             */
-/*   Updated: 2024/03/19 18:40:38 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/03/20 16:28:12 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
 //commands args in list
-t_list	*get_args(t_command	*cmd)
+void	get_args(t_command	*cmd)
 {
 	int		i;
 	t_list	*args;
 
-	i = 2;
-	args = NULL;
+	i = 0;
+	cmd->args = NULL;
 	while (cmd->args_splitted[i])
 	{
 		ft_lstadd_back(&args, ft_lstnew(cmd->args_splitted[i]));
 		i++;
 	}
-	return (args);
+	cmd->args = args;
 }
 
 //commands in array, name included

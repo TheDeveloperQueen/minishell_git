@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:15:46 by rivasque          #+#    #+#             */
-/*   Updated: 2024/03/19 18:40:15 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/03/20 16:24:52 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,18 @@ static int	check_n(char *str)
 int	ft_echo(t_command *cmd)
 {
 	int		flag;
-	t_list	*args;
-
-	args = cmd->args;
+	
 	flag = 0;
 	if (!cmd->args)
 		printf("\n");
 	else
 	{
-		while (args && check_n(args->content))
+		while (cmd->args && check_n(cmd->args->content))
 		{
-			args = args->next;
+			cmd->args = cmd->args->next;
 			flag = 1;
 		}
-		print_list(args, " ");
+		print_list(cmd->args, " ");
 		if (!flag)
 			printf("\n");
 	}

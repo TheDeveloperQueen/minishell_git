@@ -6,7 +6,7 @@
 /*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:09:56 by rivasque          #+#    #+#             */
-/*   Updated: 2024/03/20 11:24:28 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/03/20 16:29:09 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,15 +85,12 @@ typedef struct s_data
 
 
 // Init
-t_command	*init_cmd();
 t_data	*init_data();
 
 // Command functions
 int		is_builtin(t_command *cmd);
-t_list	*get_args(t_command *cmd);
+void	get_args(t_command *cmd);
 char	**get_array_cmds(t_command *cmd);
-int		do_cmd(t_command *cmd, t_commands_array *cmds_array, t_data *data, t_io_node *fd, int index);
-void    exec_cmd_lst(t_data *data, t_command *cmd, t_commands_array *cmds_array, t_io_node *fd);
 
 //path functions
 int		has_path(t_command *cmd);
@@ -121,22 +118,23 @@ int		ft_unset(t_command *cmd, t_data *data);
 
 //execute
 int		exec_builtin(t_command *cmd, t_data *data);
-int		do_cmd(t_command *cmd, t_commands_array *cmds_array, t_data *data, t_io_node *fd, int index);
-void    exec_cmd_lst(t_data *data, t_command *cmd, t_commands_array *cmds_array, t_io_node *fd);
+void	do_cmd(t_command *cmd, t_commands_array *cmds_array, t_data *data, int index);
+void    exec_cmd_lst(t_data *data, t_commands_array *cmds_array);
 void	child_process(t_data *data, t_command *cmd);
 void    full_execute(t_data *data, t_command *cmd);
 void	parent_process(t_data *data);
+void	read_shell(void);
 
 //Manage files
 int		close_file(int fd);
 int		open_file(char *file, int mode);
-int		get_fd_in(t_command *cmd, t_io_node *fd);
-int		get_fd_out(t_command *cmd, t_io_node *file, t_data *data);
+void		get_fd_in(t_command *cmd);
+void		get_fd_out(t_command *cmd);
 int		do_dup(int fd);
 int		do_dup2(int fd1, int fd2);
 void	check_pipe(t_command *cmd, t_commands_array *cmds_array, int index);
 int		set_pipes(t_command *cmd);
-int		set_files(t_command *cmd, t_io_node *fd, t_data *data);
+int		set_files(t_command *cmd);
 char	*here_doc(char *delimiter);
 int		has_here_doc(t_command *cmd, t_data *data);
 

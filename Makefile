@@ -2,7 +2,7 @@ NAME = minishell
 
 # COMPILER OPTIONS
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g3
 
 LIBFT = libft/libft.a
 
@@ -32,7 +32,7 @@ all:	$(NAME)
 
 $(NAME): $(LIBFT) $(OBJ_PATH) $(OBJ)
 	@echo "$(PINK)Compiling $(NAME).$(CLEAR)"
-	@$(CC) $(FLAGS) -o $(NAME) $(OBJ) $(LIBFT) -L/Users/$(USER)/.brew/opt/readline/lib -lreadline
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT) -L/Users/$(USER)/.brew/opt/readline/lib -lreadline
 	@echo "$(GREEN)[OK]\n$(CLEAR)$(GREEN)Success!$(CLEAR)"
 
 $(LIBFT):
@@ -40,7 +40,7 @@ $(LIBFT):
 
 $(OBJ_PATH)%.o: src/%.c
 	@mkdir -p $(dir $@)
-	@$(CC) $(FLAGS) -c -o $@ $< $(INCLUDE) -I/Users/$(USER)/.brew/opt/readline/include
+	@$(CC) $(CFLAGS) -c -o $@ $< $(INCLUDE) -I/Users/$(USER)/.brew/opt/readline/include
 
 $(OBJ_PATH):
 	@mkdir -p $(OBJ_PATH)
