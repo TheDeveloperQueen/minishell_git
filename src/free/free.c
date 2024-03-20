@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 13:43:24 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/03/19 18:41:03 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/03/20 13:23:39 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

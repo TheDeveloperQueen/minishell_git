@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   processes.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:23:38 by rivasque          #+#    #+#             */
-/*   Updated: 2024/03/19 18:40:48 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/03/20 11:26:47 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,15 @@ void	child_process(t_data *data, t_command *cmd)
 
 void	parent_process(t_data *data)
 {
-	if (WIFEXITED(data->status))
-		data->exit_value = WEXITSTATUS(data->status);
-	else if (WIFSIGNALED(data->status))
-		data->exit_value = WTERMSIG(data->status) + 128;
+	int	last_exc;
+	int	status;
+
+	last_exc = 0;
+	while (last_exc != -1)
+	{
+		last_exc = waitpid(-1, &status, 0);
+		if (last_exc == data->last_pid)
+			if (WIFEXITED(status))
+				data->status = WEXITSTATUS(status);
+	}
 }

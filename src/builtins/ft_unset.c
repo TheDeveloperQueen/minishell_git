@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 20:18:11 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/03/19 18:51:32 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/03/20 11:03:03 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int	ft_unset(t_command *cmd, t_data *data)
 		temp = aux_envp;
 		while (aux_envp)
 		{
-			if(ft_strncmp(aux_envp->name, names, ft_charfind(names, "=")) == 0 || ft_strcmp(aux_envp->name, names) == 0)
+			if(ft_strncmp(aux_envp->name, (char *)names->content, ft_charfind((char *)names->content, '=')) == 0 || ft_strcmp(aux_envp->name, (char *)names->content) == 0)
 			{
-				llst_remove(&aux_envp);
+				llist_remove(&aux_envp);
 				break;
 				
 			}

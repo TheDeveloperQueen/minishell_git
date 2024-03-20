@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 14:30:16 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/03/19 18:40:45 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/03/20 11:31:18 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int	exec_builtin(t_command *cmd, t_data *data)
         data->exit_value = ft_env(data->envp);
     if (ft_strcmp(cmd->name, "export") == 0)
         data->exit_value = ft_export(cmd, data);
-	//if (ft_strcmp(cmd->name, "unset") == 0)
-        //data->exit_value = ft_unset(cmd, data);
+	if (ft_strcmp(cmd->name, "unset") == 0)
+        data->exit_value = ft_unset(cmd, data);
 	if (ft_strcmp(cmd->name, "exit") == 0)
         data->exit_value = ft_exit(cmd, data);
 	return (data->exit_value);
@@ -60,17 +60,17 @@ void    exec_cmd_lst(t_data *data, t_command *cmd, t_commands_array *cmds_array,
     }
     if (data->heredoc == 1)
         unlink("heredoc");
+    parent_process(data);
 }
 
 void    full_execute(t_data *data, t_command *cmd)
 {
-    pid_t   child;
-    
     //signals_child();
-    child = fork();
-    if (child < 0)
+    data->last_pid = fork();
+    if (data->last_pid < 0)
+    
         exit(EXIT_FAILURE);
-    if (child == 0)
+    if (data->last_pid == 0)
     {
         if (is_builtin(cmd))
         {
@@ -82,7 +82,5 @@ void    full_execute(t_data *data, t_command *cmd)
         else
             child_process(data, cmd);
     }
-    waitpid(child, &data->status, 0);
     //signals();
-    parent_process(data);
 }

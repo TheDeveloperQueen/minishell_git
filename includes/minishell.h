@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:09:56 by rivasque          #+#    #+#             */
-/*   Updated: 2024/03/19 18:01:03 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/03/20 11:24:28 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct s_data
 	int		heredoc;
 	int		status;	
 	//return value (last command)
+	pid_t	last_pid;
 	int		exit_value;
 	// User input
 	char	*input;
@@ -116,13 +117,7 @@ int		ft_export(t_command *cmd, t_data *data);
 int		ft_cd(t_command *cmd);
 int		ft_env(t_llist *envp);
 int		ft_exit(t_command *cmd, t_data *data);
-int		ft_unset(t_data *data, t_command *cmd);
-
-//General aux functions
-void	lst_add_back(t_llist **llst, t_llist *new);
-t_llist	*lst_add_new(void *name, void *value);
-t_llist	*llist_cpy(t_llist *llst);
-void	llist_remove(t_llist **lst);
+int		ft_unset(t_command *cmd, t_data *data);
 
 //execute
 int		exec_builtin(t_command *cmd, t_data *data);

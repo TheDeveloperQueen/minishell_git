@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:46:35 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/03/19 18:40:52 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/03/20 13:26:17 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,13 @@ static void    execute_program(t_data *data, t_command *cmd, t_commands_array *c
 	free(data);
 }
 
-void	read_shell(t_data *data, t_command *cmd, t_commands_array *cmds_array, t_io_node *fd)
+void	read_shell(void)
 {
+	t_data *data;
+	t_command *cmd;
+	t_commands_array *cmds_array;
+	t_io_node *fd;
+	
 	//signals();
 	while (1)
 	{
@@ -31,7 +36,7 @@ void	read_shell(t_data *data, t_command *cmd, t_commands_array *cmds_array, t_io
         {
             rl_replace_line("", 0);
             printf("exit\n");
-            exit_shell(data, cmd);
+            exit(1);
         }
 		if (!ft_strlen(data->input))
 		{
