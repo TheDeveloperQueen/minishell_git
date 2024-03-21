@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 19:00:02 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/03/19 18:42:02 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/03/21 18:36:33 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int	add_arg(char **old_arg, char *to_add)
 {
 	char	*new_arg;
 
+	if (!to_add[0])
+		return (0);
 	if (!*old_arg)
 	{
 		new_arg = ft_strdup(to_add);
