@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_words.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 08:13:15 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/03/19 18:42:08 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/03/21 19:03:38 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,14 @@ char	*get_var_name(char **str)
 
 	if (*str[0] == '$')
 		(*str)++;
+	if (ft_isdigit(*str[0]))
+	{
+		var_name = ft_substr(*str, 0, 1);
+		if (!var_name)
+			return (NULL);
+		(*str)++;
+		return (var_name);
+	}
 	i = 0;
 	while ((*str)[i] && !ft_is_quote((*str)[i]) && !ft_is_space((*str)[i])
 			&& (*str)[i] != '$')
