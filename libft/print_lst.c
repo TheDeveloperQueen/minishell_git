@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_lst.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 14:12:10 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/03/11 13:27:01 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/03/21 11:00:38 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,12 @@ void    print_list(t_list *lst, char *delimiter)
     while (lst)
     {
         if (lst->next)
-            printf("%s%s", (char *)lst->content, delimiter);
+        {
+            write(1, (char *)lst->content, ft_strlen((char *)lst->content));
+            write(1, delimiter, ft_strlen(delimiter));
+        }
         else
-            printf("%s", (char *)lst->content);
+            write(1, (char *)lst->content, ft_strlen((char *)lst->content));
         lst = lst->next;
     }
 }

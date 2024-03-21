@@ -6,7 +6,7 @@
 /*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:46:35 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/03/20 15:04:24 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/03/21 11:53:40 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	read_shell(void)
 	while (1)
 	{
         //data->input = readline("ourShell>");
-		data->input = "echo hola";
+		data->input = "cd -";
         if (!data->input)
         {
             rl_replace_line("", 0);

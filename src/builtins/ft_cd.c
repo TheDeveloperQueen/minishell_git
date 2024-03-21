@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:42:27 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/03/19 18:40:11 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/03/21 11:59:46 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static char	*find_path_args(t_command *cmd)
 
 int	ft_cd(t_command *cmd)
 {
-	if (!cmd->args || ft_strcmp(cmd->args->content, "~") == 0)
+	if (!cmd->args_splitted || ft_strcmp(cmd->args->content, "~") == 0)
 		return (chdir(path_home(cmd)));
 	else if (ft_strcmp(cmd->args->content, "-") == 0)
 		return (chdir(find_path_old(cmd)));

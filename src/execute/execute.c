@@ -6,7 +6,7 @@
 /*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 14:30:16 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/03/20 16:28:52 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/03/21 11:55:44 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ int	exec_builtin(t_command *cmd, t_data *data)
 void	do_cmd(t_command *cmd, t_commands_array *cmds_array, t_data *data, int index)
 {
     get_args(cmd);
+    while (cmd->args)
+    {
+        printf("%s\n", cmd->args->content);
+        cmd->args = cmd->args->next;
+    }
 	check_pipe(cmd, cmds_array, index);
 	set_files(cmd);
 	if (is_builtin(cmd) && cmd->pipe == NO_PIPE)
