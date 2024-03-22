@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 13:43:24 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/03/20 13:23:39 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/03/22 20:43:37 by ritavasques      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,32 +50,36 @@ void	ft_delete_io_lst(t_io_node *lst)
 
 void	free_cmd(t_command *cmd)
 {
-	int	i;
-
-	i = 0;
-	free(cmd->name);
-	while (cmd->args_splitted[i])
-	{
-		free(cmd->args_splitted[i]);
-		i++;
-	}
+	if (cmd->name)
+		free(cmd->name);
+	if (cmd->args_splitted)
+		free_array(cmd->args_splitted);
 	if (cmd->args)
 		ft_delete_lst(cmd->args);
 	if (cmd->infiles)
 		ft_delete_io_lst(cmd->infiles);
 	if (cmd->outfiles)
 		ft_delete_io_lst(cmd->outfiles);
+	if (cmd->name_and_args)
+		free(cmd->name_and_args);
+	if (cmd->name_and_args_splt)
+		free_array(cmd->name_and_args_splt);
 	free(cmd);
 }
 
-void	exit_shell(t_data *data, t_command *cmd)
+void	free_cmds_array(t_commands_array *cmds_array)
 {
-	int		error;
+	int	i;
 
-	error = data->exit_value;
-	free_cmd(cmd);
-	free(data);
-	if (error)
-		exit(error);
-	exit(EXIT_SUCCESS);
+	i = 0;
+	if (cmds_array)
+	{
+		while (cmds_array->comm_array[i])
+		{
+			free_cmd(cmds_array->comm_array[i]);
+			i++;
+		}
+		free(cmds_array->comm_array);
+		free(cmds_array);
+	}
 }

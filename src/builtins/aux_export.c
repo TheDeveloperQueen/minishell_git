@@ -6,41 +6,41 @@
 /*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 18:50:39 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/03/19 18:40:07 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/03/22 16:18:07 by ritavasques      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	check_dup_env(t_llist *lst, char *name)
+int	check_dup_env(t_data *data, char *name)
 {
-	while (lst)
+	while (data->envp)
 	{
-		if (ft_strncmp((char *)lst->name, name, ft_strlen(name)) == 0
-			&& ft_strlen(name) == ft_strlen(lst->name))
+		if (ft_strncmp((char *)data->envp->name, name, ft_strlen(name)) == 0
+			&& ft_strlen(name) == ft_strlen((char *)data->envp->name))
 			return (1);
-		lst = lst->next;
+		data->envp = data->envp->next;
 	}
 	return (0);
 }
 
-void	*replace_env(t_llist *lst, char *name, char *n_value)
+void	*replace_env(t_data *data, char *name, char *n_value)
 {
-	while (lst)
+	while (data->envp)
 	{
-		if (check_dup_env(lst, name))
+		if (check_dup_env(data, name))
 		{
-			if (lst->value)
-				free(lst->value);
-			lst->value = n_value;
-			return (lst->value);
+			if (data->envp->value)
+				free(data->envp->value);
+			data->envp->value = n_value;
+			return (data->envp->value);
 		}
-		lst = lst->next;
+		data->envp = data->envp->next;
 	}
 	return (NULL);
 }
 
-void	update_envp_value(t_llist *envp, char *argument)
+void	update_envp_value(t_data *data, char *argument)
 {
 	char	*name;
 	char	*value;
@@ -51,13 +51,13 @@ void	update_envp_value(t_llist *envp, char *argument)
 	else
 		value = ft_substr(argument, ft_charfind(argument, '=') + 1,
 		ft_strlen(argument));
-	if (!check_dup_env(envp, name))
+	if (!check_dup_env(data, name))
 	{
-		lst_add_back(&envp, lst_add_new(name, value));
+		lst_add_back(&data->envp, lst_add_new(name, value));
 	}
 	else
 	{
-		replace_env(envp, name, value);
+		replace_env(data, name, value);
 		free(name);
 	}
 }

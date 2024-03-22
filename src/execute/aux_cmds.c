@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux_cmds.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:58:05 by rivasque          #+#    #+#             */
-/*   Updated: 2024/03/21 11:47:59 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/03/22 19:49:02 by ritavasques      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	get_args(t_command	*cmd)
 
 	i = 0;
 	if (!cmd->args_splitted)
-		return ;	
+		return ;
 	while (cmd->args_splitted[i])
 	{
 		ft_lstadd_back(&cmd->args, ft_lstnew(cmd->args_splitted[i]));

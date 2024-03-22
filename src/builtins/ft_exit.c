@@ -6,7 +6,7 @@
 /*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 19:31:32 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/03/19 18:40:22 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/03/22 16:46:02 by ritavasques      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ int	ft_exit(t_command *cmd, t_data *data)
 	data->exit_value = 0;
 	if (!ft_str_isdigit(cmd->args->content))
 	{
-		printf("exit: %s: numeric argument required\n", (char *)cmd->args->content);
+		printf("ourShell: exit: %s: numeric argument required\n", (char *)cmd->args->content);
 		data->exit_value = 255;
-		exit_shell(data, cmd);
+		exit(EXIT_FAILURE);
 	}
 	else if (ft_lstsize(cmd->args) > 1)
 	{
-		printf("exit: too many arguments\n");
+		printf("ourShell: exit: too many arguments\n");
 		data->exit_value = 1;
 		return (0);
 	}

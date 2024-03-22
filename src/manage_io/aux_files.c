@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux_files.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:08:32 by rivasque          #+#    #+#             */
-/*   Updated: 2024/03/20 15:39:18 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/03/22 20:08:27 by ritavasques      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	open_file(char *file, int mode)
 
 	if (mode == 0)
 		fd = open(file, O_RDONLY);
-	if (mode == 1)
+	else if (mode == 1)
 		fd = open(file, O_CREAT | O_WRONLY | O_TRUNC, 0644);
-	if (mode == 2)
+	else
 		fd = open(file, O_CREAT | O_WRONLY | O_APPEND, 0644);
 	if (fd < 0)
 	{
@@ -33,9 +33,7 @@ int	open_file(char *file, int mode)
 void	get_fd_in(t_command *cmd)
  {
 	char	*name;
-	t_command	*temp;
-	
-	temp = cmd;
+
 	if (!cmd->infiles)
 	{
 		cmd->fd_in = -1;

@@ -6,7 +6,7 @@
 /*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 12:22:09 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/03/19 18:40:26 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/03/22 16:20:01 by ritavasques      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int    ft_export(t_command *cmd, t_data *data)
 	aux_envp = data->envp;
 	if (!cmd->args)
 	{
-		print_env(aux_envp, "declare -x %s=\"%s\"\n", "declare -x %s\n");
+		print_env(data, "declare -x %s=\"%s\"\n", "declare -x %s\n");
 		return (0);
 	}
 	lst = cmd->args;
@@ -91,13 +91,13 @@ int    ft_export(t_command *cmd, t_data *data)
 			return (0);
 		if (!ft_strchr(lst->content, '='))
 		{
-			if (!check_dup_env(aux_envp, lst->content))
+			if (!check_dup_env(data, lst->content))
 				lst_add_back(&aux_envp, lst_add_new(ft_strdup(lst->content), NULL));
 		}
 		else
 		{
 			if (valid_value(value_env(cmd)))
-				update_envp_value(aux_envp, lst->content);
+				update_envp_value(data, lst->content);
 			else
 				return (0);
 		}

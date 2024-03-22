@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:09:56 by rivasque          #+#    #+#             */
-/*   Updated: 2024/03/20 16:29:09 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/03/22 18:59:10 by ritavasques      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include	<unistd.h>
 # include	<readline/readline.h>
 # include	<readline/history.h>
+# include	<dirent.h>
 
 // files
 # define IN 1
@@ -97,22 +98,22 @@ int		has_path(t_command *cmd);
 char	*paths(t_data *data, t_command *cmd);
 
 //Envp functions
-t_llist	*get_envp(char **envp);
-void	print_env(t_llist *llst, char *print1, char *print2);
+void    get_envp(t_data *data, char **envp);
+void	print_env(t_data *data, char *print1, char *print2);
 int		valid_name(char *str);
-char	**array_env(t_llist *lst, char *delimiter);
-int		check_dup_env(t_llist *lst, char *name);
-void	update_envp_value(t_llist *envp, char *argument);
-void	*replace_env(t_llist *lst, char *name, char *n_value);
-void	*search_env(t_llist *env, char *name);
+char	**array_env(t_data *data, char *delimiter);
+int		check_dup_env(t_data *data, char *name);
+void	update_envp_value(t_data *data, char *argument);
+void	*replace_env(t_data *data, char *name, char *n_value);
+char    *search_env(t_data *data, char *name);
 char	*check_envp(t_data *data, char *name, char *value);
 
 //Builtin functions
 int		ft_echo(t_command *cmd);
 int		ft_pwd(t_command *cmd);
 int		ft_export(t_command *cmd, t_data *data);
-int		ft_cd(t_command *cmd);
-int		ft_env(t_llist *envp);
+int		ft_cd(t_data *data, t_command *cmd);
+int		ft_env(t_data *data);
 int		ft_exit(t_command *cmd, t_data *data);
 int		ft_unset(t_command *cmd, t_data *data);
 
@@ -123,7 +124,7 @@ void    exec_cmd_lst(t_data *data, t_commands_array *cmds_array);
 void	child_process(t_data *data, t_command *cmd);
 void    full_execute(t_data *data, t_command *cmd);
 void	parent_process(t_data *data);
-void	read_shell(void);
+void	read_shell(t_data *data);
 
 //Manage files
 int		close_file(int fd);
@@ -142,6 +143,7 @@ int		has_here_doc(t_command *cmd, t_data *data);
 void	free_array(char **argv);
 void	free_data(t_data *data);
 void	free_cmd(t_command *cmd);
+void	free_cmds_array(t_commands_array *cmds_array);
 void	exit_shell(t_data *data, t_command *cmd);
 
 t_io_node			*ft_new_io(char *io_arg, t_io_type type);

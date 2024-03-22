@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:46:35 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/03/21 11:53:40 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/03/22 21:28:36 by ritavasques      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void    execute_program(t_data *data)
 {
-
 	t_commands_array	*cmds_array;
 
 	cmds_array = get_commands(data->input);
@@ -23,21 +22,17 @@ static void    execute_program(t_data *data)
     exec_cmd_lst(data, cmds_array);
     if (open("heredoc", F_OK))
         unlink("heredoc");
-    free_commands_array(cmds_array);
-	free(data);
+	free_cmds_array(cmds_array);
+	free(data); 
 }
 
-void	read_shell(void)
+void	read_shell(t_data *data)
 {
-	t_data *data;
-
-	data = init_data();
-	
 	//signals();
 	while (1)
 	{
         //data->input = readline("ourShell>");
-		data->input = "cd -";
+		data->input = "ls";
         if (!data->input)
         {
             rl_replace_line("", 0);
