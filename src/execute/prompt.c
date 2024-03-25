@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:46:35 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/03/25 13:30:49 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/03/25 14:22:01 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static void    execute_program(t_data *data)
 	free_commands_array(cmds_array);
 	data->input = NULL;
 	data->heredoc = 0;
+	data->exit_value = 0;
 }
 
 void	read_shell(t_data *data)
@@ -32,14 +33,14 @@ void	read_shell(t_data *data)
 	//signals();
 	while (1)
 	{
-        data->input = readline("ourShell>");
+		data->input = readline("ourShell>");
 		//data->input = "export rita=hola";
-        if (!data->input)
-        {
-            rl_replace_line("", 0);
-            printf("exit\n");
-            exit(1);
-        }
+		if (!data->input)
+		{
+			rl_replace_line("", 0);
+			printf("exit\n");
+			exit(1);
+		}
 		if (!ft_strlen(data->input))
 		{
 			free(data->input);

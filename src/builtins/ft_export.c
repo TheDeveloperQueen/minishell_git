@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 12:22:09 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/03/22 16:20:01 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/03/25 15:39:52 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int    ft_export(t_command *cmd, t_data *data)
 {
 	t_llist	*aux_envp;
 	t_list	*lst;
-	
+
 	aux_envp = data->envp;
 	if (!cmd->args)
 	{
@@ -104,4 +104,4 @@ int    ft_export(t_command *cmd, t_data *data)
 		lst = lst->next;
 	}
 	return (0);
-}
+	}

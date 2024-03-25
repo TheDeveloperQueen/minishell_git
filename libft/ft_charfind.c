@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strfind.c                                       :+:      :+:    :+:   */
+/*   ft_charfind.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 17:13:24 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/03/07 17:20:00 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/03/25 16:19:44 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ int	ft_charfind(char *str, char c)
 {
 	int	i;
 
-    i = 0;
+	i = 0;
 	if (!str || !c)
 		return (0);
-	while (str[i] != c) 
-			i++;
-    return (i);
+	while (str[i] && str[i] != c)
+		i++;
+	return (i);
 }

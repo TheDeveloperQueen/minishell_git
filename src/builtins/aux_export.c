@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux_export.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 18:50:39 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/03/25 13:29:34 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/03/25 15:40:49 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	check_dup_env(t_data *data, char *name)
 {
-	t_llist *aux_envp;
-	
+	t_llist	*aux_envp;
+
 	aux_envp = data->envp;
 	while (aux_envp)
 	{
@@ -27,23 +27,23 @@ int	check_dup_env(t_data *data, char *name)
 	return (0);
 }
 
-void	*replace_env(t_data *data, char *name, char *n_value)
+void	replace_env(t_data *data, char *name, char *n_value)
 {
-	t_llist *aux_envp;
-	
+	t_llist	*aux_envp;
+
 	aux_envp = data->envp;
 	while (aux_envp)
 	{
-		if (check_dup_env(data, name))
+		if (ft_strncmp(aux_envp->name, name, ft_strlen(name)) == 0
+			&& ft_strlen(name) == ft_strlen(aux_envp->name))
 		{
 			if (aux_envp->value)
 				free(aux_envp->value);
 			aux_envp->value = n_value;
-			return (aux_envp->value);
+			return ;
 		}
 		aux_envp = aux_envp->next;
 	}
-	return (NULL);
 }
 
 void	update_envp_value(t_data *data, char *argument)
@@ -56,7 +56,7 @@ void	update_envp_value(t_data *data, char *argument)
 		value = ft_strdup("");
 	else
 		value = ft_substr(argument, ft_charfind(argument, '=') + 1,
-		ft_strlen(argument));
+				ft_strlen(argument));
 	if (!check_dup_env(data, name))
 	{
 		lst_add_back(&data->envp, lst_add_new(name, value));

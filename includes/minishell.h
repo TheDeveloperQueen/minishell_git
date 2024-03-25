@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:09:56 by rivasque          #+#    #+#             */
-/*   Updated: 2024/03/25 12:23:20 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/03/25 15:41:12 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int		valid_name(char *str);
 char	**array_env(t_data *data, char *delimiter);
 int		check_dup_env(t_data *data, char *name);
 void	update_envp_value(t_data *data, char *argument);
-void	*replace_env(t_data *data, char *name, char *n_value);
+void	replace_env(t_data *data, char *name, char *n_value);
 char    *search_env(t_data *data, char *name);
 char	*check_envp(t_data *data, char *name, char *value);
 

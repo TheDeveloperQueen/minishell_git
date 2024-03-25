@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 10:40:12 by rivasque          #+#    #+#             */
-/*   Updated: 2024/03/25 13:05:38 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/03/25 16:33:46 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ typedef struct s_list
 typedef struct		s_llist
 {
 	struct s_llist	*next;
-	struct s_llist	*prev;
 	char			*name;
 	char			*value;
 }					t_llist;

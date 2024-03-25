@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux_envp.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:53:28 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/03/22 19:03:10 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/03/25 16:02:48 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,15 @@ void	print_env(t_data *data, char *print1, char *print2)
 
 char	*search_env(t_data *data, char *name)
 {
-	while (data->envp)
+	t_llist *aux_env;
+
+	aux_env = data->envp;
+	while (aux_env)
 	{
-		if (ft_strncmp((char *)data->envp->name, name, ft_strlen(name)) == 0
-			&& ft_strlen(name) == ft_strlen(data->envp->name))
-			return (data->envp->value);
-		data->envp = data->envp->next;
+		if (ft_strncmp((char *)aux_env->name, name, ft_strlen(name)) == 0
+			&& ft_strlen(name) == ft_strlen(aux_env->name))
+			return (aux_env->value);
+		aux_env = aux_env->next;
 	}
 	return (NULL);
 }
@@ -100,6 +103,6 @@ char	*search_env(t_data *data, char *name)
 char	*check_envp(t_data *data, char *name, char *value)
 {
 	if (value)
-		return (replace_env(data, name, value));
+		replace_env(data, name, value);		
 	return (search_env(data, name));
 }

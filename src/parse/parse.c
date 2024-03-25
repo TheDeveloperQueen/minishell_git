@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 19:00:02 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/03/21 18:36:33 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/03/25 15:08:27 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_command	*create_blank_command(void)
 	new_command = malloc(sizeof(t_command));
 	if (!new_command)
 		return (NULL);
+	new_command->args = NULL;
 	new_command->name_and_args = NULL;
 	new_command->name_and_args_splt = NULL;
 	new_command->name = NULL;
