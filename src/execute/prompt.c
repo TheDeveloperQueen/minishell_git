@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:46:35 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/03/22 21:28:36 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/03/25 13:30:49 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@ static void    execute_program(t_data *data)
     exec_cmd_lst(data, cmds_array);
     if (open("heredoc", F_OK))
         unlink("heredoc");
-	free_cmds_array(cmds_array);
-	free(data); 
+	free_commands_array(cmds_array);
+	data->input = NULL;
+	data->heredoc = 0;
 }
 
 void	read_shell(t_data *data)
@@ -31,8 +32,8 @@ void	read_shell(t_data *data)
 	//signals();
 	while (1)
 	{
-        //data->input = readline("ourShell>");
-		data->input = "ls";
+        data->input = readline("ourShell>");
+		//data->input = "export rita=hola";
         if (!data->input)
         {
             rl_replace_line("", 0);

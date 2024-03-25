@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 13:31:03 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/03/11 13:48:45 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/03/25 13:19:19 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void    ft_lstadd_back(t_list **list, t_list *new)
 	    *list = new;
     else
     {
-        while ((aux)->next)
+        while (aux->next)
             aux = aux->next;
         aux->next = new;
     }

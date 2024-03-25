@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux_export.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 18:50:39 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/03/22 16:18:07 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/03/25 13:29:34 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,34 @@
 
 int	check_dup_env(t_data *data, char *name)
 {
-	while (data->envp)
+	t_llist *aux_envp;
+	
+	aux_envp = data->envp;
+	while (aux_envp)
 	{
-		if (ft_strncmp((char *)data->envp->name, name, ft_strlen(name)) == 0
-			&& ft_strlen(name) == ft_strlen((char *)data->envp->name))
+		if (ft_strncmp(aux_envp->name, name, ft_strlen(name)) == 0
+			&& ft_strlen(name) == ft_strlen(aux_envp->name))
 			return (1);
-		data->envp = data->envp->next;
+		aux_envp = aux_envp->next;
 	}
 	return (0);
 }
 
 void	*replace_env(t_data *data, char *name, char *n_value)
 {
-	while (data->envp)
+	t_llist *aux_envp;
+	
+	aux_envp = data->envp;
+	while (aux_envp)
 	{
 		if (check_dup_env(data, name))
 		{
-			if (data->envp->value)
-				free(data->envp->value);
-			data->envp->value = n_value;
-			return (data->envp->value);
+			if (aux_envp->value)
+				free(aux_envp->value);
+			aux_envp->value = n_value;
+			return (aux_envp->value);
 		}
-		data->envp = data->envp->next;
+		aux_envp = aux_envp->next;
 	}
 	return (NULL);
 }

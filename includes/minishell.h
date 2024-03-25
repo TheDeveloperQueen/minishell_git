@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:09:56 by rivasque          #+#    #+#             */
-/*   Updated: 2024/03/22 18:59:10 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/03/25 12:23:20 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ typedef struct	s_command
 	int				fd_out;
 	int				pipe_fd[2];
 	int				return_value;
-	//Number of arguments
-	int				args_lst_size;
 	//type of pipe
 	int				pipe;
 	char		*name_and_args;
@@ -71,7 +69,6 @@ typedef struct s_commands_array
 
 typedef struct s_data
 {
-	int		cmd_array_len;
 	//Environment variables
 	t_llist	*envp;
 	//Has here_doc
@@ -91,7 +88,7 @@ t_data	*init_data();
 // Command functions
 int		is_builtin(t_command *cmd);
 void	get_args(t_command *cmd);
-char	**get_array_cmds(t_command *cmd);
+//char	**get_array_cmds(t_command *cmd);
 
 //path functions
 int		has_path(t_command *cmd);

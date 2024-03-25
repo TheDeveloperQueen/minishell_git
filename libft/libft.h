@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 10:40:12 by rivasque          #+#    #+#             */
-/*   Updated: 2024/03/19 17:32:00 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/03/25 13:05:38 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ typedef struct		s_llist
 {
 	struct s_llist	*next;
 	struct s_llist	*prev;
-	void			*name;
-	void			*value;
+	char			*name;
+	char			*value;
 }					t_llist;
 
 int		ft_isalpha(int c);

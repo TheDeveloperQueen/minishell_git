@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux_cmds.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:58:05 by rivasque          #+#    #+#             */
-/*   Updated: 2024/03/22 19:49:02 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/03/25 12:39:16 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,22 @@
 void	get_args(t_command	*cmd)
 {
 	int		i;
+	char	*str;
 
 	i = 0;
 	if (!cmd->args_splitted)
 		return ;
 	while (cmd->args_splitted[i])
 	{
-		ft_lstadd_back(&cmd->args, ft_lstnew(cmd->args_splitted[i]));
+		str = cmd->args_splitted[i];
+		cmd->args_splitted[i] = NULL;
+		ft_lstadd_back(&cmd->args, ft_lstnew(str));
 		i++;
 	}
 }
 
 //commands in array, name included
-char	**get_array_cmds(t_command *cmd)
+/*char	**get_array_cmds(t_command *cmd)
 {
 	char	**array;
 	int		i;
@@ -45,7 +48,7 @@ char	**get_array_cmds(t_command *cmd)
 	}
 	array[i] = NULL;
 	return (array);	
-}
+}*/
 
 int	is_builtin(t_command *cmd)
 {

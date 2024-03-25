@@ -3,26 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   free_commands.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 19:20:08 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/03/19 18:40:57 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/03/25 12:38:36 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	free_command(t_command *com)
+void	free_command(t_command *cmd)
 {
-	if (com->name_and_args)
-		free(com->name_and_args);
-	if (com->name_and_args_splt)
-		free_array(com->name_and_args_splt);
-	if (com->infiles)
-		ft_clear_io_lst(&com->infiles);
-	if (com->outfiles)
-		ft_clear_io_lst(&com->outfiles);
-	free(com);
+	if (cmd->args)
+		ft_delete_lst(cmd->args);
+	if (cmd->name_and_args)
+		free(cmd->name_and_args);
+	if (cmd->name_and_args_splt)
+		free_array(cmd->name_and_args_splt);
+	if (cmd->infiles)
+		ft_clear_io_lst(&cmd->infiles);
+	if (cmd->outfiles)
+		ft_clear_io_lst(&cmd->outfiles);
+	free(cmd);
 }
 
 void	free_commands_array(t_commands_array *commands)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 14:30:16 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/03/22 20:26:16 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/03/25 13:12:01 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	exec_builtin(t_command *cmd, t_data *data)
 void	do_cmd(t_command *cmd, t_commands_array *cmds_array, t_data *data, int index)
 {
     get_args(cmd);
+    //printf("size args: %d\n", ft_lstsize(cmd->args));
 	check_pipe(cmd, cmds_array, index);
 	set_files(cmd);
 	if (is_builtin(cmd) && cmd->pipe == NO_PIPE)
@@ -56,7 +57,7 @@ void    exec_cmd_lst(t_data *data, t_commands_array *cmds_array)
     t_command *cmd;
     
     i = 0;
-    while(cmds_array->comm_array[i])
+    while(i < cmds_array->len)
     {
         cmd = cmds_array->comm_array[i];
         do_cmd(cmd, cmds_array, data, i);
@@ -70,7 +71,6 @@ void    exec_cmd_lst(t_data *data, t_commands_array *cmds_array)
 void    full_execute(t_data *data, t_command *cmd)
 {
     data->last_pid = fork();
-    printf("%d\n", data->last_pid);
     if (data->last_pid == 0)
     {
         if (is_builtin(cmd))
