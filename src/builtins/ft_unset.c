@@ -3,47 +3,72 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoto-gu <acoto-gu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 20:18:11 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/03/25 16:58:52 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/03/26 10:10:49 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	ft_unset(t_command *cmd, t_data *data)
+int	is_var(char *var_name, char *arg_name)
+{
+	if (ft_strcmp(var_name, arg_name) == 0
+		&& ft_strlen(var_name) == ft_strlen(arg_name))
+		return (1);
+	return (0);
+}
+
+void	delete_var(t_llist **envp)
+{
+	t_llist	*start;
+
+	if (!*envp)
+		return ;
+	start = *envp;
+	*envp = start->next;
+	if (start->name)
+		free(start->name);
+	if (start->value)
+		free(start->value);
+	free(start);
+	return ;
+}
+
+void	unset_var(char *var_name, t_llist **envp)
 {
 	t_llist	*curr;
-	t_list	*names;
-	t_llist	*prev;
+	t_llist	*tmp;
 
-	names = cmd->args;
-	while (names)
+	curr = *envp;
+	while (curr)
 	{
-		prev = data->envp;
-		if (ft_strncmp(prev->name, (char *)names->content, ft_charfind((char *)names->content, '=')) == 0 || ft_strcmp(prev->name, (char *)names->content) == 0)
+		if (is_var(curr->name, var_name))
 		{
-			data->envp = data->envp->next;
-			free(data->envp->name);
-			if (data->envp->value)
-				free(data->envp->value);
-			continue ;
-		}
-		curr = prev->next;
-		while (curr)
-		{
-			if (ft_strncmp(curr->name, (char *)names->content, ft_charfind((char *)names->content, '=')) == 0 || ft_strcmp(curr->name, (char *)names->content) == 0)
+			if (curr == *envp)
+				return (delete_var(envp));
+			else
 			{
-				prev->next = curr->next;
-				free(curr->name);
-				if (curr->value)
-				free(curr->value);
-				break ;
+				tmp = *envp;
+				while (curr != tmp->next)
+					tmp = tmp->next;
+				return (delete_var(&tmp->next));
 			}
-			curr = curr->next;
 		}
-		names = names->next;
+		curr = curr->next;
+	}
+}
+
+int	ft_unset(t_command *cmd, t_data *data)
+{
+	t_list	*args;
+
+	args = cmd->args;
+	while (args)
+	{
+		unset_var(args->content, &data->envp);
+		args = args->next;
 	}
 	return (0);
 }
