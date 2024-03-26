@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   processes.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:23:38 by rivasque          #+#    #+#             */
-/*   Updated: 2024/03/25 11:18:44 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/03/26 14:55:14 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	child_process(t_data *data, t_command *cmd)
 	char	**args;
 	
 	path = paths(data, cmd);
-	envp_str = array_env(data, "=");
+	envp_str = array_env(data->envp, "=");
 	args = cmd->name_and_args_splt;
 	execve(path, args, envp_str);
 	free(path);

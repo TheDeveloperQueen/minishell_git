@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux_path.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:21:28 by rivasque          #+#    #+#             */
-/*   Updated: 2024/03/19 18:40:41 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/03/26 14:43:11 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,21 @@ int	has_path(t_command *cmd)
 	return (flag);
 }
 
-static char	**find_path(t_data *data)
+static char	**find_path(t_llist *envp)
 {
 	char	**paths;
 
-	if (!data->envp)
+	if (!envp)
 		perror("error");
-	while (data->envp)
+	while (envp)
 	{
-		if (ft_strcmp(data->envp->name, "PATH") == 0)
+		if (ft_strcmp(envp->name, "PATH") == 0)
 			break ;
-		data->envp = data->envp->next;
+		envp = envp->next;
 	}
-	if (data->envp == NULL)
+	if (envp == NULL)
 		return (NULL);
-	paths = ft_split(data->envp->value, ':');
+	paths = ft_split(envp->value, ':');
 	if (!paths)
 		return (NULL);
 	return (paths);
@@ -54,7 +54,7 @@ char	*paths(t_data *data, t_command *cmd)
 	i = 0;
 	if (has_path(cmd) == 0)
 		return (cmd->name);
-	array_paths = find_path(data);
+	array_paths = find_path(data->envp);
 	while (array_paths && array_paths[i] != NULL)
 	{
 		full_path = ft_strjoin(array_paths[i], "/");
@@ -63,11 +63,6 @@ char	*paths(t_data *data, t_command *cmd)
 		{
 			free(array_paths);
 			return (full_path);
-		}
-		else
-		{
-			printf("%s: Permission denied\n", cmd->name);
-			exit(126);
 		}
 		free(full_path);
 		i++;

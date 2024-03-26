@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux_envp.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoto-gu <acoto-gu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:53:28 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/03/25 16:02:48 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/03/26 14:49:08 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,38 +25,38 @@ void	get_envp(t_data *data, char **envp)
 	while (envp[i])
 	{
 		name = ft_substr(envp[i], 0, ft_charfind(envp[i], '='));
-        value = ft_substr(envp[i], ft_charfind(envp[i], '=') + 1,
-			ft_strlen(envp[i]));
+		value = ft_substr(envp[i], ft_charfind(envp[i], '=') + 1,
+				ft_strlen(envp[i]));
 		lst_add_back(&data->envp, lst_add_new(name, value));
 		i++;
 	}
 }
 
 //envp in array, join name & value
-char	**array_env(t_data *data, char *delimiter)
+char	**array_env(t_llist *envp, char *delimiter)
 {
 	char	**array;
 	char	*join;
 	int		i;
 
-	if (!data->envp)
+	if (!envp)
 		return (NULL);
-	array = ft_calloc(ft_llstsize(data->envp) + 1, sizeof(char *));
+	array = ft_calloc(ft_llstsize(envp) + 1, sizeof(char *));
 	i = 0;
-	while (data->envp)
+	while (envp)
 	{
 		if (!delimiter)
-			array[i++] = ft_strjoin(data->envp->name, data->envp->value);
+			array[i++] = ft_strjoin(envp->name, envp->value);
 		else
 		{
-			join = ft_strjoin(data->envp->name, delimiter);
-			array[i++] = ft_strjoin(join, data->envp->value);
+			join = ft_strjoin(envp->name, delimiter);
+			array[i++] = ft_strjoin(join, envp->value);
 			free(join);
 		}
-		data->envp = data->envp->next;
+		envp = envp->next;
 	}
 	array[i] = NULL;
-	return (array);		
+	return (array);
 }
 
 void	print_env(t_data *data, char *print1, char *print2)
