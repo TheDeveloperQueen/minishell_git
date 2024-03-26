@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:02:59 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/03/18 07:26:59 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/03/26 10:19:01 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,4 @@ void			ft_clear_token_lst(t_token_node **lst);
 void			ft_add_token(t_token_node **lst, t_token_node *new);
 int				format_tokens(t_token_node **token_list);
 t_token_node	*tokenize(char *line);
-int				get_expanded_tokens(t_token_node *token_list);
+int				get_expanded_tokens(t_token_node *token_list, t_llist *envp);

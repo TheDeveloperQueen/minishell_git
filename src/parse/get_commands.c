@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_commands.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 08:18:54 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/03/19 18:41:51 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/03/26 09:58:22 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-t_commands_array	*get_commands(char *line)
+t_commands_array	*get_commands(char *line, t_llist *envp)
 {
 	t_token_node		*token_list;
 	t_commands_array	*commands;
@@ -24,7 +24,7 @@ t_commands_array	*get_commands(char *line)
 	error = format_tokens(&token_list);
 	if (error)
 		return (ft_clear_token_lst(&token_list), NULL);
-	error = get_expanded_tokens(token_list);
+	error = get_expanded_tokens(token_list, envp);
 	if (error)
 		return (ft_clear_token_lst(&token_list), NULL);
 	commands = parse_commands_array(token_list);

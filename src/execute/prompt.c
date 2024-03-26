@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoto-gu <acoto-gu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:46:35 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/03/25 14:22:01 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/03/26 10:28:20 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ static void    execute_program(t_data *data)
 {
 	t_commands_array	*cmds_array;
 
-	cmds_array = get_commands(data->input);
+	cmds_array = get_commands(data->input, data->envp);
 	if (!cmds_array)
 		exit(EXIT_FAILURE);
-    exec_cmd_lst(data, cmds_array);
-    if (open("heredoc", F_OK))
-        unlink("heredoc");
+	exec_cmd_lst(data, cmds_array);
+	if (open("heredoc", F_OK))
+		unlink("heredoc");
 	free_commands_array(cmds_array);
 	data->input = NULL;
 	data->heredoc = 0;

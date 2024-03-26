@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoto-gu <acoto-gu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:09:56 by rivasque          #+#    #+#             */
-/*   Updated: 2024/03/25 15:41:12 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/03/26 10:18:06 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include	<unistd.h>
 # include	<readline/readline.h>
 # include	<readline/history.h>
+# include	<sys/wait.h>
 # include	<dirent.h>
 
 // files
@@ -150,6 +151,6 @@ t_commands_array	*parse_commands_array(t_token_node *token_list);
 void				free_command(t_command *com);
 void				free_commands_array(t_commands_array *commands);
 int					split_comds_args(t_commands_array *comds);
-t_commands_array	*get_commands(char *line);
+t_commands_array	*get_commands(char *line, t_llist *envp);
 
 #endif
