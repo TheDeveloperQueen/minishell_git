@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoto-gu <acoto-gu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 12:22:09 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/03/25 15:39:52 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/03/26 10:57:13 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,27 +51,22 @@ int	valid_value(char *str)
 	return (1);
 }
 
-char	*name_env(t_command *cmd)
+char	*name_env(t_list *lst)
 {
 	char	*name;
-	t_list	*lst;
-	
-	lst = cmd->args;
+
 	name = ft_substr(lst->content, 0, ft_charfind(lst->content, '='));
 	return (name);
 }
 
-char	*value_env(t_command *cmd)
+/* char	*value_env(t_list *lst)
 {
 	char	*value;
-	t_list	*lst;
 	
-	value = NULL;
-	lst = cmd->args;
 	if  (ft_strchr(lst->content, '='))
 		value = ft_substr(lst->content, ft_charfind(lst->content, '=') + 1, ft_strlen(lst->content));
 	return (value);
-}
+} */
 
 int    ft_export(t_command *cmd, t_data *data)
 {
@@ -87,21 +82,17 @@ int    ft_export(t_command *cmd, t_data *data)
 	lst = cmd->args;
 	while (lst)
 	{
-		if (!valid_name(name_env(cmd)))
+		if (!valid_name(name_env(lst)))
 			return (0);
 		if (!ft_strchr(lst->content, '='))
 		{
 			if (!check_dup_env(data, lst->content))
-				lst_add_back(&aux_envp, lst_add_new(ft_strdup(lst->content), NULL));
+				lst_add_back(&aux_envp,
+					lst_add_new(ft_strdup(lst->content), NULL));
 		}
 		else
-		{
-			if (valid_value(value_env(cmd)))
-				update_envp_value(data, lst->content);
-			else
-				return (0);
-		}
+			update_envp_value(data, lst->content);
 		lst = lst->next;
 	}
 	return (0);
-	}
+}
