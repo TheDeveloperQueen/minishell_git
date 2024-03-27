@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 14:30:16 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/03/25 13:12:01 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/03/27 15:46:55 by ritavasques      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	exec_builtin(t_command *cmd, t_data *data)
 void	do_cmd(t_command *cmd, t_commands_array *cmds_array, t_data *data, int index)
 {
     get_args(cmd);
-    //printf("size args: %d\n", ft_lstsize(cmd->args));
 	check_pipe(cmd, cmds_array, index);
 	set_files(cmd);
 	if (is_builtin(cmd) && cmd->pipe == NO_PIPE)

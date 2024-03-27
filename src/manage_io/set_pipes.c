@@ -6,7 +6,7 @@
 /*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 15:56:23 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/03/19 18:41:45 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/03/27 18:16:11 by ritavasques      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,34 +39,41 @@ static int do_pipe(int fd[2])
 
 static int set_pipe_in(t_command *cmd)
 {
-    if (cmd->fd_in != STDIN_FILENO && cmd->fd_in != -1)
+	if (cmd->fd_in >= 0)
+    {
+        do_dup2(cmd->fd_in, STDIN_FILENO);
         close_file(cmd->fd_in);
-    do_dup2(cmd->pipe_fd[READ], STDIN_FILENO);
-    cmd->fd_in = cmd->pipe_fd[READ];
+    }
+	else
+	{
+    	cmd->fd_in = cmd->pipe_fd[READ];
+    	do_dup2(cmd->pipe_fd[READ], STDIN_FILENO);
+		close_file(cmd->pipe_fd[READ]);
+	}
     return (0);
 }
 
 static int set_pipe_out(t_command *cmd)
 {
-    if (cmd->fd_out != STDOUT_FILENO && cmd->fd_out != -1)
+	if (cmd->fd_out >= 0)
+    {
+        do_dup2(cmd->fd_out, STDOUT_FILENO);
         close_file(cmd->fd_out);
-    do_pipe(cmd->pipe_fd);
-    do_dup2(cmd->pipe_fd[WRITE], STDOUT_FILENO);
-    cmd->fd_out = cmd->pipe_fd[WRITE];
+    }
+	else
+	{
+    	do_pipe(cmd->pipe_fd);
+    	cmd->fd_out = cmd->pipe_fd[WRITE];
+    	do_dup2(cmd->pipe_fd[WRITE], STDOUT_FILENO);
+		close_file(cmd->pipe_fd[WRITE]);
+	}
     return (0);
 }
 
 static int set_pipe_in_out(t_command *cmd)
 {
-    if (cmd->fd_in != STDIN_FILENO && cmd->fd_in != -1)
-        close_file(cmd->fd_in);
-    if (cmd->fd_out != STDOUT_FILENO && cmd->fd_out != -1)
-        close_file(cmd->fd_out);
-    do_dup2(cmd->pipe_fd[READ], STDIN_FILENO);
-    cmd->fd_in = cmd->pipe_fd[READ];
-    do_pipe(cmd->pipe_fd);
-    do_dup2(cmd->pipe_fd[WRITE], STDOUT_FILENO);
-    cmd->fd_out = cmd->pipe_fd[WRITE];
+	set_pipe_in(cmd);
+	set_pipe_out(cmd);
     return (0);
 }
 
