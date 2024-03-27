@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 14:57:20 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/03/19 18:42:28 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/03/27 07:31:59 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	rx_operator(char *line, int *i, t_token_node **tok_list)
 	t_token_node	*new_tok;
 
 	new_tok = NULL;
-	if (ft_strncmp(line, "<<", 2) == 0)
+	if (ft_strncmp(line + *i, "<<", 2) == 0)
 		new_tok = ft_new_token(NULL, T_D_LESS_THAN);
-	else if (ft_strncmp(line, ">>", 2) == 0)
+	else if (ft_strncmp(line + *i, ">>", 2) == 0)
 		new_tok = ft_new_token(NULL, T_D_GREAT_THAN);
 	else if (line[*i] == '>')
 		new_tok = ft_new_token(NULL, T_MORE_THAN);
