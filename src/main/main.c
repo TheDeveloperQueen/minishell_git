@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 13:06:40 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/03/25 13:31:06 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/01 08:55:31 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int	main(int argc, char **argv, char **envp)
 
 	data = create_blank_data();
 	get_envp(data, envp);
+	data->stdin = dup(0);
+	data->stdout = dup(1);
 	read_shell(data);
 	return (0);
 }

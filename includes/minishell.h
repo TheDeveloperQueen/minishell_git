@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:09:56 by rivasque          #+#    #+#             */
-/*   Updated: 2024/03/26 14:54:30 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/01 07:17:03 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_io_node
 {
 	char				*io_arg;
 	t_io_type			io_type;
+	int					fd;
 	struct s_io_node	*next;
 }						t_io_node;
 
@@ -80,6 +81,8 @@ typedef struct s_data
 	int		exit_value;
 	// User input
 	char	*input;
+	int		stdin;
+	int		stdout;
 }			t_data;
 
 
@@ -117,7 +120,7 @@ int		ft_unset(t_command *cmd, t_data *data);
 
 //execute
 int		exec_builtin(t_command *cmd, t_data *data);
-void	do_cmd(t_command *cmd, t_commands_array *cmds_array, t_data *data, int index);
+void	do_cmd(t_commands_array *cmds_array, t_data *data, int index);
 void    exec_cmd_lst(t_data *data, t_commands_array *cmds_array);
 void	child_process(t_data *data, t_command *cmd);
 void    full_execute(t_data *data, t_command *cmd);
@@ -131,8 +134,10 @@ void		get_fd_in(t_command *cmd);
 void		get_fd_out(t_command *cmd);
 int		do_dup(int fd);
 int		do_dup2(int fd1, int fd2);
-void	check_pipe(t_command *cmd, t_commands_array *cmds_array, int index);
-int		set_pipes(t_command *cmd);
+//void	check_pipe(t_command *cmd, t_commands_array *cmds_array, int index);
+void	set_cmds_pipe_types(t_commands_array *cmds_array);
+int		set_pipes(t_command **cmds, int i);
+//int		set_pipes(t_command *cmd);
 int		set_files(t_command *cmd);
 char	*here_doc(char *delimiter);
 int		has_here_doc(t_command *cmd, t_data *data);
@@ -152,5 +157,11 @@ void				free_command(t_command *com);
 void				free_commands_array(t_commands_array *commands);
 int					split_comds_args(t_commands_array *comds);
 t_commands_array	*get_commands(char *line, t_llist *envp);
+
+int	process_heredocs(t_commands_array *cmds);
+int	ft_out(t_io_node *io_list);
+int	ft_in(t_io_node *io_list);
+int	ft_append(t_io_node *io_list);
+int	process_io(t_command *cmd);
 
 #endif
