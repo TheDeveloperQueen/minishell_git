@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   aux_files2.c                                       :+:      :+:    :+:   */
+/*   aux_files22.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 16:07:49 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/03/27 09:38:22 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/01 11:34:04 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,11 @@ int	close_file(int fd)
 	return (return_fd);
 }
 
-// int	set_files(t_command *cmd)
-// {
-// 	if (cmd->pipe && cmd->pipe != NO_PIPE)
-// 		set_pipes(cmd);
-// 	get_fd_in(cmd);
-// 	get_fd_out(cmd);
-// 	if (cmd->fd_in >= 0)
-// 	{
-// 		do_dup2(cmd->fd_in, STDIN_FILENO);
-// 		close_file(cmd->fd_in);
-// 	}
-// 	if (cmd->fd_out >= 0)
-// 	{
-// 		do_dup2(cmd->fd_out, STDOUT_FILENO);
-// 		close_file(cmd->fd_out);
-// 	}
-// 	return (0);
-// }
+/* int	set_files(t_command *cmd)
+{
+	get_fd_in(cmd);
+	get_fd_out(cmd);
+	if (cmd->pipe && cmd->pipe != NO_PIPE)
+		set_pipes(cmd);
+	return (0);
+} */

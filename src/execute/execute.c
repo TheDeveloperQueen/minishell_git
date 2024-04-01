@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute.c                                          :+:      :+:    :+:   */
+/*   execute2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 14:30:16 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/01 09:51:30 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/01 11:23:32 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int	exec_builtin(t_command *cmd, t_data *data)
 {
-	int exit_status;
+	int	exit_status;
 
-	exit_status = 0;    
+	exit_status = 0;
 	if (ft_strcmp(cmd->name, "echo") == 0)
 		exit_status = ft_echo(cmd);
 	else if (ft_strcmp(cmd->name, "pwd") == 0)
-	   exit_status = ft_pwd(cmd);
+		exit_status = ft_pwd(cmd);
 	else if (ft_strcmp(cmd->name, "cd") == 0)
 		exit_status = ft_cd(data, cmd);
 	else if (ft_strcmp(cmd->name, "env") == 0)
@@ -33,6 +33,22 @@ int	exec_builtin(t_command *cmd, t_data *data)
 		exit_status = ft_exit(cmd, data);
 	return (exit_status);
 }
+
+/* void	do_cmd(t_command *cmd, t_commands_array *cmds_array, t_data *data, int index)
+{
+    get_args(cmd);
+	check_pipe(cmd, cmds_array, index);
+	set_files(cmd);
+	if (is_builtin(cmd) && cmd->pipe == NO_PIPE)
+		data->status = exec_builtin(cmd, data);
+	else if (is_builtin(cmd) || has_path(cmd) || check_envp(data, "PATH", NULL) != 0)
+		full_execute(data, cmd);
+	else
+	{
+		printf("%s: No such file or directory\n", cmd->name);
+		exit(EXIT_FAILURE);
+	}
+} */
 
 void	do_cmd(t_commands_array *cmds, t_data *data, int index)
 {
@@ -54,6 +70,23 @@ void	do_cmd(t_commands_array *cmds, t_data *data, int index)
 		exit(EXIT_FAILURE);
 	}
 }
+
+/* void    exec_cmd_lst(t_data *data, t_commands_array *cmds_array)
+{
+    int i;
+    t_command *cmd;
+    
+    i = 0;
+    while(i < cmds_array->len)
+    {
+        cmd = cmds_array->comm_array[i];
+        do_cmd(cmd, cmds_array, data, i);
+        i++;
+    }
+    if (data->heredoc == 1)
+        unlink("heredoc");
+    parent_process(data);
+} */
 
 void	reset_stds(t_data *data)
 {

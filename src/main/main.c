@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 13:06:40 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/01 08:55:31 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/01 11:44:24 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ t_data	*create_blank_data(void)
 
 int	main(int argc, char **argv, char **envp)
 {
+	t_data	*data;
+
 	(void)argc;
 	(void)argv;
-	t_data *data;
-
 	data = create_blank_data();
 	get_envp(data, envp);
 	data->stdin = dup(0);
