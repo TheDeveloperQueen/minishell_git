@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   processes2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:23:38 by rivasque          #+#    #+#             */
 /*   Updated: 2024/04/01 11:26:36 by acoto-gu         ###   ########.fr       */

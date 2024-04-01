@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   prompt2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:46:35 by ritavasques       #+#    #+#             */
 /*   Updated: 2024/04/01 11:29:51 by acoto-gu         ###   ########.fr       */
@@ -52,8 +52,8 @@ void	read_shell(t_data *data)
 	//signals();
 	while (1)
 	{
-		data->input = readline("ourShell>");
-		//data->input = "export rita=hola";
+		//data->input = readline("ourShell>");
+		data->input = "ls > out2 | cat out2";
 		if (!data->input)
 		{
 			rl_replace_line("", 0);
