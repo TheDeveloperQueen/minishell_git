@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:09:56 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/01 07:17:03 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/01 18:37:23 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,5 +163,8 @@ int	ft_out(t_io_node *io_list);
 int	ft_in(t_io_node *io_list);
 int	ft_append(t_io_node *io_list);
 int	process_io(t_command *cmd);
+
+int	ft_exec_simple_cmd(t_data *data, t_command *cmd, int piped);
+int	ft_exec_cmds(t_data *data, t_commands_array *cmds, int index, int piped);
 
 #endif

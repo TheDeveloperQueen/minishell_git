@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute2.c                                         :+:      :+:    :+:   */
+/*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 14:30:16 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/01 11:23:32 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/01 18:46:58 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,11 @@ void	do_cmd(t_commands_array *cmds, t_data *data, int index)
     parent_process(data);
 } */
 
-void	reset_stds(t_data *data)
-{
-	dup2(data->stdin, STDIN_FILENO);
-	dup2(data->stdout, STDOUT_FILENO);
-}
+// void	reset_stds(t_data *data)
+// {
+// 	dup2(data->stdin, STDIN_FILENO);
+// 	dup2(data->stdout, STDOUT_FILENO);
+// }
 
 void	exec_cmd_lst(t_data *data, t_commands_array *cmds_array)
 {
@@ -102,7 +102,7 @@ void	exec_cmd_lst(t_data *data, t_commands_array *cmds_array)
 	while (i < cmds_array->len)
 	{
 		do_cmd(cmds_array, data, i);
-		reset_stds(data);
+		//reset_stds(data);
 		i++;
 	}
 	parent_process(data);
