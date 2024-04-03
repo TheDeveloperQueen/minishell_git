@@ -1,15 +1,40 @@
 NAME = minishell
 
 # COMPILER OPTIONS
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror -g3
 
 LIBFT = libft/libft.a
 
-
 # SOURCE FILES
-SRC_DIRS := $(wildcard src/*/)
-SRC := $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)*.c))
+SRC=	src/builtins/aux_envp.c \
+		src/builtins/aux_export.c \
+		src/builtins/ft_cd.c \
+		src/builtins/ft_echo.c \
+		src/builtins/ft_env.c \
+		src/builtins/ft_exit.c \
+		src/builtins/ft_export.c \
+		src/builtins/ft_pwd.c \
+		src/builtins/ft_unset.c \
+		src/execute/aux_cmds.c \
+		src/execute/aux_path.c \
+		src/execute/complex_cmd.c \
+		src/execute/prompt.c \
+		src/execute/simple_cmd.c \
+		src/free/free.c \
+		src/main/main.c \
+		src/manage_io/do_dups.c \
+		src/manage_io/manage_io.c \
+		src/manage_io/process_heredocs.c \
+		src/manage_io/redirects.c \
+		src/parse/get_commands.c \
+		src/parse/io_lst.c \
+		src/parse/parse.c \
+		src/tokens/expand_words.c \
+		src/tokens/format_tokens.c \
+		src/tokens/token_lst.c \
+		src/tokens/tokenize_utils.c \
+		src/tokens/tokenize.c
 
 # OBJECT FILES
 OBJ_PATH	= obj/
