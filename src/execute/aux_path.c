@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux_path.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:21:28 by rivasque          #+#    #+#             */
-/*   Updated: 2024/03/26 14:43:11 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/03 11:03:45 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,11 @@ char	*paths(t_data *data, t_command *cmd)
 		{
 			free(array_paths);
 			return (full_path);
+		}
+		else
+		{
+			printf("%s: Permission denied\n", cmd->name);
+			exit(126);
 		}
 		free(full_path);
 		i++;
