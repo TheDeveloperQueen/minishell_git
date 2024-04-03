@@ -6,7 +6,7 @@
 /*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 12:22:09 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/03 11:57:07 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/03 15:18:54 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ int	valid_name(char *str)
 	i = 0;
 	if (!ft_isalpha(str[0]) && str[0] != '_')
 	{
-		printf("export: \'%s\': not a valid identifier\n", str);
+		printf("ourShell: export: \'%s\': not a valid identifier\n", str);
 		return (0);
 	}
 	while (str[i])
 	{
 		if (!ft_isalnum(str[i]) && str[i] != '_')
 		{
-			printf("export: \'%s\': not a valid identifier\n", str);
+			printf("ourShell: export: \'%s\': not a valid identifier\n", str);
 			return (0);
 		}
 		i++;
@@ -43,7 +43,7 @@ int	valid_value(char *str)
 	{
 		if (!ft_isalnum(str[i]) && str[i] != '_')
 		{
-			printf("export: \'%s\': not a valid identifier\n", str);
+			printf("ourShell: export: \'%s\': not a valid identifier\n", str);
 			return (0);
 		}
 		i++;

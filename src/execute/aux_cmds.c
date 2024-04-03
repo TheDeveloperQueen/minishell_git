@@ -6,7 +6,7 @@
 /*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:58:05 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/03 12:03:26 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/03 14:22:25 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	get_args(t_command	*cmd)
 	while (cmd->args_splitted[i])
 	{
 		str = ft_strdup(cmd->args_splitted[i]);
-		//cmd->args_splitted[i] = NULL;
 		ft_lstadd_back(&cmd->args, ft_lstnew(str));
 		i++;
 	}

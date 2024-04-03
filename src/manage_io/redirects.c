@@ -6,7 +6,7 @@
 /*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 19:31:55 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/03 11:42:30 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/03 15:55:05 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	open_file(char *file, int mode)
 	return (fd);
 }
 
-int	ft_out(t_io_node *io_list)
+int	ft_out(t_io_node *io_list, t_data *data, t_commands_array *cmds)
 {
 	int		fd;
 
@@ -43,12 +43,12 @@ int	ft_out(t_io_node *io_list)
         ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
         exit(EXIT_FAILURE);
     }
-	do_dup2(fd, STDOUT_FILENO);
+	do_dup2(fd, STDOUT_FILENO, data, cmds);
 	close(fd);
 	return (0);
 }
 
-int	ft_in(t_io_node *io_list)
+int	ft_in(t_io_node *io_list, t_data *data, t_commands_array *cmds)
 {
 	int		fd;
 
@@ -61,12 +61,12 @@ int	ft_in(t_io_node *io_list)
         ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
         exit(EXIT_FAILURE);
     }
-	do_dup2(fd, STDIN_FILENO);
+	do_dup2(fd, STDIN_FILENO, data, cmds);
 	close(fd);
 	return (0);
 }
 
-int	ft_append(t_io_node *io_list)
+int	ft_append(t_io_node *io_list, t_data *data, t_commands_array *cmds)
 {
 	int	fd;
 
@@ -79,7 +79,7 @@ int	ft_append(t_io_node *io_list)
         ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
         exit(EXIT_FAILURE);
     }
-	do_dup2(fd, STDOUT_FILENO);
+	do_dup2(fd, STDOUT_FILENO, data, cmds);
 	close(fd);
 	return (0);
 }

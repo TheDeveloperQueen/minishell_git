@@ -6,7 +6,7 @@
 /*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:53:28 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/03 12:34:31 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/03 14:14:05 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ char	**array_env(t_llist *envp, char *delimiter)
 	if (!envp)
 		return (NULL);
 	array = ft_calloc(ft_llstsize(envp) + 1, sizeof(char *));
+	if (!array)
+		return (NULL);
 	i = 0;
 	while (envp)
 	{

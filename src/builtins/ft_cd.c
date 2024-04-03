@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:42:27 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/03/22 19:04:30 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/04/03 15:22:45 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	ft_cd(t_data *data, t_command *cmd)
 		chdir((char *)cmd->args->content);
 	else
 	{
-		printf("cd: %s: No such file or directory\n", (char *)cmd->args->content);
+		printf("ourShell: cd: %s: No such file or directory\n", (char *)cmd->args->content);
 		return (1);
 	}
 	manage_path(data, old);

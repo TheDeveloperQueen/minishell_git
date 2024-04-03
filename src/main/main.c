@@ -6,7 +6,7 @@
 /*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 13:06:40 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/03 12:33:37 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/03 14:31:10 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ t_data	*create_blank_data(void)
 		return (NULL);
 	new_data->envp = NULL;
 	new_data->input = NULL;
+	new_data->stdin = do_dup(0);
+	new_data->stdout = do_dup(1);
 	return (new_data);
 }
 
@@ -32,8 +34,6 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 	data = create_blank_data();
 	get_envp(data, envp);
-	data->stdin = dup(0);
-	data->stdout = dup(1);
 	read_shell(data);
 	return (0);
 }

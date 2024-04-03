@@ -6,22 +6,22 @@
 /*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 16:00:00 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/03 13:06:15 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/03 15:53:48 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	reset_stds(t_data *data, int piped)
+void	reset_stds(t_data *data, int piped, t_commands_array *cmds)
 {
 	if (!piped)
 	{
-		do_dup2(data->stdin, STDIN_FILENO);
-		do_dup2(data->stdout, STDOUT_FILENO);
+		do_dup2(data->stdin, STDIN_FILENO, data, cmds);
+		do_dup2(data->stdout, STDOUT_FILENO, data, cmds);
 	}
 }
 
-static int	exec_child(t_data *data, t_command *cmd)
+static int	exec_child(t_data *data, t_command *cmd, t_commands_array *cmds)
 {
 	int		tmp_status;
 	char	*path;
@@ -32,10 +32,10 @@ static int	exec_child(t_data *data, t_command *cmd)
 	data->last_pid = fork();
 	if (data->last_pid == 0)
 	{
-		tmp_status = process_io(cmd);
+		tmp_status = process_io(cmd, data, cmds);
 		if (tmp_status != 0)
 		{
-			//(ft_clean_ms(), exit(ENO_GENERAL));
+			clear_shell(data, cmds);
 			exit(EXIT_FAILURE);
 		}
 		path = paths(data, cmd);
@@ -44,7 +44,8 @@ static int	exec_child(t_data *data, t_command *cmd)
 		execve(path, args, envp_str);
 		free(path);
 		free_array(envp_str);
-		free_array(args);	
+		free_array(args);
+		clear_shell(data, cmds);
 		perror(cmd->name);
 		exit(EXIT_FAILURE);	
 	}
@@ -53,24 +54,24 @@ static int	exec_child(t_data *data, t_command *cmd)
 	return (WEXITSTATUS(tmp_status));
 }
 
-int	ft_exec_simple_cmd(t_data *data, t_command *cmd, int piped)
+int	ft_exec_simple_cmd(t_data *data, t_command *cmd, int piped, t_commands_array *cmds)
 {
 	int		tmp_status;
 
 	if (!cmd->name_and_args)
 	{
-		tmp_status = process_io(cmd);
-		return (reset_stds(data, piped), tmp_status);
+		tmp_status = process_io(cmd, data, cmds);
+		return (reset_stds(data, piped, cmds), tmp_status);
 	}
 	else if (is_builtin(cmd))
 	{
 		get_args(cmd);
-		tmp_status = process_io(cmd);
+		tmp_status = process_io(cmd, data, cmds);
 		if (tmp_status != 0)
-			return (reset_stds(data, piped), 1);
+			return (reset_stds(data, piped, cmds), 1);
 		tmp_status = exec_builtin(cmd, data);
-		return (reset_stds(data, piped), tmp_status);
+		return (reset_stds(data, piped, cmds), tmp_status);
 	}
 	else
-		return (exec_child(data, cmd));
+		return (exec_child(data, cmd, cmds));
 }

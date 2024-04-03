@@ -6,7 +6,7 @@
 /*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:21:28 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/03 12:47:32 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/03 16:30:43 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static char	**find_path(t_llist *envp)
 	char	**paths;
 
 	if (!envp)
-		perror("error");
+		return (NULL);
 	while (envp)
 	{
 		if (ft_strcmp(envp->name, "PATH") == 0)
@@ -64,11 +64,6 @@ char	*paths(t_data *data, t_command *cmd)
 			free(array_paths);
 			return (full_path);
 		}
-		/*else
-		{
-			printf("%s: Permission denied\n", cmd->name);
-			exit(126);
-		}*/
 		free(full_path);
 		i++;
 	}

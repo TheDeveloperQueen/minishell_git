@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   do_dups.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 15:39:56 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/03/19 18:41:38 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/04/03 15:50:44 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int do_dup(int fd)
     return (new_fd);
 }
 
-int do_dup2(int fd1, int fd2)
+int do_dup2(int fd1, int fd2, t_data *data, t_commands_array *cmds)
 {
     int fd;
 
@@ -33,6 +33,7 @@ int do_dup2(int fd1, int fd2)
     if (fd == -1)
     {
         perror("dup2 Error\n");
+        clear_shell(data, cmds);
         exit(EXIT_FAILURE);
     }
     return (fd);
