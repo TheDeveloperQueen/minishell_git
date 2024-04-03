@@ -3,30 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:46:35 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/02 07:34:18 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/03 12:16:32 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-/* static void    execute_program(t_data *data)
-{
-	t_commands_array	*cmds_array;
-
-	cmds_array = get_commands(data->input, data->envp);
-	if (!cmds_array)
-		exit(EXIT_FAILURE);
-	exec_cmd_lst(data, cmds_array);
-	if (open("heredoc", F_OK))
-		unlink("heredoc");
-	free_commands_array(cmds_array);
-	data->input = NULL;
-	data->heredoc = 0;
-	data->exit_value = 0;
-} */
 
 static void	execute_program(t_data *data)
 {
@@ -37,14 +21,9 @@ static void	execute_program(t_data *data)
 		exit(EXIT_FAILURE);
 	if (process_heredocs(cmds_array))
 		printf("error processing heredocs");
-	//set_cmds_pipe_types(cmds_array);
 	ft_exec_cmds(data, cmds_array, 0, 0);
-	//exec_cmd_lst(data, cmds_array);
-	// if (open("heredoc", F_OK))
-	// 	unlink("heredoc");
 	free_commands_array(cmds_array);
 	data->input = NULL;
-	data->heredoc = 0;
 	data->exit_value = 0;
 }
 

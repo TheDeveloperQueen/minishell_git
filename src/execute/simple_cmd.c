@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 16:00:00 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/01 18:59:43 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/03 12:01:38 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	reset_stds(t_data *data, int piped)
 {
 	if (!piped)
 	{
-		dup2(data->stdin, STDIN_FILENO);
-		dup2(data->stdout, STDOUT_FILENO);
+		do_dup2(data->stdin, STDIN_FILENO);
+		do_dup2(data->stdout, STDOUT_FILENO);
 	}
 }
 
@@ -42,15 +42,11 @@ static int	exec_child(t_data *data, t_command *cmd)
 		envp_str = array_env(data->envp, "=");
 		args = cmd->name_and_args_splt;
 		execve(path, args, envp_str);
-		//path_status = ft_get_path((node -> expanded_args)[0]);
-		// if (path_status.err.no != ENO_SUCCESS)
-		// {
-		// 	tmp_status = ft_err_msg(path_status.err);
-		// 	(ft_clean_ms(), exit(tmp_status));
-		// }
-		// if (execve(path_status.path, node -> expanded_args,
-		// 		g_minishell.environ) == -1)
-		// 	(ft_clean_ms(), exit(1));
+		free(path);
+		free_array(envp_str);
+		free_array(args);	
+		perror(cmd->name);
+		exit(EXIT_FAILURE);	
 	}
 	waitpid(data->last_pid, &tmp_status, 0);
 	//g_minishell.signint_child = false;

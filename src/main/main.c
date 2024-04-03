@@ -3,22 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 13:06:40 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/01 11:44:24 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/03 12:33:37 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
-
-/*t_data	*init_data(void)
-{
-	t_data 
-	
-	((t_data *) malloc(sizeof(t_data)));
-	
-}*/
 
 t_data	*create_blank_data(void)
 {
@@ -28,7 +20,6 @@ t_data	*create_blank_data(void)
 	if (!new_data)
 		return (NULL);
 	new_data->envp = NULL;
-	new_data->heredoc = 0;
 	new_data->input = NULL;
 	return (new_data);
 }

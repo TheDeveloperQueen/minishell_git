@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux_envp.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:53:28 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/03/26 14:49:08 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/03 12:34:31 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

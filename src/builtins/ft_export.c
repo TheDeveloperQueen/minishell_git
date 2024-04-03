@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 12:22:09 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/03/26 10:57:13 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/03 11:57:07 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,6 @@ char	*name_env(t_list *lst)
 	name = ft_substr(lst->content, 0, ft_charfind(lst->content, '='));
 	return (name);
 }
-
-/* char	*value_env(t_list *lst)
-{
-	char	*value;
-	
-	if  (ft_strchr(lst->content, '='))
-		value = ft_substr(lst->content, ft_charfind(lst->content, '=') + 1, ft_strlen(lst->content));
-	return (value);
-} */
 
 int    ft_export(t_command *cmd, t_data *data)
 {

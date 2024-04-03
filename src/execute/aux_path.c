@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   aux_path.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoto-gu <acoto-gu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:21:28 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/03 11:03:45 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/03 12:29:45 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	has_path(t_command *cmd)
+static int	has_path(t_command *cmd)
 {
 	int	flag;
 

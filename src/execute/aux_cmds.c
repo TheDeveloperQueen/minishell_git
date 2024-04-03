@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux_cmds.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:58:05 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/01 08:17:39 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/03 12:03:26 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,26 +30,6 @@ void	get_args(t_command	*cmd)
 	}
 }
 
-//commands in array, name included
-/*char	**get_array_cmds(t_command *cmd)
-{
-	char	**array;
-	int		i;
-
-	array = ft_calloc(ft_lstsize(cmd->args) + 2, sizeof(char *));
-	if (!array)
-		return (NULL);
-	array[0] = ft_strdup(cmd->name);
-	i = 0;
-	while (cmd->args)
-	{
-		array[i++] = ft_strdup(cmd->args->content);
-		cmd->args = cmd->args->next;
-	}
-	array[i] = NULL;
-	return (array);	
-}*/
-
 int	is_builtin(t_command *cmd)
 {
 	if (ft_strcmp(cmd->name, "echo") == 0 || ft_strcmp(cmd->name, "cd") == 0
@@ -59,3 +39,26 @@ int	is_builtin(t_command *cmd)
 		return (1);
 	return (0);
 }
+
+int	exec_builtin(t_command *cmd, t_data *data)
+{
+	int	exit_status;
+
+	exit_status = 0;
+	if (ft_strcmp(cmd->name, "echo") == 0)
+		exit_status = ft_echo(cmd);
+	else if (ft_strcmp(cmd->name, "pwd") == 0)
+		exit_status = ft_pwd(cmd);
+	else if (ft_strcmp(cmd->name, "cd") == 0)
+		exit_status = ft_cd(data, cmd);
+	else if (ft_strcmp(cmd->name, "env") == 0)
+		exit_status = ft_env(data);
+	else if (ft_strcmp(cmd->name, "export") == 0)
+		exit_status = ft_export(cmd, data);
+	else if (ft_strcmp(cmd->name, "unset") == 0)
+		exit_status = ft_unset(cmd, data);
+	else if (ft_strcmp(cmd->name, "exit") == 0)
+		exit_status = ft_exit(cmd, data);
+	return (exit_status);
+}
+

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_heredocs.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:38:25 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/03/27 07:13:29 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/03 11:53:20 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,21 @@ void	ft_heredoc(t_io_node *io, int p[2])
 	char	*line;
 
 	//signal(SIGINT, ft_heredoc_sigint_handler);
-	// quotes = io->value;
-	// while (*quotes && *quotes != '"' && *quotes != '\'')
-	// 	quotes++;
 	while (1)
 	{
 		line = readline("> ");
-		if (!line)
+		if (!line || ft_is_delimiter(io->io_arg, line))
 			break ;
-		if (ft_is_delimiter(io->io_arg, line))
-			break ;
-		else
+		if (!ft_strlen(line))
 		{
-			ft_putstr_fd(line, p[1]);
-			ft_putstr_fd("\n", p[1]);
+			free(line);
+			continue ;
 		}
+		ft_putstr_fd(line, p[1]);
+		ft_putstr_fd("\n", p[1]);
+		free(line);
 	}
+	free(line);
 	//ft_clean_ms();
 	exit(0);
 }
@@ -88,4 +87,3 @@ int	process_heredocs(t_commands_array *cmds)
 	}
 	return (error);
 }
-

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   complex_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 16:32:29 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/01 18:44:25 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/03 12:11:38 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	ft_exec_pipe_right( t_data *data, t_commands_array *cmds, int index,
 	int	status;
 
 	close(pfds[1]);
-	dup2(pfds[0], STDIN_FILENO);
+	do_dup2(pfds[0], STDIN_FILENO);
 	close(pfds[0]);
 	status = ft_exec_cmds(data, cmds, index, 1);
 	exit(status);
@@ -29,7 +29,7 @@ static void ft_exec_pipe_left(t_data *data, t_command *cmd, int pfds[2])
 	int	status;
 
 	close(pfds[0]);
-	dup2(pfds[1], STDOUT_FILENO);
+	do_dup2(pfds[1], STDOUT_FILENO);
 	close(pfds[1]);
 	status = ft_exec_simple_cmd(data, cmd, 1);
 	exit(status);
