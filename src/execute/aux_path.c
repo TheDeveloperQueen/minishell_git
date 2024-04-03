@@ -6,7 +6,7 @@
 /*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:21:28 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/03 12:29:45 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/03 12:47:32 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,11 @@ char	*paths(t_data *data, t_command *cmd)
 			free(array_paths);
 			return (full_path);
 		}
-		else
+		/*else
 		{
 			printf("%s: Permission denied\n", cmd->name);
 			exit(126);
-		}
+		}*/
 		free(full_path);
 		i++;
 	}
