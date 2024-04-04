@@ -1,5 +1,5 @@
 - Cuando apenas ponemos varios espacios se sale, y no deberia.
-- echo $?: tendria que devolver el output del ultimo comando. Si encuentra un $? no puede expandir del env, tiene que guardar la variable con valor del ultimo comando.
+- echo \$\?: tendria que devolver el output del ultimo comando. Si encuentra un \$\? no puede expandir del env, tiene que guardar la variable con valor del ultimo comando.
 - si comillas no bien puestas (si no cierran) tiene que mandar error. No salir del ourShell. Aqui no hay que replicar exactamente lo que hace bash.
 - despues de hacer export de variables (apenas sin value) los comandos dejan de funcionar. si hacems unset vuelve a funcionar. Si tiene value todo ok.
 - leaks
