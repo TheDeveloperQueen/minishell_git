@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 09:44:48 by rivasque          #+#    #+#             */
-/*   Updated: 2024/03/18 19:43:39 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/04/04 10:53:38 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_delete_lst(t_list *lst)
 
 void	ft_delete_llst(t_llist *lst)
 {
-	t_llist *temp;
+	t_llist	*temp;
 
 	while (lst)
 	{

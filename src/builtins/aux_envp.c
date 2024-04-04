@@ -6,7 +6,7 @@
 /*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:53:28 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/03 14:14:05 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/04 10:57:54 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	print_env(t_data *data, char *print1, char *print2)
 
 char	*search_env(t_data *data, char *name)
 {
-	t_llist *aux_env;
+	t_llist	*aux_env;
 
 	aux_env = data->envp;
 	while (aux_env)
@@ -105,6 +105,6 @@ char	*search_env(t_data *data, char *name)
 char	*check_envp(t_data *data, char *name, char *value)
 {
 	if (value)
-		replace_env(data, name, value);		
+		replace_env(data, name, value);
 	return (search_env(data, name));
 }

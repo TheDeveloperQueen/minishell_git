@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoto-gu <acoto-gu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 10:40:12 by rivasque          #+#    #+#             */
-/*   Updated: 2024/03/25 16:33:46 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/04 10:55:26 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_list
 	struct s_list	*next;
 }		t_list;
 
-typedef struct		s_llist
+typedef struct s_llist
 {
 	struct s_llist	*next;
 	char			*name;
@@ -81,7 +81,7 @@ int		array_len(char **array);
 int		ft_lstsize(t_list *lst);
 t_list	*ft_lstnew(void *content);
 void	ft_lstadd_front(t_list **lst, t_list *new);
-void    ft_lstadd_back(t_list **list, t_list *new);
+void	ft_lstadd_back(t_list **list, t_list *new);
 void	print_list(t_list *lst, char *delimiter);
 int		ft_strict_atoi(const char *str, int *flag);
 void	ft_lstclear(t_list **lst, void (*del)(void *));

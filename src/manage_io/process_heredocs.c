@@ -6,7 +6,7 @@
 /*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:38:25 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/03 14:35:29 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/04 11:38:03 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ void	ft_heredoc(t_io_node *io, int p[2])
 
 int	rx_heredocs(t_io_node *io_list)
 {
-	int	p[2];
+	int		p[2];
 	pid_t	pid;
-	int	child_status;
+	int		child_status;
 
 	while (io_list)
 	{

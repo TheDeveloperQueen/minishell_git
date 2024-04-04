@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 09:39:02 by rivasque          #+#    #+#             */
-/*   Updated: 2024/03/11 20:16:05 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/04/04 10:51:36 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

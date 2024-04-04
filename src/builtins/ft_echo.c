@@ -6,7 +6,7 @@
 /*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:15:46 by rivasque          #+#    #+#             */
-/*   Updated: 2024/03/21 10:55:05 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/04 11:28:44 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	check_n(char *str)
 int	ft_echo(t_command *cmd)
 {
 	int		flag;
-	
+
 	flag = 0;
 	if (!cmd->args)
 		printf("\n");

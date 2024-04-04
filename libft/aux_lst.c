@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux_lst.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoto-gu <acoto-gu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:28:29 by rivasque          #+#    #+#             */
-/*   Updated: 2024/03/25 16:59:07 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/04 15:24:25 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,29 +57,8 @@ t_llist	*llist_cpy(t_llist *llst)
 			lst_add_back(&new, lst_add_new(ft_strdup(llst->name), NULL));
 		else
 			lst_add_back(&new, lst_add_new(ft_strdup(llst->name),
-			ft_strdup(llst->value)));
+					ft_strdup(llst->value)));
 		llst = llst->next;
 	}
 	return (new);
 }
-
-// void	llist_remove(t_llist **lst)
-// {
-// 	t_llist	*temp;
-
-// 	if (!lst)
-// 		return ;
-// 	temp = *lst;
-// 	if (temp->next)
-// 		temp->next->prev = temp->prev;
-// 	if (temp->prev)
-// 		temp->prev->next = temp->next;
-// 	if (temp->prev)
-// 		*lst = temp->prev;
-// 	else
-// 		*lst = temp->next;
-// 	free(temp->name);
-// 	if (temp->value)
-// 		free(temp->value);
-// 	free(temp);
-// }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 14:30:04 by rivasque          #+#    #+#             */
-/*   Updated: 2024/03/11 13:40:35 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/04/04 10:53:53 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_list	*ft_lstnew(void *content)
 {
 	t_list	*new;
-	
+
 	if (!content)
 		return (NULL);
 	new = (t_list *) malloc(sizeof(t_list));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 14:17:41 by rivasque          #+#    #+#             */
-/*   Updated: 2024/03/22 15:31:38 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/04/04 11:30:11 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	ft_pwd(t_command *cmd)
 {
-	(void)cmd;
-	char *str;
+	char	*str;
 
+	(void)cmd;
 	str = getcwd(NULL, 0);
 	printf("%s\n", str);
 	free(str);

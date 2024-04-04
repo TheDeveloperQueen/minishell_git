@@ -6,7 +6,7 @@
 /*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 13:06:40 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/03 14:31:10 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/04 12:57:15 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ int	main(int argc, char **argv, char **envp)
 	(void)argc;
 	(void)argv;
 	data = create_blank_data();
-	get_envp(data, envp);
+	if (envp[0] == NULL)
+		get_envp_3(data);
+	else
+		get_envp(data, envp);
 	read_shell(data);
 	return (0);
 }

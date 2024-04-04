@@ -6,7 +6,7 @@
 /*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:09:56 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/03 16:19:36 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/04 14:41:53 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int					split_comds_args(t_commands_array *comds);
 t_commands_array	*get_commands(char *line, t_llist *envp);
 int					is_builtin(t_command *cmd);
 void				get_args(t_command *cmd);
+t_command			*create_blank_command(void);
 
 //path functions
 char				*paths(t_data *data, t_command *cmd);
@@ -76,12 +77,15 @@ char				*paths(t_data *data, t_command *cmd);
 void				get_envp(t_data *data, char **envp);
 void				print_env(t_data *data, char *print1, char *print2);
 int					valid_name(char *str);
+char				*name_env(t_list *lst);
 char				**array_env(t_llist *envp, char *delimiter);
 int					check_dup_env(t_data *data, char *name);
 void				update_envp_value(t_data *data, char *argument);
 void				replace_env(t_data *data, char *name, char *n_value);
 char				*search_env(t_data *data, char *name);
 char				*check_envp(t_data *data, char *name, char *value);
+char				**envp_3_var(void);
+void				get_envp_3(t_data *data);
 
 //Builtin functions
 int					ft_echo(t_command *cmd);
@@ -104,19 +108,19 @@ void				read_shell(t_data *data);
 t_io_node			*ft_new_io(char *io_arg, t_io_type type);
 void				ft_clear_io_lst(t_io_node **lst);
 void				ft_add_io(t_io_node **lst, t_io_node *new);
-int					open_file(char *file, int mode);
+int					open_file(char *file, int mode, int flag);
 int					do_dup(int fd);
 int					do_dup2(int fd1, int fd2, t_data *data,
 						t_commands_array *cmds);
 int					process_heredocs(t_commands_array *cmds);
 int					ft_out(t_io_node *io_list, t_data *data,
-						t_commands_array *cmds);
+						t_commands_array *cmds, int flag);
 int					ft_in(t_io_node *io_list, t_data *data,
-						t_commands_array *cmds);
+						t_commands_array *cmds, int flag);
 int					ft_append(t_io_node *io_list, t_data *data,
-						t_commands_array *cmds);
+						t_commands_array *cmds, int flag);
 int					process_io(t_command *cmd, t_data *data,
-						t_commands_array *cmds);
+						t_commands_array *cmds, int flag);
 
 //free functions
 void				free_array(char **argv);

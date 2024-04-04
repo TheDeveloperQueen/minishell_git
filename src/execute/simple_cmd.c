@@ -6,7 +6,7 @@
 /*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 16:00:00 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/03 15:53:48 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/04 14:40:59 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	exec_child(t_data *data, t_command *cmd, t_commands_array *cmds)
 	data->last_pid = fork();
 	if (data->last_pid == 0)
 	{
-		tmp_status = process_io(cmd, data, cmds);
+		tmp_status = process_io(cmd, data, cmds, 0);
 		if (tmp_status != 0)
 		{
 			clear_shell(data, cmds);
@@ -47,26 +47,27 @@ static int	exec_child(t_data *data, t_command *cmd, t_commands_array *cmds)
 		free_array(args);
 		clear_shell(data, cmds);
 		perror(cmd->name);
-		exit(EXIT_FAILURE);	
+		exit(EXIT_FAILURE);
 	}
 	waitpid(data->last_pid, &tmp_status, 0);
 	//g_minishell.signint_child = false;
 	return (WEXITSTATUS(tmp_status));
 }
 
-int	ft_exec_simple_cmd(t_data *data, t_command *cmd, int piped, t_commands_array *cmds)
+int	ft_exec_simple_cmd(t_data *data, t_command *cmd, int piped,
+		t_commands_array *cmds)
 {
 	int		tmp_status;
 
 	if (!cmd->name_and_args)
 	{
-		tmp_status = process_io(cmd, data, cmds);
+		tmp_status = process_io(cmd, data, cmds, 1);
 		return (reset_stds(data, piped, cmds), tmp_status);
 	}
 	else if (is_builtin(cmd))
 	{
 		get_args(cmd);
-		tmp_status = process_io(cmd, data, cmds);
+		tmp_status = process_io(cmd, data, cmds, 1);
 		if (tmp_status != 0)
 			return (reset_stds(data, piped, cmds), 1);
 		tmp_status = exec_builtin(cmd, data);

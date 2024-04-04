@@ -6,7 +6,7 @@
 /*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 12:22:09 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/03 15:18:54 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/04 15:23:08 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	*name_env(t_list *lst)
 	return (name);
 }
 
-int    ft_export(t_command *cmd, t_data *data)
+int	ft_export(t_command *cmd, t_data *data)
 {
 	t_llist	*aux_envp;
 	t_list	*lst;
@@ -74,7 +74,7 @@ int    ft_export(t_command *cmd, t_data *data)
 	while (lst)
 	{
 		if (!valid_name(name_env(lst)))
-			return (0);
+			return (1);
 		if (!ft_strchr(lst->content, '='))
 		{
 			if (!check_dup_env(data, lst->content))

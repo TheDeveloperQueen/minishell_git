@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 16:05:25 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/03/19 18:42:24 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/04/04 11:34:55 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,4 @@ int	ft_is_redirect_token(t_token_node *token)
 		return (1);
 	}
 	return (0);
-}
-
-t_io_type	get_token_io_type(t_token_type token_type)
-{
-	if (token_type == T_LESS_THAN)
-		return (IO_IN);
-	else if (token_type == T_MORE_THAN)
-		return (IO_OUT);
-	else if (token_type == T_D_LESS_THAN)
-		return (IO_HEREDOC);
-	else
-		return (IO_APPEND);
 }

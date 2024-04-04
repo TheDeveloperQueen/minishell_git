@@ -6,13 +6,14 @@
 /*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 16:32:29 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/03 15:49:40 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/04 11:32:02 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void	ft_exec_pipe_right( t_data *data, t_commands_array *cmds, int index, int pfds[2])
+static void	ft_exec_pipe_right( t_data *data, t_commands_array *cmds,
+		int index, int pfds[2])
 {
 	int	status;
 
@@ -24,7 +25,8 @@ static void	ft_exec_pipe_right( t_data *data, t_commands_array *cmds, int index,
 	exit(status);
 }
 
-static void ft_exec_pipe_left(t_data *data, t_command *cmd, int pfds[2], t_commands_array *cmds)
+static void	ft_exec_pipe_left(t_data *data, t_command *cmd, int pfds[2],
+		t_commands_array *cmds)
 {
 	int	status;
 
@@ -66,8 +68,6 @@ static	int	ft_exec_pipeline(t_data *data, t_commands_array *cmds, int index)
 
 int	ft_exec_cmds(t_data *data, t_commands_array *cmds, int index, int piped)
 {
-	//int	status;
-
 	if (!cmds)
 		return (1);
 	if (index < cmds->len - 1)

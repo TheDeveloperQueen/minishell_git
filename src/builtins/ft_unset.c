@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 20:18:11 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/03/26 10:10:49 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/04 14:11:28 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,16 @@ void	unset_var(char *var_name, t_llist **envp)
 int	ft_unset(t_command *cmd, t_data *data)
 {
 	t_list	*args;
+	char	*name;
 
 	args = cmd->args;
+	name = ft_substr(args->content, 0, ft_charfind(args->content, '='));
 	while (args)
 	{
-		unset_var(args->content, &data->envp);
+		if (ft_strcmp(name, "_") == 0)
+			return (1);
+		else
+			unset_var(args->content, &data->envp);
 		args = args->next;
 	}
 	return (0);

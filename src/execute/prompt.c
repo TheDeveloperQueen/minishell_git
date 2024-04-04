@@ -6,7 +6,7 @@
 /*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:46:35 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/03 15:42:07 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/04 14:20:43 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static void	execute_program(t_data *data)
 	}
 	ft_exec_cmds(data, cmds_array, 0, 0);
 	free_commands_array(cmds_array);
+	free(data->input);
 	data->input = NULL;
 	data->exit_value = 0;
 }

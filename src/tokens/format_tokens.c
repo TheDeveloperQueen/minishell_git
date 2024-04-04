@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   format_tokens.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 08:12:59 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/03/19 18:42:14 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/04/04 11:35:08 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,4 +99,16 @@ int	format_tokens(t_token_node **token_list)
 	ft_clear_token_lst(token_list);
 	*token_list = new_token_list;
 	return (0);
+}
+
+t_io_type	get_token_io_type(t_token_type token_type)
+{
+	if (token_type == T_LESS_THAN)
+		return (IO_IN);
+	else if (token_type == T_MORE_THAN)
+		return (IO_OUT);
+	else if (token_type == T_D_LESS_THAN)
+		return (IO_HEREDOC);
+	else
+		return (IO_APPEND);
 }

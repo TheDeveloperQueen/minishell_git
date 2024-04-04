@@ -6,7 +6,7 @@
 /*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:42:27 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/03 15:22:45 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/04 11:05:42 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static int	path_home(t_data *data, t_command *cmd)
 {
 	char	*path;
 	char	*old;
-	(void)cmd;
 
+	(void)cmd;
 	old = getcwd(NULL, 0);
 	path = search_env(data, "HOME");
 	if (!path)
@@ -48,8 +48,8 @@ static int	path_old(t_data *data, t_command *cmd)
 {
 	char	*old;
 	char	*path;
-	(void)cmd;
 
+	(void)cmd;
 	old = getcwd(NULL, 0);
 	path = search_env(data, "OLDPWD");
 	if (!path)
@@ -71,7 +71,7 @@ static int	path_old(t_data *data, t_command *cmd)
 int	ft_cd(t_data *data, t_command *cmd)
 {
 	char	*old;
-	
+
 	old = getcwd(NULL, 0);
 	if (!cmd->args || ft_strcmp(cmd->args->content, "~") == 0)
 		return (path_home(data, cmd));
@@ -81,7 +81,8 @@ int	ft_cd(t_data *data, t_command *cmd)
 		chdir((char *)cmd->args->content);
 	else
 	{
-		printf("ourShell: cd: %s: No such file or directory\n", (char *)cmd->args->content);
+		printf("ourShell: cd: %s: No such file or directory\n",
+			(char *)cmd->args->content);
 		return (1);
 	}
 	manage_path(data, old);
