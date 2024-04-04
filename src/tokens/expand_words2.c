@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_words2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 11:52:20 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/04 11:52:57 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/04 23:20:17 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,52 +30,33 @@ char	*take_out_quotes(char *str)
 		else if (ft_is_quote(*str) && start_quote && *str == quote_char)
 			start_quote = 0;
 		else
-			new_str = add_char_and_free(new_str, *str);
+			add_char_and_free(&new_str, *str);
 		str++;
 	}
 	return (new_str);
 }
 
-int	get_expanded_tokens(t_token_node *token_list, t_llist *envp)
+int	get_expand_str_arr(char	**str_arr, t_llist *envp)
 {
+	int		i;
 	char	*temp1;
 	char	*temp2;
+	char	*str;
 
-	while (token_list)
+	i = 0;
+	while (str_arr[i])
 	{
-		if (token_list->type == T_WORD)
-		{
-			temp1 = expand_env_vars(token_list->content, envp);
-			if (!temp1)
-				return (1);
-			temp2 = take_out_quotes(temp1);
-			if (!temp2)
-				return (free(temp1), 1);
-			free(temp1);
-			free (token_list->content);
-			token_list->content = temp2;
-		}
-		token_list = token_list->next;
+		str = str_arr[i];
+		temp1 = expand_env_vars(str, envp);
+		if (!temp1)
+			return (1);
+		temp2 = take_out_quotes(temp1);
+		if (!temp2)
+			return (free(temp1), 1);
+		free(temp1);
+		free (str);
+		str_arr[i] = temp2;
+		i++;
 	}
 	return (0);
 }
-
-/* int main(int argc, char const *argv[], char const *env[])
-{
-	int i = 0;
-	char *str;
-	char *str2;
-
-	while(argv[i])
-	{
-		str = expand_env_vars(argv[i]);
-		str2 = take_out_quotes(str);
-		printf("%s\n", argv[i]);
-		printf("%s\n", str);
-		printf("%s\n", str2);
-		free(str);
-		free(str2);
-		i++;
-	}
-	return 0;
-} */

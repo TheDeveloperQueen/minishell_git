@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 11:50:03 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/04 11:50:43 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/04 23:03:29 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ t_commands_array	*parse_commands_array(t_token_node	*token_list)
 	return (com);
 }
 
-int	split_comds_args(t_commands_array *comds)
+int	split_comds_args(t_commands_array *comds, t_llist *envp)
 {
 	int		i;
 	char	**str_arr;
@@ -107,9 +107,11 @@ int	split_comds_args(t_commands_array *comds)
 	{
 		if (comds->comm_array[i]->name_and_args)
 		{
-			str_arr = ft_split(comds->comm_array[i]->name_and_args, ' ');
+			str_arr = special_split(comds->comm_array[i]->name_and_args, ' ');
 			if (!str_arr)
 				return (1);
+			if (get_expand_str_arr(str_arr, envp))
+				return (free_array(str_arr), 1);
 			comds->comm_array[i]->name_and_args_splt = str_arr;
 			if (str_arr[0])
 			{

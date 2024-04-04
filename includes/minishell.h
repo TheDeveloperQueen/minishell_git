@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:09:56 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/04 14:41:53 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/04 23:34:34 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,13 @@ typedef struct s_data
 
 // Command functions
 t_commands_array	*parse_commands_array(t_token_node *token_list);
-int					split_comds_args(t_commands_array *comds);
+int					split_comds_args(t_commands_array *comds, t_llist *envp);
 t_commands_array	*get_commands(char *line, t_llist *envp);
 int					is_builtin(t_command *cmd);
 void				get_args(t_command *cmd);
 t_command			*create_blank_command(void);
+int					get_expand_str_arr(char	**str_arr, t_llist *envp);
+char				**special_split(char const *s, char c);
 
 //path functions
 char				*paths(t_data *data, t_command *cmd);

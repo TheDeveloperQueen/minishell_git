@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 16:05:25 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/04 11:34:55 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/04 23:22:49 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_char_type	get_type_of_character(char c)
 {
 	t_char_type	type;
 
-	if (c == ' ')
+	if (c == ' ' || c == '\t' || c == '\n')
 		type = SPACE;
 	else if (c == '\'' || c == '\"')
 		type = QUOTE;

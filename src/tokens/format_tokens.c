@@ -3,43 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   format_tokens.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 08:12:59 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/04 11:35:08 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/04 23:24:52 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-/* t_token_node	*join_word_tokens(t_token_node **current_token)
+t_io_type	get_token_io_type(t_token_type token_type)
 {
-	t_token_node	*new_token;
-	char			*to_free;
-
-	to_free = ft_get_empty_str();
-	if (!to_free)
-		return (NULL);
-	new_token = ft_new_token(to_free, T_WORD);
-	if (!new_token)
-		return (NULL);
-	new_token->content = ft_strjoin(to_free, (*current_token)->content);
-	free(to_free);
-	if (!new_token->content)
-		return (free(new_token), NULL);
-	*current_token = (*current_token)->next;
-	while (*current_token && (*current_token)->type == T_WORD)
-	{
-		to_free = new_token->content;
-		new_token->content = ft_strjoin_char(new_token->content,
-				(*current_token)->content, ' ');
-		free (to_free);
-		if (!new_token->content)
-			return (free(new_token), NULL);
-		*current_token = (*current_token)->next;
-	}
-	return (new_token);
-} */
+	if (token_type == T_LESS_THAN)
+		return (IO_IN);
+	else if (token_type == T_MORE_THAN)
+		return (IO_OUT);
+	else if (token_type == T_D_LESS_THAN)
+		return (IO_HEREDOC);
+	else
+		return (IO_APPEND);
+}
 
 t_token_node	*set_io_types(t_token_node **current_token)
 {
@@ -101,14 +84,3 @@ int	format_tokens(t_token_node **token_list)
 	return (0);
 }
 
-t_io_type	get_token_io_type(t_token_type token_type)
-{
-	if (token_type == T_LESS_THAN)
-		return (IO_IN);
-	else if (token_type == T_MORE_THAN)
-		return (IO_OUT);
-	else if (token_type == T_D_LESS_THAN)
-		return (IO_HEREDOC);
-	else
-		return (IO_APPEND);
-}

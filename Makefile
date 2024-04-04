@@ -31,6 +31,7 @@ SRC=	src/builtins/aux_envp.c \
 		src/parse/io_lst.c \
 		src/parse/parse.c \
 		src/parse/parse2.c \
+		src/parse/special_split.c \
 		src/tokens/expand_words.c \
 		src/tokens/expand_words2.c \
 		src/tokens/format_tokens.c \

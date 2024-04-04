@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:02:59 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/04 12:00:35 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/04 23:39:13 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,5 @@ int				ft_is_infile(t_io_type type);
 int				ft_is_outfile(t_io_type type);
 int				get_array_command_len(t_token_node *token_list);
 int				add_arg(char **old_arg, char *to_add);
-char			*add_char_and_free(char *old_str, char c);
+void			add_char_and_free(char **old_str, char c);
 char			*expand_env_vars(char *word, t_llist *envp);
