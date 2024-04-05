@@ -3,30 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoto-gu <acoto-gu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 12:22:09 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/05 09:56:31 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/05 21:02:53 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	valid_name(char *str)
+int	valid_name(char *str, t_data *data)
 {
 	int	i;
 
 	i = 0;
 	if (!ft_isalpha(str[0]) && str[0] != '_')
 	{
-		printf("ourShell: export: \'%s\': not a valid identifier\n", str);
+		printf("%s: export: \'%s\': not a valid identifier\n",
+			data->shell_name, str);
 		return (0);
 	}
 	while (str[i])
 	{
 		if (!ft_isalnum(str[i]) && str[i] != '_')
 		{
-			printf("ourShell: export: \'%s\': not a valid identifier\n", str);
+			printf("%s: export: \'%s\': not a valid identifier\n",
+				data->shell_name, str);
 			return (0);
 		}
 		i++;
@@ -34,7 +36,7 @@ int	valid_name(char *str)
 	return (1);
 }
 
-int	valid_value(char *str)
+int	valid_value(char *str, t_data *data)
 {
 	int	i;
 
@@ -43,7 +45,8 @@ int	valid_value(char *str)
 	{
 		if (!ft_isalnum(str[i]) && str[i] != '_')
 		{
-			printf("ourShell: export: \'%s\': not a valid identifier\n", str);
+			printf("%s: export: \'%s\': not a valid identifier\n",
+				data->shell_name, str);
 			return (0);
 		}
 		i++;
@@ -71,7 +74,7 @@ int	ft_export(t_command *cmd, t_data *data)
 	lst = cmd->args;
 	while (lst)
 	{
-		if (!valid_name(name_env(lst)))
+		if (!valid_name(name_env(lst), data))
 			return (1);
 		if (!ft_strchr(lst->content, '='))
 		{

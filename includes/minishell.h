@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:09:56 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/05 17:11:40 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/05 21:04:05 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # include <readline/history.h>
 # include <sys/wait.h>
 # include <dirent.h>
+
+# define SHELL_NAME "🔥ourHell"
 
 typedef struct s_io_node
 {
@@ -53,6 +55,7 @@ typedef struct s_commands_array
 
 typedef struct s_data
 {
+	char	*shell_name;
 	t_llist	*envp;
 	int		status;	
 	pid_t	last_pid;
@@ -78,7 +81,7 @@ char				*paths(t_data *data, t_command *cmd);
 //Envp functions
 void				get_envp(t_data *data, char **envp);
 void				print_env(t_data *data, char *print1, char *print2);
-int					valid_name(char *str);
+int					valid_name(char *str, t_data *data);
 char				*name_env(t_list *lst);
 char				**array_env(t_llist *envp);
 int					check_dup_env(t_data *data, char *name);

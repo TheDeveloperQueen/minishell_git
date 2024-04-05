@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:42:27 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/04 11:05:42 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/05 20:55:50 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	path_home(t_data *data, t_command *cmd)
 	path = search_env(data, "HOME");
 	if (!path)
 	{
-		printf("ourShell: HOME not set");
+		printf("%s: HOME not set", data->shell_name);
 		return (1);
 	}
 	if (opendir(path))
@@ -54,7 +54,7 @@ static int	path_old(t_data *data, t_command *cmd)
 	path = search_env(data, "OLDPWD");
 	if (!path)
 	{
-		printf("ourShell: OLDPWD not set");
+		printf("%s: OLDPWD not set", data->shell_name);
 		if (!check_dup_env(data, "OLDPWD"))
 			lst_add_back(&data->envp, lst_add_new(ft_strdup("OLDPWD"), NULL));
 		return (1);
@@ -81,7 +81,7 @@ int	ft_cd(t_data *data, t_command *cmd)
 		chdir((char *)cmd->args->content);
 	else
 	{
-		printf("ourShell: cd: %s: No such file or directory\n",
+		printf("%s: cd: %s: No such file or directory\n", data->shell_name,
 			(char *)cmd->args->content);
 		return (1);
 	}

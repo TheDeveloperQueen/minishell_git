@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:46:35 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/05 18:16:11 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/04/05 21:02:06 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	read_shell(t_data *data)
 	//signals();
 	while (1)
 	{
-		data->input = readline("ourShell>");
+		data->input = readline(ft_strjoin(data->shell_name, "> "));
 		//data->input = "ls > out2 | cat out2";
 		if (!data->input)
 		{

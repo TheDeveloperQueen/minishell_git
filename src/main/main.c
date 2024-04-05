@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 13:06:40 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/04 12:57:15 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/05 21:02:56 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_data	*create_blank_data(void)
 	new_data = malloc(sizeof(t_data));
 	if (!new_data)
 		return (NULL);
+	new_data->shell_name = SHELL_NAME;
 	new_data->envp = NULL;
 	new_data->input = NULL;
 	new_data->stdin = do_dup(0);

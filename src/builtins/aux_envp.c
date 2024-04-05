@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:53:28 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/05 17:13:33 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/05 20:46:43 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,25 @@ void	get_envp(t_data *data, char **envp)
 	int		i;
 	char	*name;
 	char	*value;
+	char	*tmp_value;
+	int		tmp_value_i;
 
 	i = 0;
-	name = NULL;
-	value = NULL;
 	while (envp[i])
 	{
 		name = ft_substr(envp[i], 0, ft_charfind(envp[i], '='));
-		value = ft_substr(envp[i], ft_charfind(envp[i], '=') + 1,
-				ft_strlen(envp[i]));
+		if (ft_strcmp(name, "SHELL") == 0)
+			value = ft_strdup(data->shell_name);
+		else
+			value = ft_substr(envp[i], ft_charfind(envp[i], '=') + 1,
+					ft_strlen(envp[i]));
+		if (ft_strcmp(name, "SHLVL") == 0)
+		{
+			tmp_value_i = ft_atoi(value);
+			tmp_value = ft_itoa(tmp_value_i + 1);
+			free(value);
+			value = tmp_value;
+		}
 		lst_add_back(&data->envp, lst_add_new(name, value));
 		i++;
 	}
