@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux_envp.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:53:28 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/04 10:57:54 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/05 17:13:33 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	get_envp(t_data *data, char **envp)
 }
 
 //envp in array, join name & value
-char	**array_env(t_llist *envp, char *delimiter)
+char	**array_env(t_llist *envp)
 {
 	char	**array;
 	char	*join;
@@ -47,14 +47,14 @@ char	**array_env(t_llist *envp, char *delimiter)
 	i = 0;
 	while (envp)
 	{
-		if (!delimiter)
-			array[i++] = ft_strjoin(envp->name, envp->value);
-		else
+		if (envp->value)
 		{
-			join = ft_strjoin(envp->name, delimiter);
+			join = ft_strjoin(envp->name, "=");
 			array[i++] = ft_strjoin(join, envp->value);
 			free(join);
 		}
+		else
+			array[i++] = ft_strdup(envp->name);
 		envp = envp->next;
 	}
 	array[i] = NULL;

@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:09:56 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/04 23:34:34 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/05 17:11:40 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void				get_envp(t_data *data, char **envp);
 void				print_env(t_data *data, char *print1, char *print2);
 int					valid_name(char *str);
 char				*name_env(t_list *lst);
-char				**array_env(t_llist *envp, char *delimiter);
+char				**array_env(t_llist *envp);
 int					check_dup_env(t_data *data, char *name);
 void				update_envp_value(t_data *data, char *argument);
 void				replace_env(t_data *data, char *name, char *n_value);
