@@ -1,27 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_space.c                                         :+:      :+:    :+:   */
+/*   only_space.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 13:04:27 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/05 13:07:45 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/05 18:17:55 by ritavasques      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	is_digit(char *str)
+int	only_space(char *str)
 {
-	int	i;
+	int		i;
+	size_t	count;
 
 	i = 0;
+	count = 0;
 	while (str[i])
 	{
-		if (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
-			return (0);
+		if (str[i] == ' ')
+			count++;
 		i++;
 	}
-	return (1);
+	if (count == ft_strlen(str))
+		return (1);
+	else
+		return (0);	
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 10:40:12 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/04 10:55:26 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/05 18:12:37 by ritavasques      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,6 @@ int		ft_llstsize(t_llist *lst);
 t_llist	*lst_add_new(void *name, void *value);
 void	lst_add_back(t_llist **llst, t_llist *new);
 t_llist	*llist_cpy(t_llist *llst);
-void	llist_remove(t_llist **lst);
+int		only_space(char *str);
 
 #endif

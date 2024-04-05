@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:46:35 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/05 13:04:02 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/05 18:16:11 by ritavasques      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	read_shell(t_data *data)
 			printf("exit\n");
 			exit(1);
 		}
-		if (!ft_strlen(data->input))
+		if (!ft_strlen(data->input) || only_space(data->input))
 		{
 			free(data->input);
 			continue ;
