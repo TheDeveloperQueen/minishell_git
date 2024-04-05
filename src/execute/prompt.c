@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:46:35 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/05 21:02:06 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/05 21:30:45 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,17 @@
 static void	execute_program(t_data *data)
 {
 	t_commands_array	*cmds_array;
+	int					missing_quote;
 
-	cmds_array = get_commands(data->input, data->envp);
+	missing_quote = 0;
+	cmds_array = get_commands(data->input, data->envp, &missing_quote);
 	if (!cmds_array)
 	{
+		if (missing_quote)
+		{
+			free(data->input);
+			return ;
+		}
 		clear_shell(data, cmds_array);
 		exit(EXIT_FAILURE);
 	}
@@ -31,7 +38,6 @@ static void	execute_program(t_data *data)
 	ft_exec_cmds(data, cmds_array, 0, 0);
 	free_commands_array(cmds_array);
 	free(data->input);
-	data->input = NULL;
 	data->exit_value = 0;
 }
 

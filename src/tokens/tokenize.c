@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 14:57:20 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/03/27 07:31:59 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/05 21:50:25 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,14 @@ int	get_word_len(char *line, int i)
 		word_len++;
 	}
 	if (start_quote == 1)
+	{
+		printf("error: missing quote\n");
 		return (-1);
+	}
 	return (word_len);
 }
 
-int	rx_word(char *line, int *i, t_token_node **tok_list)
+int	rx_word(char *line, int *i, t_token_node **tok_list, int *missing_quote)
 {
 	t_token_node	*new_tok;
 	int				word_len;
@@ -69,7 +72,10 @@ int	rx_word(char *line, int *i, t_token_node **tok_list)
 
 	word_len = get_word_len(line, *i);
 	if (word_len == -1)
+	{
+		*missing_quote = 1;
 		return (1);
+	}
 	word = ft_substr(line, *i, word_len);
 	if (!word)
 		return (1);
@@ -81,7 +87,7 @@ int	rx_word(char *line, int *i, t_token_node **tok_list)
 	return (0);
 }
 
-t_token_node	*tokenize(char *line)
+t_token_node	*tokenize(char *line, int *missing_quote)
 {
 	t_token_node	*token_list;
 	int				i;
@@ -99,7 +105,7 @@ t_token_node	*tokenize(char *line)
 		else if (get_type_of_character(line[i]) == OPERATOR)
 			error = rx_operator(line, &i, &token_list);
 		else
-			error = rx_word(line, &i, &token_list);
+			error = rx_word(line, &i, &token_list, missing_quote);
 	}
 	return (token_list);
 }

@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:02:59 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/04 23:39:13 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/05 21:22:18 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_token_node	*ft_new_token(char *content, t_token_type type);
 void			ft_clear_token_lst(t_token_node **lst);
 void			ft_add_token(t_token_node **lst, t_token_node *new);
 int				format_tokens(t_token_node **token_list);
-t_token_node	*tokenize(char *line);
+t_token_node	*tokenize(char *line, int *missing_quote);
 int				get_expanded_tokens(t_token_node *token_list, t_llist *envp);
 int				ft_is_infile(t_io_type type);
 int				ft_is_outfile(t_io_type type);

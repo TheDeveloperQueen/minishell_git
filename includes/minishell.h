@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:09:56 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/05 21:04:05 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/05 21:26:07 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef struct s_data
 // Command functions
 t_commands_array	*parse_commands_array(t_token_node *token_list);
 int					split_comds_args(t_commands_array *comds, t_llist *envp);
-t_commands_array	*get_commands(char *line, t_llist *envp);
+t_commands_array	*get_commands(char *line, t_llist *envp, int *missing_quote);
 int					is_builtin(t_command *cmd);
 void				get_args(t_command *cmd);
 t_command			*create_blank_command(void);
