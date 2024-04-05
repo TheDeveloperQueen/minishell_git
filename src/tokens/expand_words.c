@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 08:13:15 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/04 23:18:35 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/05 20:05:11 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,7 @@ void	add_var_and_free(char **old_str, char *var_name, t_llist *envp)
 	var = my_get_env(var_name, envp);
 	free (var_name);
 	if (!var)
-	{
-		free(*old_str);
-		old_str = NULL;
 		return ;
-	}
 	new_str = ft_strjoin(*old_str, var);
 	free(*old_str);
 	if (!new_str)
