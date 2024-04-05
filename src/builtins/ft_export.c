@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 12:22:09 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/04 15:23:08 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/05 09:56:31 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,8 @@ char	*name_env(t_list *lst)
 
 int	ft_export(t_command *cmd, t_data *data)
 {
-	t_llist	*aux_envp;
 	t_list	*lst;
 
-	aux_envp = data->envp;
 	if (!cmd->args)
 	{
 		print_env(data, "declare -x %s=\"%s\"\n", "declare -x %s\n");
@@ -78,7 +76,7 @@ int	ft_export(t_command *cmd, t_data *data)
 		if (!ft_strchr(lst->content, '='))
 		{
 			if (!check_dup_env(data, lst->content))
-				lst_add_back(&aux_envp,
+				lst_add_back(&data->envp,
 					lst_add_new(ft_strdup(lst->content), NULL));
 		}
 		else
