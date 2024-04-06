@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 08:13:15 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/07 00:12:15 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/07 00:33:47 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ char	*get_var_name(char **str, int is_between_quotes)
 		return (ft_strdup(""));
 	if ((*str)[0] == 0 || !is_valid_start_name((*str)[0]))
 		return (ft_strdup("$"));
-	// if (!is_valid_start_name(*str[0]))
-	//  	return (ft_strdup(""));
 	i = 0;
 	while ((*str)[i] && (is_valid_start_name((*str)[i])))
 		i++;
