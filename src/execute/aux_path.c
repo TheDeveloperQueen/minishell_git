@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux_path.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:21:28 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/03 16:30:43 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/06 19:24:28 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char	*paths(t_data *data, t_command *cmd)
 
 	i = 0;
 	if (has_path(cmd) == 0)
-		return (cmd->name);
+		return (ft_strdup(cmd->name));
 	array_paths = find_path(data->envp);
 	while (array_paths && array_paths[i] != NULL)
 	{

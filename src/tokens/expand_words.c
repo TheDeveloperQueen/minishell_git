@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 08:13:15 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/05 20:05:11 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/07 00:12:15 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	is_valid_start_name(char c)
 {
-	if (!ft_isalpha(c) && c != '_')
+	if (!ft_isalnum(c) && c != '_')
 		return (0);
 	return (1);
 }
@@ -42,27 +42,29 @@ void	add_char_and_free(char **old_str, char c)
 		*old_str = new_str;
 }
 
-char	*get_var_name(char **str)
+char	*get_var_name(char **str, int is_between_quotes)
 {
 	int		i;
 	char	*var_name;
 
-	if (*str[0] == '$')
+	if ((*str)[0] == '$')
 		(*str)++;
-	if (ft_isdigit(*str[0]))
+	if ((*str)[0] == '?')
 	{
-		var_name = ft_substr(*str, 0, 1);
-		if (!var_name)
-			return (NULL);
-		(*str)++;
+		*str = *str + 1;
+		var_name = ft_strdup("?");
 		return (var_name);
 	}
+	if (((*str)[0] == '\"' || (*str)[0] == '\'') && !is_between_quotes)
+		return (ft_strdup(""));
+	if ((*str)[0] == 0 || !is_valid_start_name((*str)[0]))
+		return (ft_strdup("$"));
+	// if (!is_valid_start_name(*str[0]))
+	//  	return (ft_strdup(""));
 	i = 0;
-	while ((*str)[i] && (ft_isalnum((*str)[i]) || (*str)[i] == '_'))
+	while ((*str)[i] && (is_valid_start_name((*str)[i])))
 		i++;
 	var_name = ft_substr(*str, 0, i);
-	if (!var_name)
-		return (NULL);
 	*str = *str + i;
 	return (var_name);
 }
@@ -79,12 +81,17 @@ char	*my_get_env(char *var_name, t_llist *envp)
 	return (NULL);
 }
 
-void	add_var_and_free(char **old_str, char *var_name, t_llist *envp)
+void	add_var_and_free(char **old_str, char *var_name, t_data *data)
 {
 	char	*new_str;
 	char	*var;
 
-	var = my_get_env(var_name, envp);
+	if (ft_strcmp(var_name, "?") == 0)
+		var = ft_itoa(data->status);
+	else if (ft_strcmp(var_name, "$") == 0)
+		var = ft_strdup("$");
+	else
+		var = my_get_env(var_name, data->envp);
 	free (var_name);
 	if (!var)
 		return ;
@@ -108,7 +115,7 @@ void	set_start_quote(char c, int *start_quote)
 		*start_quote = 0;
 }
 
-char	*expand_env_vars(char *word, t_llist *envp)
+char	*expand_env_vars(char *word, t_data *data)
 {
 	char	*new_word;
 	int		start_quote;
@@ -119,16 +126,15 @@ char	*expand_env_vars(char *word, t_llist *envp)
 	while (new_word && *word)
 	{
 		set_start_quote(*word, &start_quote);
-		if (*word == '\\' && (start_quote < 2) && *(++word))
-			add_char_and_free(&new_word, *(word++));
-		else if (*word == '$' && (start_quote < 2) && (*(word + 1))
-			&& (start_quote == 0 || is_valid_start_name(*(word + 1))))
+		if (*word == '$' && (start_quote < 2))
 		{
-			var_name = get_var_name(&word);
+			var_name = get_var_name(&word, start_quote);
 			if (!var_name)
 				return (free(new_word), NULL);
-			add_var_and_free(&new_word, var_name, envp);
+			add_var_and_free(&new_word, var_name, data);
 		}
+		else if (*word == '\\' && (start_quote < 2) && *(++word))
+			add_char_and_free(&new_word, *(word++));
 		else if (*word)
 			add_char_and_free(&new_word, *word++);
 	}

@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:02:59 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/05 21:22:18 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/05 22:26:27 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,4 @@ int				ft_is_outfile(t_io_type type);
 int				get_array_command_len(t_token_node *token_list);
 int				add_arg(char **old_arg, char *to_add);
 void			add_char_and_free(char **old_str, char c);
-char			*expand_env_vars(char *word, t_llist *envp);
+

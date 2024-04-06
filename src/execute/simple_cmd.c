@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 16:00:00 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/05 17:33:25 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/06 19:38:20 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,8 @@ static int	exec_child(t_data *data, t_command *cmd, t_commands_array *cmds)
 		execve(path, args, envp_str);
 		free(path);
 		free_array(envp_str);
-		free_array(args);
-		clear_shell(data, cmds);
 		perror(cmd->name);
+		clear_shell(data, cmds);
 		exit(EXIT_FAILURE);
 	}
 	waitpid(data->last_pid, &tmp_status, 0);

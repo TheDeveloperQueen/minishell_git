@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 11:50:03 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/04 23:03:29 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/05 22:17:30 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ t_commands_array	*parse_commands_array(t_token_node	*token_list)
 	return (com);
 }
 
-int	split_comds_args(t_commands_array *comds, t_llist *envp)
+int	split_comds_args(t_commands_array *comds, t_data *data)
 {
 	int		i;
 	char	**str_arr;
@@ -110,7 +110,7 @@ int	split_comds_args(t_commands_array *comds, t_llist *envp)
 			str_arr = special_split(comds->comm_array[i]->name_and_args, ' ');
 			if (!str_arr)
 				return (1);
-			if (get_expand_str_arr(str_arr, envp))
+			if (get_expand_str_arr(str_arr, data))
 				return (free_array(str_arr), 1);
 			comds->comm_array[i]->name_and_args_splt = str_arr;
 			if (str_arr[0])

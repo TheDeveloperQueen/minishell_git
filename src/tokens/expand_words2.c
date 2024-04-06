@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 11:52:20 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/04 23:20:17 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/05 22:26:58 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*take_out_quotes(char *str)
 	return (new_str);
 }
 
-int	get_expand_str_arr(char	**str_arr, t_llist *envp)
+int	get_expand_str_arr(char	**str_arr, t_data *data)
 {
 	int		i;
 	char	*temp1;
@@ -47,7 +47,7 @@ int	get_expand_str_arr(char	**str_arr, t_llist *envp)
 	while (str_arr[i])
 	{
 		str = str_arr[i];
-		temp1 = expand_env_vars(str, envp);
+		temp1 = expand_env_vars(str, data);
 		if (!temp1)
 			return (1);
 		temp2 = take_out_quotes(temp1);

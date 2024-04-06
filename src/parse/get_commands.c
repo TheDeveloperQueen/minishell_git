@@ -6,13 +6,13 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 08:18:54 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/05 21:33:02 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/05 22:21:43 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-t_commands_array	*get_commands(char *line, t_llist *envp,
+t_commands_array	*get_commands(char *line, t_data *data,
 						int *missing_quote)
 {
 	t_token_node		*token_list;
@@ -29,7 +29,7 @@ t_commands_array	*get_commands(char *line, t_llist *envp,
 	ft_clear_token_lst(&token_list);
 	if (!commands)
 		return (NULL);
-	error = split_comds_args(commands, envp);
+	error = split_comds_args(commands, data);
 	if (error)
 		return (free_commands_array(commands), NULL);
 	return (commands);
