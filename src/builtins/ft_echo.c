@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:15:46 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/04 11:28:44 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/07 20:37:11 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,30 @@ static int	check_n(char *str)
 	return (1);
 }
 
-int	ft_echo(t_command *cmd)
+void	special_print_list(t_list *lst, char *delimiter, t_data *data)
+{
+	while (lst)
+	{
+		if (lst->next)
+		{
+			if (ft_strcmp(lst->content, "~") == 0)
+				ft_putstr(search_env(data, "HOME"));
+			else
+				ft_putstr(lst->content);
+			ft_putstr(delimiter);
+		}
+		else
+		{
+			if (ft_strcmp(lst->content, "~") == 0)
+				ft_putstr(search_env(data, "HOME"));
+			else
+				ft_putstr(lst->content);
+		}
+		lst = lst->next;
+	}
+}
+
+int	ft_echo(t_command *cmd, t_data *data)
 {
 	int		flag;
 
@@ -44,7 +67,7 @@ int	ft_echo(t_command *cmd)
 			cmd->args = cmd->args->next;
 			flag = 1;
 		}
-		print_list(cmd->args, " ");
+		special_print_list(cmd->args, " ", data);
 		if (!flag)
 			printf("\n");
 	}

@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:58:05 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/07 13:29:51 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/07 20:37:56 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	exec_builtin(t_command *cmd, t_data *data)
 
 	exit_status = 0;
 	if (ft_strcmp(cmd->name, "echo") == 0)
-		exit_status = ft_echo(cmd);
+		exit_status = ft_echo(cmd, data);
 	else if (ft_strcmp(cmd->name, "pwd") == 0)
 		exit_status = ft_pwd(cmd);
 	else if (ft_strcmp(cmd->name, "cd") == 0)

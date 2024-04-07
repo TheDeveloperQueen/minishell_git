@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:09:56 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/07 18:20:58 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/07 20:38:11 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ char				**envp_3_var(void);
 void				get_envp_3(t_data *data);
 
 //Builtin functions
-int					ft_echo(t_command *cmd);
+int					ft_echo(t_command *cmd, t_data *data);
 int					ft_pwd(t_command *cmd);
 int					ft_export(t_command *cmd, t_data *data);
 int					ft_cd(t_data *data, t_command *cmd);
