@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:09:56 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/07 15:32:47 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/07 18:20:58 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ int					ft_exec_simple_cmd(t_data *data, t_command *cmd,
 int					ft_exec_cmds(t_data *data, t_commands_array *cmds,
 						int index, int piped);
 void				read_shell(t_data *data);
+void				print_file_error(char *file);
+int					check_path_access(char *path);
 
 //Manage files
 t_io_node			*ft_new_io(char *io_arg, t_io_type type);

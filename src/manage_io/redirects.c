@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 19:31:55 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/07 16:45:08 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/07 18:19:35 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,7 @@ int	open_file(char *file, int mode, int flag)
 		fd = open(file, O_CREAT | O_WRONLY | O_APPEND, 0644);
 	if (fd < 0)
 	{
-		ft_putstr_fd(SHELL_NAME, 2);
-		ft_putstr_fd(": ", 2);
-		ft_putstr_fd(file, 2);
-		ft_putstr_fd(": ", 2);
-		perror(NULL);
+		print_file_error(file);
 		if (flag == 0)
 			exit(EXIT_FAILURE);
 		else if (flag == 1)

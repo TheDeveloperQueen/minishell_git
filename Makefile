@@ -21,6 +21,7 @@ SRC=	src/builtins/aux_envp.c \
 		src/execute/complex_cmd.c \
 		src/execute/prompt.c \
 		src/execute/simple_cmd.c \
+		src/execute/files_checks.c \
 		src/free/free.c \
 		src/main/main.c \
 		src/manage_io/do_dups.c \
