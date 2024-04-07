@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 08:18:54 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/05 22:21:43 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/07 13:40:10 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,14 @@ t_commands_array	*get_commands(char *line, t_data *data,
 	error = format_tokens(&token_list);
 	if (error)
 		return (ft_clear_token_lst(&token_list), NULL);
+	error = expand_tokens(token_list, data);
+	if (error)
+		return (ft_clear_token_lst(&token_list), NULL);
 	commands = parse_commands_array(token_list);
 	ft_clear_token_lst(&token_list);
 	if (!commands)
 		return (NULL);
-	error = split_comds_args(commands, data);
+	error = set_name_and_args_fields(commands);
 	if (error)
 		return (free_commands_array(commands), NULL);
 	return (commands);

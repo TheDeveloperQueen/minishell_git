@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 19:00:02 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/04 23:01:24 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/07 13:51:40 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,31 +37,22 @@ t_command	*create_blank_command(void)
 	new_command->name_and_args = NULL;
 	new_command->name_and_args_splt = NULL;
 	new_command->name = NULL;
-	new_command->args_splitted = NULL;
 	new_command->infiles = NULL;
 	new_command->outfiles = NULL;
 	return (new_command);
 }
 
-int	add_arg(char **old_arg, char *to_add)
+int	add_arg(t_list **cmd_name_and_args, char **to_add)
 {
-	char	*new_arg;
+	t_list	*new_arg;
 
 	if (!to_add[0])
 		return (0);
-	if (!*old_arg)
-	{
-		new_arg = ft_strdup(to_add);
-		if (!new_arg)
-			return (1);
-		*old_arg = new_arg;
-		return (0);
-	}
-	new_arg = ft_strjoin_char(*old_arg, to_add, ' ');
+	new_arg = ft_lstnew(*to_add);
 	if (!new_arg)
 		return (1);
-	free(*old_arg);
-	*old_arg = new_arg;
+	*to_add = NULL;
+	ft_lstadd_back(cmd_name_and_args, new_arg);
 	return (0);
 }
 

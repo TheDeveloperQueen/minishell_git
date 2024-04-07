@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 11:50:03 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/05 22:17:30 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/07 13:40:01 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_command	*parse_command(t_token_node **curr_tok)
 		if (error)
 			return (free_command(comm), NULL);
 		if ((*curr_tok)->io_type == IO_NONE)
-			error = add_arg(&comm->name_and_args, (*curr_tok)->content);
+			error = add_arg(&comm->name_and_args, &(*curr_tok)->content);
 		else
 			error = add_io(*curr_tok, &comm->infiles, &comm->outfiles);
 		*curr_tok = (*curr_tok)->next;
@@ -97,29 +97,47 @@ t_commands_array	*parse_commands_array(t_token_node	*token_list)
 	return (com);
 }
 
-int	split_comds_args(t_commands_array *comds, t_data *data)
+char	**create_str_arr(t_list *cmd_name_and_args)
 {
+	char 	**str_arr;
+	int		lst_size;
 	int		i;
-	char	**str_arr;
+
+	lst_size = ft_lstsize(cmd_name_and_args);
+	str_arr = malloc(sizeof(char *) * (lst_size + 1));
+	if (!str_arr)
+		return (NULL);
+	i = 0;
+	while (cmd_name_and_args)
+	{
+		str_arr[i] = cmd_name_and_args->content;
+		i++;
+		cmd_name_and_args = cmd_name_and_args->next;
+	}
+	str_arr[lst_size] = NULL;
+	return(str_arr);
+}
+
+int	set_name_and_args_fields(t_commands_array *comds)
+{
+	char		**str_arr;
+	int			i;
+	t_command	*cmd;
 
 	i = 0;
 	while (i < comds->len)
 	{
-		if (comds->comm_array[i]->name_and_args)
+		cmd = comds->comm_array[i];
+		if (cmd->name_and_args)
 		{
-			str_arr = special_split(comds->comm_array[i]->name_and_args, ' ');
+			if (cmd->name_and_args->next)
+				cmd->args = cmd->name_and_args->next;
+			str_arr = create_str_arr(cmd->name_and_args);
 			if (!str_arr)
 				return (1);
-			if (get_expand_str_arr(str_arr, data))
-				return (free_array(str_arr), 1);
-			comds->comm_array[i]->name_and_args_splt = str_arr;
+			cmd->name_and_args_splt = str_arr;
 			if (str_arr[0])
-			{
-				comds->comm_array[i]->name = str_arr[0];
-				str_arr++;
-				if (str_arr[0])
-					comds->comm_array[i]->args_splitted = str_arr;
-			}
+				cmd->name = str_arr[0];
 		}
 		i++;
 	}

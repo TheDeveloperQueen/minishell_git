@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 08:13:15 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/07 00:33:47 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/07 13:41:29 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,4 +137,54 @@ char	*expand_env_vars(char *word, t_data *data)
 			add_char_and_free(&new_word, *word++);
 	}
 	return (new_word);
+}
+
+char	*take_out_quotes(char *str)
+{
+	char	quote_char;
+	int		start_quote;
+	char	*new_str;
+
+	start_quote = 0;
+	new_str = ft_get_empty_str();
+	while (new_str && *str)
+	{
+		if (ft_is_quote(*str) && !start_quote)
+		{
+			start_quote = 1;
+			quote_char = *str;
+		}
+		else if (ft_is_quote(*str) && start_quote && *str == quote_char)
+			start_quote = 0;
+		else
+			add_char_and_free(&new_str, *str);
+		str++;
+	}
+	return (new_str);
+}
+
+int	expand_tokens(t_token_node *tkn_lst, t_data *data)
+{
+	char	*temp1;
+	char	*temp2;
+	char	*str;
+
+	while (tkn_lst)
+	{
+		if (tkn_lst->type == T_WORD && tkn_lst->io_type != IO_HEREDOC)
+		{
+			str = tkn_lst->content;
+			temp1 = expand_env_vars(str, data);
+			if (!temp1)
+				return (1);
+			temp2 = take_out_quotes(temp1);
+			if (!temp2)
+				return (free(temp1), 1);
+			free(temp1);
+			free (str);
+			tkn_lst->content = temp2;
+		}
+		tkn_lst = tkn_lst->next;
+	}
+	return (0);
 }

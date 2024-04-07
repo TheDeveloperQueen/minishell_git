@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:09:56 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/05 22:26:23 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/07 14:52:06 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,12 @@ typedef struct s_io_node
 // Data for each command
 typedef struct s_command
 {
-	char			*name;
-	char			**args_splitted;
+	t_list			*name_and_args;
 	t_list			*args;
+	char			**name_and_args_splt;
+	char			*name;
 	t_io_node		*infiles;
 	t_io_node		*outfiles;
-	int				return_value;
-	char			*name_and_args;
-	char			**name_and_args_splt;
 }					t_command;
 
 typedef struct s_commands_array
@@ -67,14 +65,12 @@ typedef struct s_data
 
 // Command functions
 t_commands_array	*parse_commands_array(t_token_node *token_list);
-int					split_comds_args(t_commands_array *comds, t_data *data);
 t_commands_array	*get_commands(char *line, t_data *data, int *missing_quote);
 int					is_builtin(t_command *cmd);
-void				get_args(t_command *cmd);
 t_command			*create_blank_command(void);
-int					get_expand_str_arr(char	**str_arr, t_data *data);
-char				**special_split(char const *s, char c);
-char			*expand_env_vars(char *word, t_data *data);
+char				*expand_env_vars(char *word, t_data *data);
+int					expand_tokens(t_token_node *tkn_lst, t_data *data);
+int					set_name_and_args_fields(t_commands_array *comds);
 
 //path functions
 char				*paths(t_data *data, t_command *cmd);

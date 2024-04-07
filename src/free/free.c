@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 13:43:24 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/03 15:29:30 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/07 13:54:07 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,8 @@ void	free_data(t_data *data)
 
 void	free_command(t_command *cmd)
 {
-	if (cmd->args)
-		ft_delete_lst(cmd->args);
 	if (cmd->name_and_args)
-		free(cmd->name_and_args);
-	if (cmd->name_and_args_splt)
-		free_array(cmd->name_and_args_splt);
+		ft_delete_lst(cmd->name_and_args);
 	if (cmd->infiles)
 		ft_clear_io_lst(&cmd->infiles);
 	if (cmd->outfiles)

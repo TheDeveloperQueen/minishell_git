@@ -3,31 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   aux_cmds.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:58:05 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/04 11:04:50 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/07 13:29:51 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
 //commands args in list
-void	get_args(t_command	*cmd)
-{
-	int		i;
-	char	*str;
-
-	i = 0;
-	if (!cmd->args_splitted)
-		return ;
-	while (cmd->args_splitted[i])
-	{
-		str = ft_strdup(cmd->args_splitted[i]);
-		ft_lstadd_back(&cmd->args, ft_lstnew(str));
-		i++;
-	}
-}
 
 int	is_builtin(t_command *cmd)
 {
