@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:46:35 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/05 22:17:52 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/07 15:33:11 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	execute_program(t_data *data)
 		clear_shell(data, cmds_array);
 		exit(EXIT_FAILURE);
 	}
-	if (process_heredocs(cmds_array))
+	if (process_heredocs(cmds_array, data))
 	{
 		printf("error processing heredocs");
 		clear_shell(data, cmds_array);

@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:09:56 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/07 14:52:06 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/07 15:32:47 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ int					open_file(char *file, int mode, int flag);
 int					do_dup(int fd);
 int					do_dup2(int fd1, int fd2, t_data *data,
 						t_commands_array *cmds);
-int					process_heredocs(t_commands_array *cmds);
+int					process_heredocs(t_commands_array *cmds, t_data *data);
 int					ft_out(t_io_node *io_list, t_data *data,
 						t_commands_array *cmds, int flag);
 int					ft_in(t_io_node *io_list, t_data *data,

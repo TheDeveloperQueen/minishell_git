@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_heredocs.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:38:25 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/04 11:38:03 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/07 15:35:03 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@ int	ft_is_delimiter(char *delimiter, char *str)
 	return (0);
 }
 
-void	ft_heredoc(t_io_node *io, int p[2])
+void	ft_heredoc(t_io_node *io, int p[2], t_data *data)
 {
 	char	*line;
+	char	*aux_line;
 
 	//signal(SIGINT, ft_heredoc_sigint_handler);
 	while (1)
@@ -35,16 +36,20 @@ void	ft_heredoc(t_io_node *io, int p[2])
 			free(line);
 			continue ;
 		}
-		ft_putstr_fd(line, p[1]);
+		aux_line = expand_env_vars(line, data);
+		if (!aux_line)
+			break ;
+		ft_putstr_fd(aux_line, p[1]);
 		ft_putstr_fd("\n", p[1]);
 		free(line);
+		free(aux_line);
 	}
 	free(line);
 	//ft_clean_ms();
 	exit(0);
 }
 
-int	rx_heredocs(t_io_node *io_list)
+int	rx_heredocs(t_io_node *io_list, t_data *data)
 {
 	int		p[2];
 	pid_t	pid;
@@ -59,7 +64,7 @@ int	rx_heredocs(t_io_node *io_list)
 			//pid = (signal(SIGQUIT, SIG_IGN), fork());
 			pid = fork();
 			if (!pid)
-				ft_heredoc(io_list, p);
+				ft_heredoc(io_list, p, data);
 			waitpid(pid, &child_status, 0);
 			close(p[1]);
 			if (WIFEXITED(child_status) && WEXITSTATUS(child_status) != 0)
@@ -71,7 +76,7 @@ int	rx_heredocs(t_io_node *io_list)
 	return (0);
 }
 
-int	process_heredocs(t_commands_array *cmds)
+int	process_heredocs(t_commands_array *cmds, t_data *data)
 {
 	int			i;
 	t_command	**cmd_array;
@@ -82,7 +87,7 @@ int	process_heredocs(t_commands_array *cmds)
 	cmd_array = cmds->comm_array;
 	while (i < cmds->len && !error)
 	{
-		error = rx_heredocs(cmd_array[i]->infiles);
+		error = rx_heredocs(cmd_array[i]->infiles, data);
 		i++;
 	}
 	return (error);
