@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manage_io.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 06:41:02 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/04 15:32:00 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/07 16:38:29 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ int	ft_manage_io(t_io_node *io_list, t_data *data, t_commands_array *cmds,
 
 int	process_io(t_command *cmd, t_data *data, t_commands_array *cmds, int flag)
 {
-	if (ft_manage_io(cmd->infiles, data, cmds, flag)
-		|| ft_manage_io(cmd->outfiles, data, cmds, flag))
-		return (1);
-	return (0);
+	return (ft_manage_io(cmd->infiles, data, cmds, flag)
+		|| ft_manage_io(cmd->outfiles, data, cmds, flag));
 }

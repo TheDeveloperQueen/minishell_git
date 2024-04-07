@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 16:00:00 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/07 13:42:23 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/07 16:36:30 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	ft_exec_simple_cmd(t_data *data, t_command *cmd, int piped,
 	{
 		tmp_status = process_io(cmd, data, cmds, 1);
 		if (tmp_status != 0)
-			return (reset_stds(data, piped, cmds), 1);
+			return (reset_stds(data, piped, cmds), tmp_status);
 		tmp_status = exec_builtin(cmd, data);
 		return (reset_stds(data, piped, cmds), tmp_status);
 	}
