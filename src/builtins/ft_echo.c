@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:15:46 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/07 20:37:11 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/08 07:26:55 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	ft_echo(t_command *cmd, t_data *data)
 
 	flag = 0;
 	if (!cmd->args)
-		printf("\n");
+		ft_putstr("\n");
 	else
 	{
 		while (cmd->args && check_n(cmd->args->content))
@@ -69,7 +69,7 @@ int	ft_echo(t_command *cmd, t_data *data)
 		}
 		special_print_list(cmd->args, " ", data);
 		if (!flag)
-			printf("\n");
+			ft_putstr("\n");
 	}
 	return (0);
 }
