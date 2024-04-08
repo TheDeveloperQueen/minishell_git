@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 18:15:58 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/07 18:16:54 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/08 07:10:02 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 
 void	print_file_error(char *file)
 {
-	ft_putstr_fd(SHELL_NAME, STDERR_FILENO);
-	ft_putstr_fd(": ", STDERR_FILENO);
-	ft_putstr_fd(file, STDERR_FILENO);
-	ft_putstr_fd(": ", STDERR_FILENO);
-	perror(NULL);
+	char	*tmp1;
+	char	*tmp2;
+
+	tmp1 = ft_strjoin(SHELL_NAME, ": ");
+	tmp2 = ft_strjoin(tmp1, file);
+	perror(tmp2);
+	free(tmp1);
+	free(tmp2);
 }
 
 int	check_path_access(char *path)
