@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:15:46 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/08 07:26:55 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/08 07:57:25 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static int	check_n(char *str)
 			return (0);
 		i++;
 	}
+	if (i == 1)
+		return (0);
 	return (1);
 }
 
