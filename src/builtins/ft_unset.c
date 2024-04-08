@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 20:18:11 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/04 14:11:28 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/08 14:26:19 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ int	ft_unset(t_command *cmd, t_data *data)
 	char	*name;
 
 	args = cmd->args;
+	if (!args)
+		return (0);
 	name = ft_substr(args->content, 0, ft_charfind(args->content, '='));
 	while (args)
 	{
