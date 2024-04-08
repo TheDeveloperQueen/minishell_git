@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:09:56 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/08 08:40:47 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/08 09:38:54 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ char				*paths(t_data *data, t_command *cmd);
 //Envp functions
 void				get_envp(t_data *data, char **envp);
 void				print_env(t_data *data, char *print1, char *print2);
-int					valid_name(char *str, t_data *data);
 char				*name_env(t_list *lst);
 char				**array_env(t_llist *envp);
 int					check_dup_env(t_data *data, char *name);

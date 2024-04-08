@@ -6,47 +6,29 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 12:22:09 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/05 21:02:53 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/08 09:41:45 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	valid_name(char *str, t_data *data)
+int	valid_name(char *name, t_data *data, char *name_and_value)
 {
 	int	i;
 
 	i = 0;
-	if (!ft_isalpha(str[0]) && str[0] != '_')
+	if (!ft_isalpha(name[0]) && name[0] != '_')
 	{
 		printf("%s: export: \'%s\': not a valid identifier\n",
-			data->shell_name, str);
+			data->shell_name, name_and_value);
 		return (0);
 	}
-	while (str[i])
+	while (name[i])
 	{
-		if (!ft_isalnum(str[i]) && str[i] != '_')
+		if (!ft_isalnum(name[i]) && name[i] != '_')
 		{
 			printf("%s: export: \'%s\': not a valid identifier\n",
-				data->shell_name, str);
-			return (0);
-		}
-		i++;
-	}
-	return (1);
-}
-
-int	valid_value(char *str, t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (!ft_isalnum(str[i]) && str[i] != '_')
-		{
-			printf("%s: export: \'%s\': not a valid identifier\n",
-				data->shell_name, str);
+				data->shell_name, name_and_value);
 			return (0);
 		}
 		i++;
@@ -74,7 +56,7 @@ int	ft_export(t_command *cmd, t_data *data)
 	lst = cmd->args;
 	while (lst)
 	{
-		if (!valid_name(name_env(lst), data))
+		if (!valid_name(name_env(lst), data, lst->content))
 			return (1);
 		if (!ft_strchr(lst->content, '='))
 		{
