@@ -6,22 +6,30 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 18:15:58 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/08 07:10:02 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/08 08:39:51 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	print_file_error(char *file)
+char	*create_error_msg(char *reason)
 {
 	char	*tmp1;
-	char	*tmp2;
+	char	*msg;
 
 	tmp1 = ft_strjoin(SHELL_NAME, ": ");
-	tmp2 = ft_strjoin(tmp1, file);
-	perror(tmp2);
+	msg = ft_strjoin(tmp1, reason);
 	free(tmp1);
-	free(tmp2);
+	return (msg);
+}
+
+void	print_file_error(char *file)
+{
+	char	*msg;
+
+	msg = create_error_msg(file);
+	perror(msg);
+	free(msg);
 }
 
 int	check_path_access(char *path)
