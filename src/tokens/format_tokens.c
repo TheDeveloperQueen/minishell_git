@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 08:12:59 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/04 23:24:52 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:53:16 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,7 @@ int	format_tokens(t_token_node **token_list)
 	old_token_list = *token_list;
 	while (old_token_list)
 	{
-		if (old_token_list->type == T_WORD)
-			token_to_add = cpy_token(&old_token_list);
-		else if (ft_is_redirect_token(old_token_list))
+		if (ft_is_redirect_token(old_token_list))
 			token_to_add = set_io_types(&old_token_list);
 		else
 			token_to_add = cpy_token(&old_token_list);
