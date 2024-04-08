@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 14:57:20 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/05 21:50:25 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:45:41 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,9 @@ t_token_node	*tokenize(char *line, int *missing_quote)
 	{
 		if (error)
 			return (ft_clear_token_lst(&token_list), NULL);
-		if (get_type_of_character(line[i]) == SPACE)
+		if (get_type_of_character(line[i]) == CHAR_SPACE)
 			i++;
-		else if (get_type_of_character(line[i]) == OPERATOR)
+		else if (get_type_of_character(line[i]) == CHAR_OPERATOR)
 			error = rx_operator(line, &i, &token_list);
 		else
 			error = rx_word(line, &i, &token_list, missing_quote);

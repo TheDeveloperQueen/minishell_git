@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:02:59 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/07 13:39:01 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:41:30 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ typedef struct s_token_node
 
 typedef enum e_char_type
 {
-	OPERATOR,
-	NO_OPERATOR,
-	QUOTE,
-	SPACE
+	CHAR_OPERATOR,
+	CHAR_NO_OPERATOR,
+	CHAR_QUOTE,
+	CHAR_SPACE
 }	t_char_type;
 
 t_char_type		get_type_of_character(char c);
