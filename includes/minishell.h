@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:09:56 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/08 09:38:54 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/08 20:00:20 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,9 @@ typedef struct s_data
 }			t_data;
 
 // Command functions
-t_commands_array	*parse_commands_array(t_token_node *token_list);
-t_commands_array	*get_commands(char *line, t_data *data, int *missing_quote);
+t_commands_array	*parse_commands_array(t_token_node *token_list, int *wrong_token);
+t_commands_array	*get_commands(char *line, t_data *data, int *missing_quote,
+						int *wrong_token);
 int					is_builtin(t_command *cmd);
 t_command			*create_blank_command(void);
 char				*expand_env_vars(char *word, t_data *data);

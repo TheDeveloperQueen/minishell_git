@@ -36,7 +36,8 @@ SRC=	src/builtins/aux_envp.c \
 		src/tokens/format_tokens.c \
 		src/tokens/token_lst.c \
 		src/tokens/tokenize_utils.c \
-		src/tokens/tokenize.c
+		src/tokens/tokenize.c \
+		src/tokens/token_errors.c
 
 # OBJECT FILES
 OBJ_PATH	= obj/

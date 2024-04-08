@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 11:50:03 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/07 13:40:01 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/08 20:13:41 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,16 @@ t_command	**get_empty_command_array(int len)
 	return (com_array);
 }
 
-t_commands_array	*parse_commands_array(t_token_node	*token_list)
+void	aux_wrapper(t_commands_array *com, t_token_type token_type,
+			int *wrong_token)
+{
+	*wrong_token = 1;
+	free_commands_array(com);
+	print_unexpected_token_error(token_type);
+}
+
+t_commands_array	*parse_commands_array(t_token_node	*token_list,
+						int *wrong_token)
 {
 	t_commands_array	*com;
 	int					i;
@@ -84,22 +93,21 @@ t_commands_array	*parse_commands_array(t_token_node	*token_list)
 	while (i < com->len && token_list)
 	{
 		if (token_list->type != T_WORD)
-			return (free_commands_array(com), NULL);//parse error
+			return (aux_wrapper(com, token_list->type, wrong_token), NULL);
 		com->comm_array[i] = parse_command(&token_list);
-		if (!com->comm_array[i])
+		if (!com->comm_array[i++])
 			return (free_commands_array(com), NULL);
-		i++;
 		if (token_list)
 			token_list = token_list->next;
 	}
 	if (i != com->len)
-		return (free_commands_array(com), NULL); //parse error: more commands were expected
+		return (aux_wrapper(com, T_WORD, wrong_token), NULL);
 	return (com);
 }
 
 char	**create_str_arr(t_list *cmd_name_and_args)
 {
-	char 	**str_arr;
+	char	**str_arr;
 	int		lst_size;
 	int		i;
 

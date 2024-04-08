@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:02:59 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/08 17:41:30 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/08 19:49:28 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_io_type		get_token_io_type(t_token_type token_type);
 t_token_node	*ft_new_token(char *content, t_token_type type);
 void			ft_clear_token_lst(t_token_node **lst);
 void			ft_add_token(t_token_node **lst, t_token_node *new);
-int				format_tokens(t_token_node **token_list);
+int				format_tokens(t_token_node **token_list, int *wrong_tokens);
 t_token_node	*tokenize(char *line, int *missing_quote);
 int				get_expanded_tokens(t_token_node *token_list, t_llist *envp);
 int				ft_is_infile(t_io_type type);
@@ -62,4 +62,5 @@ int				ft_is_outfile(t_io_type type);
 int				get_array_command_len(t_token_node *token_list);
 int				add_arg(t_list **cmd_name_and_args, char **to_add);
 void			add_char_and_free(char **old_str, char c);
+void			print_unexpected_token_error(t_token_type type_of_token);
 
