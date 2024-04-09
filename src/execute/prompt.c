@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:46:35 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/09 07:47:22 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/09 09:38:49 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	read_shell(t_data *data)
 	//signals();
 	while (1)
 	{
-		data->input = readline(ft_strjoin(data->shell_name, "> "));
+		data->input = readline(ft_strjoin(SHELL_NAME, "> "));
 		//data->input = "ls > out2 | cat out2";
 		if (!data->input)
 		{

@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 13:43:24 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/07 13:54:07 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/09 09:27:08 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,5 @@ void	clear_shell(t_data *data, t_commands_array *commands)
 		free_commands_array(commands);
 	if (data)
 		free_data(data);
+	rl_clear_history();
 }

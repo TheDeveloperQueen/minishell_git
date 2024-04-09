@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:42:27 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/08 08:59:06 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/09 09:36:26 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	path_home(t_data *data, t_command *cmd)
 	path = search_env(data, "HOME");
 	if (!path)
 	{
-		printf("%s: HOME not set", data->shell_name);
+		printf("%s: HOME not set", SHELL_NAME);
 		return (1);
 	}
 	if (opendir(path))
@@ -54,7 +54,7 @@ static int	path_old(t_data *data, t_command *cmd)
 	path = search_env(data, "OLDPWD");
 	if (!path)
 	{
-		printf("%s: OLDPWD not set", data->shell_name);
+		printf("%s: OLDPWD not set", SHELL_NAME);
 		if (!check_dup_env(data, "OLDPWD"))
 			lst_add_back(&data->envp, lst_add_new(ft_strdup("OLDPWD"), NULL));
 		return (1);
@@ -102,7 +102,7 @@ int	ft_cd(t_data *data, t_command *cmd)
 		chdir((char *)cmd->args->content);
 	else
 	{
-		printf("%s: cd: %s: No such file or directory\n", data->shell_name,
+		printf("%s: cd: %s: No such file or directory\n", SHELL_NAME,
 			(char *)cmd->args->content);
 		return (1);
 	}

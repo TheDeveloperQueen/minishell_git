@@ -6,13 +6,13 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 12:22:09 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/08 09:41:45 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/09 09:39:39 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	valid_name(char *name, t_data *data, char *name_and_value)
+int	valid_name(char *name, char *name_and_value)
 {
 	int	i;
 
@@ -20,7 +20,7 @@ int	valid_name(char *name, t_data *data, char *name_and_value)
 	if (!ft_isalpha(name[0]) && name[0] != '_')
 	{
 		printf("%s: export: \'%s\': not a valid identifier\n",
-			data->shell_name, name_and_value);
+			SHELL_NAME, name_and_value);
 		return (0);
 	}
 	while (name[i])
@@ -28,7 +28,7 @@ int	valid_name(char *name, t_data *data, char *name_and_value)
 		if (!ft_isalnum(name[i]) && name[i] != '_')
 		{
 			printf("%s: export: \'%s\': not a valid identifier\n",
-				data->shell_name, name_and_value);
+				SHELL_NAME, name_and_value);
 			return (0);
 		}
 		i++;
@@ -56,7 +56,7 @@ int	ft_export(t_command *cmd, t_data *data)
 	lst = cmd->args;
 	while (lst)
 	{
-		if (!valid_name(name_env(lst), data, lst->content))
+		if (!valid_name(name_env(lst), lst->content))
 			return (1);
 		if (!ft_strchr(lst->content, '='))
 		{

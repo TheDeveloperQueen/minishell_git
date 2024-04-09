@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:09:56 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/08 20:00:20 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/09 09:39:04 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,9 @@ typedef struct s_commands_array
 
 typedef struct s_data
 {
-	char	*shell_name;
 	t_llist	*envp;
 	int		status;	
 	pid_t	last_pid;
-	int		exit_value;
 	char	*input;
 	int		stdin;
 	int		stdout;

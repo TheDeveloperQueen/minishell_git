@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:53:28 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/05 20:46:43 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/09 09:34:40 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	get_envp(t_data *data, char **envp)
 	{
 		name = ft_substr(envp[i], 0, ft_charfind(envp[i], '='));
 		if (ft_strcmp(name, "SHELL") == 0)
-			value = ft_strdup(data->shell_name);
+			value = ft_strdup(SHELL_NAME);
 		else
 			value = ft_substr(envp[i], ft_charfind(envp[i], '=') + 1,
 					ft_strlen(envp[i]));
