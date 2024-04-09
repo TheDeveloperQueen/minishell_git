@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:46:35 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/09 10:24:26 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/09 11:14:14 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static void	execute_program(t_data *data)
 {
-	t_commands_array	*cmds_array;
-	int					missing_quote;
-	int					wrong_token;
+	t_cmd_array	*cmds_array;
+	int			missing_quote;
+	int			wrong_token;
 
 	missing_quote = 0;
 	wrong_token = 0;

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   complex_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 16:32:29 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/04 11:32:02 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/09 11:23:00 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void	ft_exec_pipe_right( t_data *data, t_commands_array *cmds,
+static void	ft_exec_pipe_right( t_data *data, t_cmd_array *cmds,
 		int index, int pfds[2])
 {
 	int	status;
@@ -26,7 +26,7 @@ static void	ft_exec_pipe_right( t_data *data, t_commands_array *cmds,
 }
 
 static void	ft_exec_pipe_left(t_data *data, t_command *cmd, int pfds[2],
-		t_commands_array *cmds)
+		t_cmd_array *cmds)
 {
 	int	status;
 
@@ -38,7 +38,7 @@ static void	ft_exec_pipe_left(t_data *data, t_command *cmd, int pfds[2],
 	exit(status);
 }
 
-static	int	ft_exec_pipeline(t_data *data, t_commands_array *cmds, int index)
+static	int	ft_exec_pipeline(t_data *data, t_cmd_array *cmds, int index)
 {
 	int	status;
 	int	pfds[2];
@@ -49,7 +49,7 @@ static	int	ft_exec_pipeline(t_data *data, t_commands_array *cmds, int index)
 	pipe(pfds);
 	pid_l = fork();
 	if (!pid_l)
-		ft_exec_pipe_left(data, cmds->comm_array[index], pfds, cmds);
+		ft_exec_pipe_left(data, cmds->array[index], pfds, cmds);
 	else
 	{
 		pid_r = fork();
@@ -66,13 +66,13 @@ static	int	ft_exec_pipeline(t_data *data, t_commands_array *cmds, int index)
 	return (1);
 }
 
-int	ft_exec_cmds(t_data *data, t_commands_array *cmds, int index, int piped)
+int	ft_exec_cmds(t_data *data, t_cmd_array *cmds, int index, int piped)
 {
 	if (!cmds)
 		return (1);
 	if (index < cmds->len - 1)
 		return (ft_exec_pipeline(data, cmds, index));
 	else
-		return (ft_exec_simple_cmd(data, cmds->comm_array[index], piped, cmds));
+		return (ft_exec_simple_cmd(data, cmds->array[index], piped, cmds));
 	return (1);
 }

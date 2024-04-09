@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:09:56 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/09 10:24:12 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/09 11:23:00 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,29 +48,31 @@ typedef struct s_command
 
 typedef struct s_commands_array
 {
-	t_command	**comm_array;
+	t_command	**array;
 	int			len;
-}				t_commands_array;
+}				t_cmd_array;
 
 typedef struct s_data
 {
-	t_llist	*envp;
-	int		status;	
-	pid_t	last_pid;
-	char	*input;
-	int		stdin;
-	int		stdout;
+	char		*input;
+	t_llist		*envp;
+	t_cmd_array	*cmds;
+	int			stdin;
+	int			stdout;
+	int			status;
+	pid_t		last_pid;
 }			t_data;
 
 // Command functions
-t_commands_array	*parse_commands_array(t_token_node *token_list, int *wrong_token);
-t_commands_array	*get_commands(char *line, t_data *data, int *missing_quote,
+t_cmd_array			*parse_commands_array(t_token_node *token_list,
+						int *wrong_token);
+t_cmd_array			*get_commands(char *line, t_data *data, int *missing_quote,
 						int *wrong_token);
 int					is_builtin(t_command *cmd);
 t_command			*create_blank_command(void);
 char				*expand_env_vars(char *word, t_data *data);
 int					expand_tokens(t_token_node *tkn_lst, t_data *data);
-int					set_name_and_args_fields(t_commands_array *comds);
+int					set_name_and_args_fields(t_cmd_array *comds);
 
 //path functions
 char				*paths(t_data *data, t_command *cmd);
@@ -100,8 +102,8 @@ int					ft_unset(t_command *cmd, t_data *data);
 //execute
 int					exec_builtin(t_command *cmd, t_data *data);
 int					ft_exec_simple_cmd(t_data *data, t_command *cmd,
-						int piped, t_commands_array *cmds);
-int					ft_exec_cmds(t_data *data, t_commands_array *cmds,
+						int piped, t_cmd_array *cmds);
+int					ft_exec_cmds(t_data *data, t_cmd_array *cmds,
 						int index, int piped);
 void				read_shell(t_data *data);
 void				print_file_error(char *file);
@@ -115,22 +117,22 @@ void				ft_add_io(t_io_node **lst, t_io_node *new);
 int					open_file(char *file, int mode, int flag);
 int					do_dup(int fd);
 int					do_dup2(int fd1, int fd2, t_data *data,
-						t_commands_array *cmds);
-int					process_heredocs(t_commands_array *cmds, t_data *data);
+						t_cmd_array *cmds);
+int					process_heredocs(t_cmd_array *cmds, t_data *data);
 int					ft_out(t_io_node *io_list, t_data *data,
-						t_commands_array *cmds, int flag);
+						t_cmd_array *cmds, int flag);
 int					ft_in(t_io_node *io_list, t_data *data,
-						t_commands_array *cmds, int flag);
+						t_cmd_array *cmds, int flag);
 int					ft_append(t_io_node *io_list, t_data *data,
-						t_commands_array *cmds, int flag);
+						t_cmd_array *cmds, int flag);
 int					process_io(t_command *cmd, t_data *data,
-						t_commands_array *cmds, int flag);
+						t_cmd_array *cmds, int flag);
 
 //free functions
 void				free_array(char **argv);
 void				free_data(t_data *data);
 void				free_command(t_command *com);
-void				free_commands_array(t_commands_array *commands);
-void				clear_shell(t_data *data, t_commands_array *commands);
+void				free_commands_array(t_cmd_array *commands);
+void				clear_shell(t_data *data, t_cmd_array *commands);
 
 #endif

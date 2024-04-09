@@ -6,13 +6,13 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 16:00:00 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/07 18:16:23 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/09 11:05:18 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	reset_stds(t_data *data, int piped, t_commands_array *cmds)
+void	reset_stds(t_data *data, int piped, t_cmd_array *cmds)
 {
 	if (!piped)
 	{
@@ -21,7 +21,7 @@ void	reset_stds(t_data *data, int piped, t_commands_array *cmds)
 	}
 }
 
-static int	exec_child(t_data *data, t_command *cmd, t_commands_array *cmds)
+static int	exec_child(t_data *data, t_command *cmd, t_cmd_array *cmds)
 {
 	int		tmp_status;
 	char	*path;
@@ -60,7 +60,7 @@ static int	exec_child(t_data *data, t_command *cmd, t_commands_array *cmds)
 }
 
 int	ft_exec_simple_cmd(t_data *data, t_command *cmd, int piped,
-		t_commands_array *cmds)
+		t_cmd_array *cmds)
 {
 	int		tmp_status;
 

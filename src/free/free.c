@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 13:43:24 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/09 10:31:44 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/09 11:23:00 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,25 +49,25 @@ void	free_command(t_command *cmd)
 	free(cmd);
 }
 
-void	free_commands_array(t_commands_array *commands)
+void	free_commands_array(t_cmd_array *cmds)
 {
 	int	i;
 
 	i = 0;
-	while (i < commands->len)
+	while (i < cmds->len)
 	{
-		if (commands->comm_array[i])
-			free_command(commands->comm_array[i]);
+		if (cmds->array[i])
+			free_command(cmds->array[i]);
 		i++;
 	}
-	free(commands->comm_array);
-	free(commands);
+	free(cmds->array);
+	free(cmds);
 }
 
-void	clear_shell(t_data *data, t_commands_array *commands)
+void	clear_shell(t_data *data, t_cmd_array *cmds)
 {
-	if (commands)
-		free_commands_array(commands);
+	if (cmds)
+		free_commands_array(cmds);
 	if (data)
 		free_data(data);
 	rl_clear_history();
