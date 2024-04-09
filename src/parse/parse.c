@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 19:00:02 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/09 13:16:24 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/09 16:57:38 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int	add_arg(t_list **cmd_name_and_args, char **to_add)
 {
 	t_list	*new_arg;
 
+	if (!*to_add[0])
+		return (0);
 	new_arg = ft_lstnew(*to_add);
 	if (!new_arg)
 		return (1);
