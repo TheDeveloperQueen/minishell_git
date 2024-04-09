@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 19:31:32 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/09 14:28:13 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:50:16 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 
 static void	print_error_num(char *arg)
 {
-	printf("%s: exit: %s: numeric argument required\n", SHELL_NAME, arg);
+	char	*str1;
+
+	str1 = ft_strjoin("exit: ", arg);
+	print_error_msg(str1, "numeric argument required");
+	free(str1);
 }
 
 int	ft_exit(t_cmd *cmd, t_data *data)
@@ -29,7 +33,7 @@ int	ft_exit(t_cmd *cmd, t_data *data)
 		exit((print_error_num(cmd->args->content), clear_shell(data), 2));
 	else if (ft_lstsize(cmd->args) > 1)
 	{
-		printf("%s: exit: too many arguments\n", SHELL_NAME);
+		print_error_msg("exit", "too many arguments");
 		return (1);
 	}
 	else

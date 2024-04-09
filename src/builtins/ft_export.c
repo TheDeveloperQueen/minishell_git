@@ -6,41 +6,30 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 12:22:09 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/09 14:51:50 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:40:36 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-void	print_error_msg(char *name_and_vaule)
-{
-	char	*str1;
-	char	*str2;
-
-	str1 = ft_strjoin(SHELL_NAME, ": export: '");
-	str2 = ft_strjoin(str1, name_and_vaule);
-	free(str1);
-	str1 = ft_strjoin(str2, "': not a valid identifier\n");
-	free(str2);
-	ft_putstr_fd(str1, STDERR_FILENO);
-}
-
 int	valid_name(char *name, char *name_and_value)
 {
-	int	i;
+	int		i;
+	char	*str_tmp;
 
 	i = 0;
+	str_tmp = ft_strjoin("export: ", name_and_value);
 	if (!ft_isalpha(name[0]) && name[0] != '_')
 	{
-		print_error_msg(name_and_value);
-		return (0);
+		print_error_msg(str_tmp, "not a valid identifier");
+		return (free(str_tmp), 0);
 	}
 	while (name[i])
 	{
 		if (!ft_isalnum(name[i]) && name[i] != '_')
 		{
-			print_error_msg(name_and_value);
-			return (0);
+			print_error_msg(str_tmp, "not a valid identifier");
+			return (free(str_tmp), 0);
 		}
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:42:27 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/09 13:16:24 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:30:51 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ int	check_args_size(t_cmd *cmd, int limit_size)
 int	ft_cd(t_data *data, t_cmd *cmd)
 {
 	char	*old;
+	char	*msg;
+	char	*msg2;
 
 	if (check_args_size(cmd, 1))
 		return (1);
@@ -102,9 +104,10 @@ int	ft_cd(t_data *data, t_cmd *cmd)
 		chdir((char *)cmd->args->content);
 	else
 	{
-		printf("%s: cd: %s: No such file or directory\n", SHELL_NAME,
-			(char *)cmd->args->content);
-		return (1);
+		msg = ft_strjoin(cmd->name, ": ");
+		msg2 = ft_strjoin(msg, cmd->args->content);
+		print_error_msg(msg2, "No such file or directory");
+		return (free(msg), free(msg2), 1);
 	}
 	manage_path(data, old);
 	return (0);

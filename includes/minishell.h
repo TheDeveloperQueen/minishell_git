@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:09:56 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/09 13:57:31 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:14:17 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ int					ft_cd(t_data *data, t_cmd *cmd);
 int					ft_env(t_data *data);
 int					ft_exit(t_cmd *cmd, t_data *data);
 int					ft_unset(t_cmd *cmd, t_data *data);
+void				print_error_msg(char *reason, char *msg);
 
 //execute
 int					exec_builtin(t_cmd *cmd, t_data *data);
