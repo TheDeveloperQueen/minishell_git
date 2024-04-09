@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:38:25 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/09 13:16:24 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/09 17:16:15 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_heredoc(t_io_node *io, int p[2], t_data *data)
 		free(aux_line);
 	}
 	free(line);
-	//ft_clean_ms();
+	clear_shell(data);
 	exit(0);
 }
 

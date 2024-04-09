@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:21:28 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/09 13:16:24 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/09 17:05:30 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,6 @@ char	*paths(t_data *data, t_cmd *cmd)
 		i++;
 	}
 	print_cmd_not_found_error(cmd->name);
+	clear_shell(data);
 	exit(127);
 }
