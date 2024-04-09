@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 10:58:05 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/07 20:37:56 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/09 13:16:24 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //commands args in list
 
-int	is_builtin(t_command *cmd)
+int	is_builtin(t_cmd *cmd)
 {
 	if (ft_strcmp(cmd->name, "echo") == 0 || ft_strcmp(cmd->name, "cd") == 0
 		|| ft_strcmp(cmd->name, "pwd") == 0
@@ -26,7 +26,7 @@ int	is_builtin(t_command *cmd)
 	return (0);
 }
 
-int	exec_builtin(t_command *cmd, t_data *data)
+int	exec_builtin(t_cmd *cmd, t_data *data)
 {
 	int	exit_status;
 

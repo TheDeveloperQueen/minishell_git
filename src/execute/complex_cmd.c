@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 16:32:29 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/09 12:32:11 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/09 13:16:24 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	ft_exec_pipe_right( t_data *data, int index, int pfds[2])
 	exit(status);
 }
 
-static void	ft_exec_pipe_left(t_data *data, t_command *cmd, int pfds[2])
+static void	ft_exec_pipe_left(t_data *data, t_cmd *cmd, int pfds[2])
 {
 	int	status;
 

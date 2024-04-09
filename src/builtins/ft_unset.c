@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 20:18:11 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/08 14:26:19 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/09 13:16:24 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	unset_var(char *var_name, t_llist **envp)
 	}
 }
 
-int	ft_unset(t_command *cmd, t_data *data)
+int	ft_unset(t_cmd *cmd, t_data *data)
 {
 	t_list	*args;
 	char	*name;

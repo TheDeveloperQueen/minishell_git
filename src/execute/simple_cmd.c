@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 16:00:00 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/09 12:11:56 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/09 13:16:24 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	reset_stds(t_data *data, int piped)
 	}
 }
 
-static int	exec_child(t_data *data, t_command *cmd)
+static int	exec_child(t_data *data, t_cmd *cmd)
 {
 	int		tmp_status;
 	char	*path;
@@ -59,7 +59,7 @@ static int	exec_child(t_data *data, t_command *cmd)
 	return (WEXITSTATUS(tmp_status));
 }
 
-int	ft_exec_simple_cmd(t_data *data, t_command *cmd, int piped)
+int	ft_exec_simple_cmd(t_data *data, t_cmd *cmd, int piped)
 {
 	int			tmp_status;
 

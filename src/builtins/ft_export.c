@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 12:22:09 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/09 09:39:39 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/09 13:16:24 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*name_env(t_list *lst)
 	return (name);
 }
 
-int	ft_export(t_command *cmd, t_data *data)
+int	ft_export(t_cmd *cmd, t_data *data)
 {
 	t_list	*lst;
 

@@ -6,20 +6,20 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 19:31:32 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/09 09:37:29 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/09 13:16:24 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void	exit_error_num(t_command *cmd)
+static void	exit_error_num(t_cmd *cmd)
 {
 	printf("%s: exit: %s: numeric argument required\n", SHELL_NAME,
 		(char *)cmd->args->content);
 	exit(2);
 }
 
-int	ft_exit(t_command *cmd, t_data *data)
+int	ft_exit(t_cmd *cmd, t_data *data)
 {
 	int	exit_value;
 

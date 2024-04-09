@@ -6,13 +6,13 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:21:28 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/09 08:23:40 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/09 13:16:24 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static int	has_path(t_command *cmd)
+static int	has_path(t_cmd *cmd)
 {
 	int	flag;
 
@@ -59,7 +59,7 @@ void	print_cmd_not_found_error(char *cmd)
 	}
 }
 
-char	*paths(t_data *data, t_command *cmd)
+char	*paths(t_data *data, t_cmd *cmd)
 {
 	char	**array_paths;
 	char	*full_path;

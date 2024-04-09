@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 11:50:03 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/09 11:23:00 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/09 13:16:24 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ int	add_io(t_token_node *token, t_io_node **io_in, t_io_node **io_out)
 	return (0);
 }
 
-t_command	*parse_command(t_token_node **curr_tok)
+t_cmd	*parse_command(t_token_node **curr_tok)
 {
-	t_command	*comm;
+	t_cmd	*comm;
 	int			error;
 
 	comm = create_blank_command();
@@ -51,13 +51,13 @@ t_command	*parse_command(t_token_node **curr_tok)
 	return (comm);
 }
 
-t_command	**get_empty_command_array(int len)
+t_cmd	**get_empty_command_array(int len)
 {
-	t_command	**com_array;
+	t_cmd	**com_array;
 	int			i;
 
 	i = 0;
-	com_array = malloc(sizeof(t_command *) * len);
+	com_array = malloc(sizeof(t_cmd *) * len);
 	if (!com_array)
 		return (NULL);
 	while (i < len)
@@ -130,7 +130,7 @@ int	set_name_and_args_fields(t_cmd_array *cmds)
 {
 	char		**str_arr;
 	int			i;
-	t_command	*cmd;
+	t_cmd	*cmd;
 
 	i = 0;
 	while (i < cmds->len)

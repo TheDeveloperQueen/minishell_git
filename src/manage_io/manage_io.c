@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 06:41:02 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/09 11:53:51 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/09 13:16:24 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_manage_io(t_io_node *io_list, t_data *data, int flag)
 	return (error);
 }
 
-int	process_io(t_command *cmd, t_data *data, int flag)
+int	process_io(t_cmd *cmd, t_data *data, int flag)
 {
 	return (ft_manage_io(cmd->infiles, data, flag)
 		|| ft_manage_io(cmd->outfiles, data, flag));

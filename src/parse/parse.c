@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 19:00:02 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/09 08:37:49 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/09 13:16:24 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ int	get_array_command_len(t_token_node *token_list)
 	return (len);
 }
 
-t_command	*create_blank_command(void)
+t_cmd	*create_blank_command(void)
 {
-	t_command	*new_command;
+	t_cmd	*new_command;
 
-	new_command = malloc(sizeof(t_command));
+	new_command = malloc(sizeof(t_cmd));
 	if (!new_command)
 		return (NULL);
 	new_command->args = NULL;

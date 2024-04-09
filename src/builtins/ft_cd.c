@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:42:27 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/09 09:36:26 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/09 13:16:24 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	manage_path(t_data *data, char *old)
 	return (0);
 }
 
-static int	path_home(t_data *data, t_command *cmd)
+static int	path_home(t_data *data, t_cmd *cmd)
 {
 	char	*path;
 	char	*old;
@@ -44,7 +44,7 @@ static int	path_home(t_data *data, t_command *cmd)
 	return (0);
 }
 
-static int	path_old(t_data *data, t_command *cmd)
+static int	path_old(t_data *data, t_cmd *cmd)
 {
 	char	*old;
 	char	*path;
@@ -68,7 +68,7 @@ static int	path_old(t_data *data, t_command *cmd)
 	return (0);
 }
 
-int	check_args_size(t_command *cmd, int limit_size)
+int	check_args_size(t_cmd *cmd, int limit_size)
 {
 	int		args_size;
 	char	*tmp_msg_1;
@@ -87,7 +87,7 @@ int	check_args_size(t_command *cmd, int limit_size)
 	return (0);
 }
 
-int	ft_cd(t_data *data, t_command *cmd)
+int	ft_cd(t_data *data, t_cmd *cmd)
 {
 	char	*old;
 
