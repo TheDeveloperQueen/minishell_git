@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 13:43:24 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/09 09:27:08 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/09 10:31:44 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,15 @@ void	free_data(t_data *data)
 		return ;
 	if (data->envp)
 		ft_delete_llst(data->envp);
+	if (data->input)
+		free(data->input);
 	free(data);
 }
 
 void	free_command(t_command *cmd)
 {
+	if (cmd->name_and_args_splt)
+		free(cmd->name_and_args_splt);
 	if (cmd->name_and_args)
 		ft_delete_lst(cmd->name_and_args);
 	if (cmd->infiles)

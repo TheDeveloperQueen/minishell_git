@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 13:06:40 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/09 09:38:59 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/09 10:03:16 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_data	*create_blank_data(void)
 	new_data->input = NULL;
 	new_data->stdin = do_dup(0);
 	new_data->stdout = do_dup(1);
+	new_data->status = 0;
 	return (new_data);
 }
 

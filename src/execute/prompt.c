@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:46:35 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/09 09:38:49 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/09 10:24:26 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static void	execute_program(t_data *data)
 		if (missing_quote || wrong_token)
 		{
 			free(data->input);
+			data->input = NULL;
 			return ;
 		}
 		clear_shell(data, cmds_array);
@@ -40,6 +41,7 @@ static void	execute_program(t_data *data)
 	data->status = ft_exec_cmds(data, cmds_array, 0, 0);
 	free_commands_array(cmds_array);
 	free(data->input);
+	data->input = NULL;
 }
 
 void	read_shell(t_data *data)
@@ -47,7 +49,8 @@ void	read_shell(t_data *data)
 	//signals();
 	while (1)
 	{
-		data->input = readline(ft_strjoin(SHELL_NAME, "> "));
+
+		data->input = readline(PROMPT);
 		//data->input = "ls > out2 | cat out2";
 		if (!data->input)
 		{
@@ -58,6 +61,7 @@ void	read_shell(t_data *data)
 		if (!ft_strlen(data->input) || only_space(data->input))
 		{
 			free(data->input);
+			data->input = NULL;
 			continue ;
 		}
 		add_history(data->input);

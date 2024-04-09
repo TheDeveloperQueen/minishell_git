@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:09:56 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/09 09:39:04 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/09 10:24:12 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <dirent.h>
 
 # define SHELL_NAME "🔥ourHell"
+# define PROMPT "🔥ourHell> "
 
 typedef struct s_io_node
 {
