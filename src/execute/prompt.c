@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:46:35 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/09 12:02:08 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/09 14:29:23 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,4 @@ void	read_shell(t_data *data)
 		add_history(data->input);
 		execute_program(data);
 	}
-	rl_clear_history();
 }

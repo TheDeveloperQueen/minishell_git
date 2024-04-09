@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:09:56 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/09 13:16:24 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/09 13:57:31 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct s_command
 typedef struct s_commands_array
 {
 	t_cmd	**array;
-	int			len;
+	int		len;
 }				t_cmd_array;
 
 typedef struct s_data
@@ -69,7 +69,7 @@ t_cmd_array			*parse_commands_array(t_token_node *token_list,
 t_cmd_array			*get_commands(char *line, t_data *data, int *missing_quote,
 						int *wrong_token);
 int					is_builtin(t_cmd *cmd);
-t_cmd			*create_blank_command(void);
+t_cmd				*create_blank_command(void);
 char				*expand_env_vars(char *word, t_data *data);
 int					expand_tokens(t_token_node *tkn_lst, t_data *data);
 int					set_name_and_args_fields(t_cmd_array *comds);
