@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:09:56 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/09 11:23:00 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/09 11:59:43 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,10 +101,8 @@ int					ft_unset(t_command *cmd, t_data *data);
 
 //execute
 int					exec_builtin(t_command *cmd, t_data *data);
-int					ft_exec_simple_cmd(t_data *data, t_command *cmd,
-						int piped, t_cmd_array *cmds);
-int					ft_exec_cmds(t_data *data, t_cmd_array *cmds,
-						int index, int piped);
+int					ft_exec_simple_cmd(t_data *data, t_command *cmd, int piped);
+int					ft_exec_cmds(t_data *data, int index, int piped);
 void				read_shell(t_data *data);
 void				print_file_error(char *file);
 int					check_path_access(char *path);
@@ -116,23 +114,18 @@ void				ft_clear_io_lst(t_io_node **lst);
 void				ft_add_io(t_io_node **lst, t_io_node *new);
 int					open_file(char *file, int mode, int flag);
 int					do_dup(int fd);
-int					do_dup2(int fd1, int fd2, t_data *data,
-						t_cmd_array *cmds);
+int					do_dup2(int fd1, int fd2, t_data *data);
 int					process_heredocs(t_cmd_array *cmds, t_data *data);
-int					ft_out(t_io_node *io_list, t_data *data,
-						t_cmd_array *cmds, int flag);
-int					ft_in(t_io_node *io_list, t_data *data,
-						t_cmd_array *cmds, int flag);
-int					ft_append(t_io_node *io_list, t_data *data,
-						t_cmd_array *cmds, int flag);
-int					process_io(t_command *cmd, t_data *data,
-						t_cmd_array *cmds, int flag);
+int					ft_out(t_io_node *io_list, t_data *data, int flag);
+int					ft_in(t_io_node *io_list, t_data *data, int flag);
+int					ft_append(t_io_node *io_list, t_data *data, int flag);
+int					process_io(t_command *cmd, t_data *data, int flag);
 
 //free functions
 void				free_array(char **argv);
 void				free_data(t_data *data);
 void				free_command(t_command *com);
 void				free_commands_array(t_cmd_array *commands);
-void				clear_shell(t_data *data, t_cmd_array *commands);
+void				clear_shell(t_data *data);
 
 #endif

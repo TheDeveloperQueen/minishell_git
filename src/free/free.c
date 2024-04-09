@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/16 13:43:24 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/09 11:23:00 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/09 11:59:13 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,10 @@ void	free_commands_array(t_cmd_array *cmds)
 	free(cmds);
 }
 
-void	clear_shell(t_data *data, t_cmd_array *cmds)
+void	clear_shell(t_data *data)
 {
-	if (cmds)
-		free_commands_array(cmds);
+	if (data->cmds)
+		free_commands_array(data->cmds);
 	if (data)
 		free_data(data);
 	rl_clear_history();

@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:46:35 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/09 11:14:14 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/09 12:02:08 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,13 @@
 
 static void	execute_program(t_data *data)
 {
-	t_cmd_array	*cmds_array;
 	int			missing_quote;
 	int			wrong_token;
 
 	missing_quote = 0;
 	wrong_token = 0;
-	cmds_array = get_commands(data->input, data, &missing_quote, &wrong_token);
-	if (!cmds_array)
+	data->cmds = get_commands(data->input, data, &missing_quote, &wrong_token);
+	if (!data->cmds)
 	{
 		if (missing_quote || wrong_token)
 		{
@@ -29,17 +28,17 @@ static void	execute_program(t_data *data)
 			data->input = NULL;
 			return ;
 		}
-		clear_shell(data, cmds_array);
+		clear_shell(data);
 		exit(EXIT_FAILURE);
 	}
-	if (process_heredocs(cmds_array, data))
+	if (process_heredocs(data->cmds, data))
 	{
 		printf("error processing heredocs");
-		clear_shell(data, cmds_array);
+		clear_shell(data);
 		exit(EXIT_FAILURE);
 	}
-	data->status = ft_exec_cmds(data, cmds_array, 0, 0);
-	free_commands_array(cmds_array);
+	data->status = ft_exec_cmds(data, 0, 0);
+	free_commands_array(data->cmds);
 	free(data->input);
 	data->input = NULL;
 }

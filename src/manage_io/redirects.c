@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 19:31:55 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/09 11:05:18 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/09 11:47:56 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	open_file(char *file, int mode, int flag)
 	return (fd);
 }
 
-int	ft_out(t_io_node *io_list, t_data *data, t_cmd_array *cmds, int flag)
+int	ft_out(t_io_node *io_list, t_data *data, int flag)
 {
 	int		fd;
 
@@ -42,12 +42,12 @@ int	ft_out(t_io_node *io_list, t_data *data, t_cmd_array *cmds, int flag)
 	fd = open_file(io_list->io_arg, 1, flag);
 	if (fd < 0)
 		return (1);
-	do_dup2(fd, STDOUT_FILENO, data, cmds);
+	do_dup2(fd, STDOUT_FILENO, data);
 	close(fd);
 	return (0);
 }
 
-int	ft_in(t_io_node *io_list, t_data *data, t_cmd_array *cmds, int flag)
+int	ft_in(t_io_node *io_list, t_data *data, int flag)
 {
 	int		fd;
 
@@ -56,12 +56,12 @@ int	ft_in(t_io_node *io_list, t_data *data, t_cmd_array *cmds, int flag)
 	fd = open_file(io_list->io_arg, 0, flag);
 	if (fd < 0)
 		return (1);
-	do_dup2(fd, STDIN_FILENO, data, cmds);
+	do_dup2(fd, STDIN_FILENO, data);
 	close(fd);
 	return (0);
 }
 
-int	ft_append(t_io_node *io_list, t_data *data, t_cmd_array *cmds,
+int	ft_append(t_io_node *io_list, t_data *data,
 	int flag)
 {
 	int	fd;
@@ -71,7 +71,7 @@ int	ft_append(t_io_node *io_list, t_data *data, t_cmd_array *cmds,
 	fd = open_file(io_list->io_arg, 2, flag);
 	if (fd < 0)
 		return (1);
-	do_dup2(fd, STDOUT_FILENO, data, cmds);
+	do_dup2(fd, STDOUT_FILENO, data);
 	close(fd);
 	return (0);
 }
