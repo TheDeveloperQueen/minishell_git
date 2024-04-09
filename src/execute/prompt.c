@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:46:35 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/08 20:20:19 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/09 07:47:22 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ static void	execute_program(t_data *data)
 	data->status = ft_exec_cmds(data, cmds_array, 0, 0);
 	free_commands_array(cmds_array);
 	free(data->input);
-	data->exit_value = 0;
 }
 
 void	read_shell(t_data *data)
