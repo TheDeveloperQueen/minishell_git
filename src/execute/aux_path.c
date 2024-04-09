@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:21:28 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/06 19:24:28 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/09 08:23:40 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,20 @@ static char	**find_path(t_llist *envp)
 	return (paths);
 }
 
+void	print_cmd_not_found_error(char *cmd)
+{
+	char	*msg;
+
+	if (cmd[0] == '\0')
+		ft_putstr_fd("'': command not found\n", 2);
+	else
+	{
+		msg = ft_strjoin(cmd, ": command not found\n");
+		ft_putstr_fd(msg, 2);
+		free(msg);
+	}
+}
+
 char	*paths(t_data *data, t_command *cmd)
 {
 	char	**array_paths;
@@ -55,7 +69,7 @@ char	*paths(t_data *data, t_command *cmd)
 	if (has_path(cmd) == 0)
 		return (ft_strdup(cmd->name));
 	array_paths = find_path(data->envp);
-	while (array_paths && array_paths[i] != NULL)
+	while (array_paths && array_paths[i] != NULL && cmd->name[0])
 	{
 		full_path = ft_strjoin(array_paths[i], "/");
 		full_path = ft_strjoin(full_path, cmd->name);
@@ -67,7 +81,6 @@ char	*paths(t_data *data, t_command *cmd)
 		free(full_path);
 		i++;
 	}
-	ft_putstr_fd(cmd->name, 2);
-	ft_putendl_fd(": command not found", 2);
+	print_cmd_not_found_error(cmd->name);
 	exit(127);
 }
