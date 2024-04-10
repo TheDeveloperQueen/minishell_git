@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:09:56 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/10 09:11:03 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/10 10:56:16 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,9 @@ typedef struct s_data
 	pid_t		last_pid;
 }			t_data;
 
+//inits
+t_data				*init_mini_shell(char **envp);
+
 // Command functions
 t_cmd_array			*parse_commands_array(t_token_node *token_list,
 						int *wrong_token);
@@ -78,8 +81,7 @@ int					set_name_and_args_fields(t_cmd_array *comds);
 char				*paths(t_data *data, t_cmd *cmd);
 
 //Envp functions
-void				get_envp(t_data *data, char **envp);
-void				get_envp_3(t_data *data);
+void				init_env(char **envp, t_data *data);
 void				print_env(t_data *data, char *print1, char *print2);
 char				*name_env(t_list *lst);
 char				**array_env(t_llist *envp);

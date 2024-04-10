@@ -26,6 +26,7 @@ SRC=	src/builtins/aux_envp.c \
 		src/execute/files_checks.c \
 		src/free/free.c \
 		src/main/main.c \
+		src/main/inits.c \
 		src/manage_io/do_dups.c \
 		src/manage_io/manage_io.c \
 		src/manage_io/process_heredocs.c \
