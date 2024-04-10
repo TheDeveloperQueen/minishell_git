@@ -8,6 +8,7 @@ LIBFT = libft/libft.a
 
 # SOURCE FILES
 SRC=	src/builtins/aux_envp.c \
+		src/builtins/aux_envp_2.c \
 		src/builtins/aux_export.c \
 		src/builtins/ft_cd.c \
 		src/builtins/ft_echo.c \
