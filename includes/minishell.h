@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:09:56 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/11 15:03:38 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/11 16:37:40 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,10 @@
 # include <dirent.h>
 # include <signal.h>
 
-typedef struct s_signals_state
-{
-	int	is_child;
-	int	heredoc_int;
-}		t_signal_state;
-
 # define SHELL_NAME "🔥ourHell"
 # define PROMPT "🔥ourHell> "
 
+extern int g_is_child;
 typedef struct s_io_node
 {
 	char				*io_arg;
@@ -72,7 +67,7 @@ typedef struct s_data
 
 //inits
 t_data				*init_mini_shell(char **envp);
-void				ft_init_signals(void);
+void				init_signals(void);
 
 // Command functions
 t_cmd_array			*parse_commands_array(t_token_node *token_list,

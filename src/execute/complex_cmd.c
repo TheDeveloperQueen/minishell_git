@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   complex_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 16:32:29 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/09 13:16:24 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/11 16:36:15 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static	int	ft_exec_pipeline(t_data *data, int index)
 	int	pid_l;
 	int	pid_r;
 
-	//g_minishell.signint_child = true;
+	g_is_child = 1;
 	pipe(pfds);
 	pid_l = fork();
 	if (!pid_l)
@@ -57,7 +57,7 @@ static	int	ft_exec_pipeline(t_data *data, int index)
 		{
 			(close(pfds[0]), close(pfds[1]),
 				waitpid(pid_l, &status, 0), waitpid(pid_r, &status, 0));
-			//g_minishell.signint_child = false;
+			g_is_child = 0;
 			return (WEXITSTATUS(status));
 		}
 	}
