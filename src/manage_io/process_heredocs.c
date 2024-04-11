@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_heredocs.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:38:25 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/09 17:16:15 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/11 12:27:21 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	rx_heredocs(t_io_node *io_list, t_data *data)
 int	process_heredocs(t_cmd_array *cmds, t_data *data)
 {
 	int			i;
-	t_cmd	**cmd_array;
+	t_cmd		**cmd_array;
 	int			error;
 
 	i = 0;

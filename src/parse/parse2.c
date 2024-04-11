@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 11:50:03 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/09 13:16:24 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/11 12:26:21 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	add_io(t_token_node *token, t_io_node **io_in, t_io_node **io_out)
 
 t_cmd	*parse_command(t_token_node **curr_tok)
 {
-	t_cmd	*comm;
+	t_cmd		*comm;
 	int			error;
 
 	comm = create_blank_command();
@@ -53,7 +53,7 @@ t_cmd	*parse_command(t_token_node **curr_tok)
 
 t_cmd	**get_empty_command_array(int len)
 {
-	t_cmd	**com_array;
+	t_cmd		**com_array;
 	int			i;
 
 	i = 0;
@@ -103,51 +103,4 @@ t_cmd_array	*parse_commands_array(t_token_node	*token_list,
 	if (i != cmds->len)
 		return (aux_wrapper(cmds, T_WORD, wrong_token), NULL);
 	return (cmds);
-}
-
-char	**create_str_arr(t_list *cmd_name_and_args)
-{
-	char	**str_arr;
-	int		lst_size;
-	int		i;
-
-	lst_size = ft_lstsize(cmd_name_and_args);
-	str_arr = malloc(sizeof(char *) * (lst_size + 1));
-	if (!str_arr)
-		return (NULL);
-	i = 0;
-	while (cmd_name_and_args)
-	{
-		str_arr[i] = cmd_name_and_args->content;
-		i++;
-		cmd_name_and_args = cmd_name_and_args->next;
-	}
-	str_arr[lst_size] = NULL;
-	return(str_arr);
-}
-
-int	set_name_and_args_fields(t_cmd_array *cmds)
-{
-	char		**str_arr;
-	int			i;
-	t_cmd	*cmd;
-
-	i = 0;
-	while (i < cmds->len)
-	{
-		cmd = cmds->array[i];
-		if (cmd->name_and_args)
-		{
-			if (cmd->name_and_args->next)
-				cmd->args = cmd->name_and_args->next;
-			str_arr = create_str_arr(cmd->name_and_args);
-			if (!str_arr)
-				return (1);
-			cmd->name_and_args_splt = str_arr;
-			if (str_arr[0])
-				cmd->name = str_arr[0];
-		}
-		i++;
-	}
-	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   format_tokens.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 08:12:59 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/08 19:55:57 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/11 12:25:51 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,3 @@ int	format_tokens(t_token_node **token_list, int *wrong_token)
 	*token_list = new_token_list;
 	return (0);
 }
-

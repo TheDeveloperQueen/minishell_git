@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:02:59 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/08 19:49:28 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/11 12:32:19 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,4 @@ int				get_array_command_len(t_token_node *token_list);
 int				add_arg(t_list **cmd_name_and_args, char **to_add);
 void			add_char_and_free(char **old_str, char c);
 void			print_unexpected_token_error(t_token_type type_of_token);
-
+char			*get_var_name(char **str, int is_between_quotes);

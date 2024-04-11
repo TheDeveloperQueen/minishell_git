@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 13:46:35 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/09 14:29:23 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/11 13:05:40 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,7 @@ void	read_shell(t_data *data)
 	//signals();
 	while (1)
 	{
-
 		data->input = readline(PROMPT);
-		//data->input = "ls > out2 | cat out2";
 		if (!data->input)
 		{
 			rl_replace_line("", 0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:09:56 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/10 10:56:16 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/11 12:32:46 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,5 +129,8 @@ void				free_data(t_data *data);
 void				free_command(t_cmd *com);
 void				free_commands_array(t_cmd_array *commands);
 void				clear_shell(t_data *data);
+
+//Parse
+void				add_var_and_free(char **old_str, char *var_name, t_data *data);
 
 #endif

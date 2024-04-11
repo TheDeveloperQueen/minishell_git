@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 20:18:11 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/09 13:16:24 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/11 13:30:15 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,6 @@ int	ft_unset(t_cmd *cmd, t_data *data)
 			unset_var(args->content, &data->envp);
 		args = args->next;
 	}
+	free(name);
 	return (0);
 }
