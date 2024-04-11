@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoto-gu <acoto-gu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:09:56 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/11 16:37:40 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/11 21:01:15 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,15 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <sys/wait.h>
+# include <sys/stat.h>
 # include <dirent.h>
 # include <signal.h>
 
 # define SHELL_NAME "🔥ourHell"
 # define PROMPT "🔥ourHell> "
 
-extern int g_is_child;
+extern int	g_is_child;
+
 typedef struct s_io_node
 {
 	char				*io_arg;
@@ -86,7 +88,6 @@ char				*paths(t_data *data, t_cmd *cmd);
 //Envp functions
 void				init_env(char **envp, t_data *data);
 void				print_env(t_data *data, char *print1, char *print2);
-char				*name_env(t_list *lst);
 char				**array_env(t_llist *envp);
 int					check_dup_env(t_data *data, char *name);
 void				update_envp_value(t_data *data, char *argument);
@@ -103,6 +104,7 @@ int					ft_env(t_data *data);
 int					ft_exit(t_cmd *cmd, t_data *data);
 int					ft_unset(t_cmd *cmd, t_data *data);
 void				print_error_msg(char *reason, char *msg);
+int					directory_exist(const char *path);
 
 //execute
 int					exec_builtin(t_cmd *cmd, t_data *data);
@@ -134,6 +136,7 @@ void				free_commands_array(t_cmd_array *commands);
 void				clear_shell(t_data *data);
 
 //Parse
-void				add_var_and_free(char **old_str, char *var_name, t_data *data);
+void				add_var_and_free(char **old_str,
+						char *var_name, t_data *data);
 
 #endif

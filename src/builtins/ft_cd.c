@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:42:27 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/11 16:03:35 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/11 20:47:44 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	manage_path(t_data *data, char *old)
 {
 	char	*new_pwd;
-	
+
 	new_pwd = getcwd(NULL, 0);
 	if (!check_dup_env(data, "OLDPWD"))
 		lst_add_back(&data->envp, lst_add_new(ft_strdup("OLDPWD"), old));
@@ -28,25 +28,24 @@ static int	manage_path(t_data *data, char *old)
 	return (0);
 }
 
-static int	path_home(t_data *data, t_cmd *cmd)
+static int	path_home(t_data *data)
 {
 	char	*path;
 	char	*old;
 
-	(void)cmd;
-	old = getcwd(NULL, 0);
 	path = search_env(data, "HOME");
 	if (!path)
 	{
 		printf("%s: HOME not set\n", SHELL_NAME);
 		return (1);
 	}
-	if (opendir(path))
+	old = getcwd(NULL, 0);
+	if (directory_exist(path))
 		chdir(path);
 	else
-		return (1);
+		return (free(old), 1);
 	manage_path(data, old);
-	return (free(path), 0);
+	return (0);
 }
 
 static int	path_old(t_data *data, t_cmd *cmd)
@@ -64,7 +63,7 @@ static int	path_old(t_data *data, t_cmd *cmd)
 			lst_add_back(&data->envp, lst_add_new(ft_strdup("OLDPWD"), NULL));
 		return (1);
 	}
-	if (opendir(path))
+	if (directory_exist(path))
 	{
 		chdir(path);
 		printf("%s\n", path);
@@ -101,10 +100,10 @@ int	ft_cd(t_data *data, t_cmd *cmd)
 	if (check_args_size(cmd, 1))
 		return (1);
 	if (!cmd->args || ft_strcmp(cmd->args->content, "~") == 0)
-		return (path_home(data, cmd));
+		return (path_home(data));
 	else if (ft_strcmp(cmd->args->content, "-") == 0)
 		return (path_old(data, cmd));
-	else if (opendir((char *)cmd->args->content))
+	else if (directory_exist((char *)cmd->args->content))
 	{
 		old = getcwd(NULL, 0);
 		chdir((char *)cmd->args->content);

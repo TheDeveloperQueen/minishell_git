@@ -18,6 +18,7 @@ SRC=	src/builtins/aux_envp.c \
 		src/builtins/ft_pwd.c \
 		src/builtins/ft_unset.c \
 		src/builtins/error_printer.c \
+		src/builtins/aux_cd.c \
 		src/execute/aux_cmds.c \
 		src/execute/aux_path.c \
 		src/execute/complex_cmd.c \
