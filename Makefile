@@ -40,7 +40,8 @@ SRC=	src/builtins/aux_envp.c \
 		src/tokens/token_lst.c \
 		src/tokens/tokenize_utils.c \
 		src/tokens/tokenize.c \
-		src/tokens/token_errors.c
+		src/tokens/token_errors.c \
+		src/signals/signals.c
 
 # OBJECT FILES
 OBJ_PATH	= obj/

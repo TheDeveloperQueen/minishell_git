@@ -6,11 +6,13 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:38:25 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/09 17:16:15 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/11 10:20:32 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
+
+extern t_signal_state	g_signals;
 
 int	ft_is_delimiter(char *delimiter, char *str)
 {
@@ -20,12 +22,18 @@ int	ft_is_delimiter(char *delimiter, char *str)
 	return (0);
 }
 
+static void	ft_heredoc_sigint_handler(int signum)
+{
+	(void)signum;
+	exit(SIGINT);
+}
+
 void	ft_heredoc(t_io_node *io, int p[2], t_data *data)
 {
 	char	*line;
 	char	*aux_line;
 
-	//signal(SIGINT, ft_heredoc_sigint_handler);
+	signal(SIGINT, ft_heredoc_sigint_handler);
 	while (1)
 	{
 		line = readline("> ");
@@ -60,14 +68,14 @@ int	rx_heredocs(t_io_node *io_list, t_data *data)
 		if (io_list->io_type == IO_HEREDOC)
 		{
 			pipe(p);
-			//g_minishell.signint_child = true;
+			g_signals.is_child = 1;
 			//pid = (signal(SIGQUIT, SIG_IGN), fork());
 			pid = fork();
 			if (!pid)
 				ft_heredoc(io_list, p, data);
 			waitpid(pid, &child_status, 0);
 			close(p[1]);
-			if (WIFEXITED(child_status) && WEXITSTATUS(child_status) != 0)
+			if (WIFEXITED(child_status) && WEXITSTATUS(child_status) == 2)
 				return (1);
 			io_list->fd = p[0];
 		}
