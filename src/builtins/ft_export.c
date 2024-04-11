@@ -6,7 +6,7 @@
 /*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 12:22:09 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/11 13:26:35 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/11 14:03:59 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	ft_export(t_cmd *cmd, t_data *data)
 	while (lst)
 	{
 		if (!valid_name(name, lst->content))
-			return (1);
+			return (free(name), 1);
 		if (!ft_strchr(lst->content, '='))
 		{
 			if (!check_dup_env(data, lst->content))
