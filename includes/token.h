@@ -3,13 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   token.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:02:59 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/11 12:32:19 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/11 21:07:59 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef TOKEN_H
+# define TOKEN_H
 typedef enum e_token_type
 {
 	T_WORD,
@@ -64,3 +66,5 @@ int				add_arg(t_list **cmd_name_and_args, char **to_add);
 void			add_char_and_free(char **old_str, char c);
 void			print_unexpected_token_error(t_token_type type_of_token);
 char			*get_var_name(char **str, int is_between_quotes);
+
+#endif
