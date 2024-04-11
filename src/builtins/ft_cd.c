@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:42:27 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/09 15:30:51 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/11 12:40:38 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	path_home(t_data *data, t_cmd *cmd)
 	path = search_env(data, "HOME");
 	if (!path)
 	{
-		printf("%s: HOME not set", SHELL_NAME);
+		printf("%s: HOME not set\n", SHELL_NAME);
 		return (1);
 	}
 	if (opendir(path))
@@ -54,7 +54,7 @@ static int	path_old(t_data *data, t_cmd *cmd)
 	path = search_env(data, "OLDPWD");
 	if (!path)
 	{
-		printf("%s: OLDPWD not set", SHELL_NAME);
+		printf("%s: OLDPWD not set\n", SHELL_NAME);
 		if (!check_dup_env(data, "OLDPWD"))
 			lst_add_back(&data->envp, lst_add_new(ft_strdup("OLDPWD"), NULL));
 		return (1);

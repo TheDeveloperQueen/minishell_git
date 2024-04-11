@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   only_space.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 13:04:27 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/05 18:17:55 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/04/11 12:21:59 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ int	only_space(char *str)
 	if (count == ft_strlen(str))
 		return (1);
 	else
-		return (0);	
+		return (0);
 }
