@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:09:56 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/11 21:01:15 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/12 16:06:09 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,7 @@ typedef struct s_data
 	int			stdin;
 	int			stdout;
 	int			status;
-	pid_t		last_pid;
-}			t_data;
+}				t_data;
 
 //inits
 t_data				*init_mini_shell(char **envp);
