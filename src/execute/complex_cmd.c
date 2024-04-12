@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   complex_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoto-gu <acoto-gu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 16:32:29 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/11 16:36:15 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/12 11:12:19 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static	int	ft_exec_pipeline(t_data *data, int index)
 	int	pid_r;
 
 	g_is_child = 1;
+	data->status = 0;
 	pipe(pfds);
 	pid_l = fork();
 	if (!pid_l)

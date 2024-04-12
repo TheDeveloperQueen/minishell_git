@@ -6,7 +6,7 @@
 /*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 08:13:15 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/11 12:29:17 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/12 15:18:21 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,15 @@ void	add_var_and_free(char **old_str, char *var_name, t_data *data)
 		var = ft_strdup("$");
 	else
 		var = my_get_env(var_name, data->envp);
-	free (var_name);
 	if (!var)
+	{
+		free (var_name);
 		return ;
+	}
 	new_str = ft_strjoin(*old_str, var);
+	if ((ft_strcmp(var_name, "?") == 0) || (ft_strcmp(var_name, "$") == 0))
+		free(var);
+	free(var_name);
 	free(*old_str);
 	if (!new_str)
 		*old_str = NULL;

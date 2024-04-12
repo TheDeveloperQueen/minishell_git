@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:42:27 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/11 20:47:44 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/12 14:58:32 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,33 +72,12 @@ static int	path_old(t_data *data, t_cmd *cmd)
 	return (0);
 }
 
-int	check_args_size(t_cmd *cmd, int limit_size)
-{
-	int		args_size;
-	char	*tmp_msg_1;
-	char	*tmp_msg_2;
-	char	*msg;
-
-	args_size = ft_lstsize(cmd->args);
-	if (args_size > limit_size)
-	{
-		tmp_msg_1 = create_error_msg(cmd->name);
-		tmp_msg_2 = ft_strjoin(tmp_msg_1, ": ");
-		msg = ft_strjoin(tmp_msg_2, "too many arguments\n");
-		ft_putstr_fd(msg, STDERR_FILENO);
-		return (free(tmp_msg_1), free(tmp_msg_2), free(msg), 1);
-	}
-	return (0);
-}
-
 int	ft_cd(t_data *data, t_cmd *cmd)
 {
 	char	*old;
 	char	*msg;
 	char	*msg2;
 
-	if (check_args_size(cmd, 1))
-		return (1);
 	if (!cmd->args || ft_strcmp(cmd->args->content, "~") == 0)
 		return (path_home(data));
 	else if (ft_strcmp(cmd->args->content, "-") == 0)

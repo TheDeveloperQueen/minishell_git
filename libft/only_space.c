@@ -6,7 +6,7 @@
 /*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 13:04:27 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/11 12:21:59 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/12 14:02:57 by rivasque         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	only_space(char *str)
 	count = 0;
 	while (str[i])
 	{
-		if (str[i] == ' ')
+		if (str[i] == ' ' || str[i] == '\t')
 			count++;
 		i++;
 	}
