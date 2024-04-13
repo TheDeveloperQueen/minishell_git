@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   complex_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 16:32:29 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/12 11:12:19 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/13 13:41:44 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static	int	ft_exec_pipeline(t_data *data, int index)
 	int	pid_l;
 	int	pid_r;
 
-	g_is_child = 1;
+	set_child_signals_handlers();
 	data->status = 0;
 	pipe(pfds);
 	pid_l = fork();
@@ -58,7 +58,7 @@ static	int	ft_exec_pipeline(t_data *data, int index)
 		{
 			(close(pfds[0]), close(pfds[1]),
 				waitpid(pid_l, &status, 0), waitpid(pid_r, &status, 0));
-			g_is_child = 0;
+			set_father_signals_handlers();
 			return (WEXITSTATUS(status));
 		}
 	}

@@ -1,24 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   handlers.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/13 13:06:40 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/13 13:44:07 by acoto-gu         ###   ########.fr       */
+/*   Created: 2024/04/13 13:22:56 by acoto-gu          #+#    #+#             */
+/*   Updated: 2024/04/13 13:38:06 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-int	main(int argc, char **argv, char **envp)
+void	father_handler(int signum)
 {
-	t_data	*data;
+	(void)signum;
+	rl_replace_line("", 0);
+	printf("\n");
+	rl_on_new_line();
+	rl_redisplay();
+}
 
-	((void)argc, (void)argv);
-	data = init_mini_shell(envp);
-	set_father_signals_handlers();
-	read_shell(data);
-	return (0);
+void	child_handler(int signum)
+{
+	if (signum == SIGINT)
+		ft_putstr_fd("\n", STDERR_FILENO);
+	else if (signum == SIGQUIT)
+		ft_putstr_fd("Quit: 3\n", STDERR_FILENO);
+}
+
+void	heredoc_handler(int signum)
+{
+	(void)signum;
+	ft_putstr("\n");
+	exit(SIGINT);
 }

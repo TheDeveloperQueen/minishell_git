@@ -3,30 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 12:39:58 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/12 16:05:42 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/13 13:38:27 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static void	sigint_handler(int num)
+void	set_father_signals_handlers(void)
 {
-	(void)num;
-	if (!g_is_child)
-	{
-		ft_putstr_fd("\n", 1);
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
-	}
+	signal(SIGINT, father_handler);
+	signal(SIGQUIT, SIG_IGN);
 }
 
-void	init_signals(void)
+void	set_child_signals_handlers(void)
 {
-	g_is_child = 0;
-	signal(SIGINT, sigint_handler);
+	signal(SIGINT, child_handler);
+	signal(SIGQUIT, child_handler);
+}
+
+void	set_heredoc_signals_handler(void)
+{
+	signal(SIGINT, heredoc_handler);
 	signal(SIGQUIT, SIG_IGN);
 }

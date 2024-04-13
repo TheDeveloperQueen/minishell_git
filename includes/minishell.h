@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:09:56 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/12 16:06:09 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/13 13:42:38 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@
 
 # define SHELL_NAME "🔥ourHell"
 # define PROMPT "🔥ourHell> "
-
-extern int	g_is_child;
 
 typedef struct s_io_node
 {
@@ -68,7 +66,6 @@ typedef struct s_data
 
 //inits
 t_data				*init_mini_shell(char **envp);
-void				init_signals(void);
 
 // Command functions
 t_cmd_array			*parse_commands_array(t_token_node *token_list,
@@ -137,5 +134,13 @@ void				clear_shell(t_data *data);
 //Parse
 void				add_var_and_free(char **old_str,
 						char *var_name, t_data *data);
+
+//Signals
+void				father_handler(int signum);
+void				child_handler(int signum);
+void				heredoc_handler(int signum);
+void				set_father_signals_handlers(void);
+void				set_child_signals_handlers(void);
+void				set_heredoc_signals_handler(void);
 
 #endif

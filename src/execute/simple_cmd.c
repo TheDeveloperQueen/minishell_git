@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple_cmd.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 16:00:00 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/12 11:07:40 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/13 13:44:45 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ static int	exec_child(t_data *data, t_cmd *cmd)
 	int		tmp_status;
 	char	*path;
 	char	**envp_str;
-	char	**args;
+	pid_t	pid;
 
-	g_is_child = 1;
-	data->last_pid = fork();
-	if (data->last_pid == 0)
+	set_child_signals_handlers();
+	pid = fork();
+	if (pid == 0)
 	{
 		tmp_status = process_io(cmd, data, 0);
 		if (tmp_status != 0)
@@ -40,13 +40,12 @@ static int	exec_child(t_data *data, t_cmd *cmd)
 		if (tmp_status != 0)
 			exit((clear_shell(data), tmp_status));
 		envp_str = array_env(data->envp);
-		args = cmd->name_and_args_splt;
-		execve(path, args, envp_str);
+		execve(path, cmd->name_and_args_splt, envp_str);
 		exit((perror(cmd->name), free(path), free_array(envp_str),
 				clear_shell(data), EXIT_FAILURE));
 	}
-	waitpid(data->last_pid, &tmp_status, 0);
-	g_is_child = 0;
+	waitpid(pid, &tmp_status, 0);
+	set_father_signals_handlers();
 	return (WEXITSTATUS(tmp_status));
 }
 

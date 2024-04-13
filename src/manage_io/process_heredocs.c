@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_heredocs.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoto-gu <acoto-gu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:38:25 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/11 16:37:30 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/13 14:05:10 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,12 @@ int	ft_is_delimiter(char *delimiter, char *str)
 	return (0);
 }
 
-static void	heredoc_sigint_handler(int signum)
-{
-	(void)signum;
-	exit(SIGINT);
-}
-
 void	ft_heredoc(t_io_node *io, int p[2], t_data *data)
 {
 	char	*line;
 	char	*aux_line;
 
-	signal(SIGINT, heredoc_sigint_handler);
+	set_heredoc_signals_handler();
 	while (1)
 	{
 		line = readline("> ");
@@ -66,12 +60,12 @@ int	rx_heredocs(t_io_node *io_list, t_data *data)
 		if (io_list->io_type == IO_HEREDOC)
 		{
 			pipe(p);
-			g_is_child = 1;
 			pid = fork();
 			if (!pid)
 				ft_heredoc(io_list, p, data);
+			signal(SIGINT, SIG_IGN);
 			waitpid(pid, &child_status, 0);
-			g_is_child = 0;
+			set_father_signals_handlers();
 			close(p[1]);
 			if (WIFEXITED(child_status) && WEXITSTATUS(child_status) == 2)
 				return (1);
