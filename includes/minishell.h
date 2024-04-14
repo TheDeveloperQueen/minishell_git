@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 14:09:56 by rivasque          #+#    #+#             */
-/*   Updated: 2024/04/13 13:42:38 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/14 11:41:48 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,14 +115,14 @@ char				*create_error_msg(char *reason);
 t_io_node			*ft_new_io(char *io_arg, t_io_type type);
 void				ft_clear_io_lst(t_io_node **lst);
 void				ft_add_io(t_io_node **lst, t_io_node *new);
-int					open_file(char *file, int mode, int flag);
+int					open_file(char *file, int mode, int is_father);
 int					do_dup(int fd);
 int					do_dup2(int fd1, int fd2, t_data *data);
 int					process_heredocs(t_cmd_array *cmds, t_data *data);
-int					ft_out(t_io_node *io_list, t_data *data, int flag);
-int					ft_in(t_io_node *io_list, t_data *data, int flag);
-int					ft_append(t_io_node *io_list, t_data *data, int flag);
-int					process_io(t_cmd *cmd, t_data *data, int flag);
+int					ft_out(t_io_node *io_list, t_data *data, int is_father);
+int					ft_in(t_io_node *io_list, t_data *data, int is_father);
+int					ft_append(t_io_node *io_list, t_data *data, int is_father);
+int					process_io(t_cmd *cmd, t_data *data, int is_father);
 
 //free functions
 void				free_array(char **argv);
