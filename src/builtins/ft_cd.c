@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 10:42:27 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/12 14:58:32 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/14 12:42:52 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,29 @@ static int	manage_path(t_data *data, char *old)
 	return (0);
 }
 
-static int	path_home(t_data *data)
+static int	path_home(t_data *data, t_cmd *cmd)
 {
-	char	*path;
+	char	*home_path;
+	char	*full_path;
 	char	*old;
 
-	path = search_env(data, "HOME");
-	if (!path)
+	home_path = search_env(data, "HOME");
+	if (!home_path)
 	{
 		printf("%s: HOME not set\n", SHELL_NAME);
 		return (1);
 	}
-	old = getcwd(NULL, 0);
-	if (directory_exist(path))
-		chdir(path);
+	if (!cmd->args || ft_strcmp("~", (char *)cmd->args->content) == 0)
+		full_path = ft_strjoin("", home_path);
 	else
-		return (free(old), 1);
+		full_path = ft_strjoin(home_path, cmd->args->content + 1);
+	old = getcwd(NULL, 0);
+	if (directory_exist(full_path))
+		chdir(full_path);
+	else
+		return (free(old), free(full_path), 1);
 	manage_path(data, old);
+	free(full_path);
 	return (0);
 }
 
@@ -78,8 +84,8 @@ int	ft_cd(t_data *data, t_cmd *cmd)
 	char	*msg;
 	char	*msg2;
 
-	if (!cmd->args || ft_strcmp(cmd->args->content, "~") == 0)
-		return (path_home(data));
+	if (!cmd->args || ft_strncmp(cmd->args->content, "~", 1) == 0)
+		return (path_home(data, cmd));
 	else if (ft_strcmp(cmd->args->content, "-") == 0)
 		return (path_old(data, cmd));
 	else if (directory_exist((char *)cmd->args->content))
