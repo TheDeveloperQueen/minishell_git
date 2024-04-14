@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 16:00:00 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/13 13:44:45 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/14 13:38:42 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,15 @@ void	reset_stds(t_data *data, int piped)
 		do_dup2(data->stdin, STDIN_FILENO, data);
 		do_dup2(data->stdout, STDOUT_FILENO, data);
 	}
+}
+
+int	get_status(int tmp_status)
+{
+	if (WIFEXITED(tmp_status))
+		return (WEXITSTATUS(tmp_status));
+	else if (WIFSIGNALED(tmp_status))
+		return (WTERMSIG(tmp_status) + 128);
+	return (1);
 }
 
 static int	exec_child(t_data *data, t_cmd *cmd)
@@ -46,7 +55,7 @@ static int	exec_child(t_data *data, t_cmd *cmd)
 	}
 	waitpid(pid, &tmp_status, 0);
 	set_father_signals_handlers();
-	return (WEXITSTATUS(tmp_status));
+	return (get_status(tmp_status));
 }
 
 int	ft_exec_simple_cmd(t_data *data, t_cmd *cmd, int piped)
