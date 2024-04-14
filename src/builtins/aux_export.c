@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux_export.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rivasque <rivasque@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 18:50:39 by ritavasques       #+#    #+#             */
-/*   Updated: 2024/04/11 14:56:23 by rivasque         ###   ########.fr       */
+/*   Updated: 2024/04/14 13:20:25 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	update_envp_value(t_data *data, char *argument)
 	char	*value;
 
 	name = ft_substr(argument, 0, ft_charfind(argument, '='));
-	if (argument[ft_strlen(argument - 1)] == '=')
+	if (argument[ft_strlen(argument) - 1] == '=')
 		value = ft_strdup("");
 	else
 		value = ft_substr(argument, ft_charfind(argument, '=') + 1,
