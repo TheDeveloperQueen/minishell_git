@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   io_lst.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ritavasques <ritavasques@student.42.fr>    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 15:23:02 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/03/19 18:41:57 by ritavasques      ###   ########.fr       */
+/*   Updated: 2024/04/15 10:28:06 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_io_node	*ft_new_io(char *io_arg, t_io_type type)
 		return (NULL);
 	ptr->io_arg = io_arg;
 	ptr->io_type = type;
+	ptr->fd = -1;
 	ptr->next = NULL;
 	return (ptr);
 }

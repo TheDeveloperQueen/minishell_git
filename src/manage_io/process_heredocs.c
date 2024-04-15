@@ -6,7 +6,7 @@
 /*   By: acoto-gu <acoto-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:38:25 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/15 08:33:32 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/15 10:51:56 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,27 @@ int	rx_heredocs(t_io_node *io_list, t_data *data)
 	return (0);
 }
 
+void	clean_here_docs(t_cmd_array *cmds)
+{
+	int			i;
+	t_cmd		*cmd;
+	t_io_node	*infile;
+
+	i = 0;
+	while (i < cmds->len)
+	{
+		cmd = cmds->array[i];
+		infile = cmd->infiles;
+		while (infile)
+		{
+			if (infile->io_type == IO_HEREDOC && infile->fd != -1)
+				close (infile->fd);
+			infile = infile->next;
+		}
+		i++;
+	}
+}
+
 int	process_heredocs(t_cmd_array *cmds, t_data *data)
 {
 	int			i;
@@ -90,5 +111,7 @@ int	process_heredocs(t_cmd_array *cmds, t_data *data)
 		error = rx_heredocs(cmd_array[i]->infiles, data);
 		i++;
 	}
+	if (error)
+		clean_here_docs(cmds);
 	return (error);
 }
