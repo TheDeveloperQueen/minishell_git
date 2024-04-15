@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_heredocs.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acoto-gu <acoto-gu@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: acoto-gu <acoto-gu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 15:38:25 by acoto-gu          #+#    #+#             */
-/*   Updated: 2024/04/13 14:05:10 by acoto-gu         ###   ########.fr       */
+/*   Updated: 2024/04/15 08:33:32 by acoto-gu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,14 @@ int	rx_heredocs(t_io_node *io_list, t_data *data)
 		{
 			pipe(p);
 			pid = fork();
+			signal(SIGINT, SIG_IGN);
 			if (!pid)
 				ft_heredoc(io_list, p, data);
-			signal(SIGINT, SIG_IGN);
 			waitpid(pid, &child_status, 0);
 			set_father_signals_handlers();
 			close(p[1]);
 			if (WIFEXITED(child_status) && WEXITSTATUS(child_status) == 2)
-				return (1);
+				return (close(p[0]), 1);
 			io_list->fd = p[0];
 		}
 		io_list = io_list->next;
